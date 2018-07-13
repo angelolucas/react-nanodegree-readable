@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import './theme/globals.css'
 
 class App extends Component {
   render() {
