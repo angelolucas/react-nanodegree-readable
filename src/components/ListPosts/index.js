@@ -10,9 +10,14 @@ class ListPosts extends Component {
           {PostsMockup.map((post, key) => (
             <li className={css(styles.post)} key={key}>
               <h2>{post.title}</h2>
-              <h5>{post.category}</h5>
-              <span>{post.voteScore}</span>
+              <p>{post.category}</p>
+              <p>By {post.author}</p>
               <p>{post.body}</p>
+              <ul className={css(styles.utils)}>
+                <li className={css(styles.utilsItem)}>{post.comments} Comments</li>
+                <li className={css(styles.utilsItem)}>{post.voteScore} votes</li>
+                <li className={css(styles.utilsItem)}>edit</li>
+              </ul>
             </li>
           ))}
         </ul>
@@ -25,7 +30,12 @@ const styles = StyleSheet.create({
   list: {
     columnCount: 3,
   },
-  
+
+  utils: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+
   post: {
     padding: 20,
     display: 'inline-block',
