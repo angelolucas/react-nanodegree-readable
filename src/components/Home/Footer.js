@@ -8,7 +8,7 @@ class Footer extends Component {
       <header className={css(styles.footer)}>
         <div className={css(styles.aboutContainer)}>
           <h5 className={css(styles.about)}>
-            <a href="https://github.com/angelolucas/react-nanodegree-readable" target="_blank">
+            <a href="https://github.com/angelolucas/react-nanodegree-readable" target="_blank" rel="noopener noreferrer">
               An Udacity Project.
 
               {/* GitHub SVG */}
@@ -18,7 +18,7 @@ class Footer extends Component {
                 </svg>
               </span>
             </a>
-            <a href="https://angelolucas.github.io/" target="_blank">
+            <a href="https://angelolucas.github.io/" target="_blank" rel="noopener noreferrer">
               By Ângelo Lucas.
             </a>
           </h5>
