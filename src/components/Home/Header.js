@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import colors from '../../theme/colors'
+import Categories from './Categories'
 
 class Header extends Component {
   render() {
     return (
       <header className={css(styles.header)}>
         <h1 className={css(styles.logo)}>Readable</h1>
+        <Categories />
         <div className={css(styles.dateContainer)}>
           <h5 className={css(styles.date)}>Wednesday, July 11, 2018, sort by Date</h5>
         </div>
