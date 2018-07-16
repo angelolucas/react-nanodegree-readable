@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+
 *,
 *:before,
 *:after {
@@ -5,11 +7,14 @@
 }
 
 body {
+  background: #F0F1EB;
+  color: #222;
   font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   margin: 0;
+  font-family: 'Merriweather', serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
