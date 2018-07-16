@@ -25,6 +25,11 @@ const globals = {
     padding: 0,
     listStyle: 'none',
   },
+
+  a: {
+    textDecoration: 'none',
+    color: 'inherit'
+  }
 }
 
 export default globals
