@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   list: {
     columnCount: 3,
   },
+  
   post: {
     padding: 20,
     display: 'inline-block',

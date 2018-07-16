@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
+import colors from '../../theme/colors'
 
 class Header extends Component {
   render() {
@@ -19,25 +20,30 @@ const styles = StyleSheet.create({
     padding: 10,
     textAlign: 'center',
   },
+
   logo: {
     letterSpacing: -1,
     font: "900 42px/54px 'merriweather'",
   },
+
   dateContainer: {
     position: 'relative',
 
     ':before': {
       content: "''",
       position: 'absolute',
-      borderBottom: '3px solid #222',
+      borderBottomWidth: '3px',
+      borderBottomStyle: 'solid',
+      borderBottomColor: colors.text,
       left: '0',
       top: 'calc(50% - 2px)',
       width: '100%',
     }
   },
+
   date: {
     display: 'inline-block',
-    background: '#F0F1EB',
+    background: colors.background,
     position: 'relative',
     padding: 10,
     zIndex: 2,

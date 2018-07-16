@@ -1,12 +1,15 @@
+import colors from './colors'
+import fonts from './fonts'
+
 const globals = {
   '*': {
     boxSizing: 'borber-box',
   },
 
   body: {
-    fontFamily: '"Merriweather", serif',
-    color: '#222',
-    backgroundColor: '#F0F1EB',
+    fontFamily: fonts.main,
+    color: colors.text,
+    backgroundColor: colors.background,
     margin: 0,
     overflowX: 'hidden',
     fontSmoothing: 'antialiased',
