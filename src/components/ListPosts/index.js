@@ -1,20 +1,25 @@
 import React, { Component } from 'react'
-import PostsMockup from '../../PostsMockup.js'
 import { StyleSheet, css } from 'aphrodite/no-important'
+import { connect } from 'react-redux'
+import { fetchPosts } from '../../actions'
 
 class ListPosts extends Component {
+  componentDidMount = () => {
+    this.props.dispatch(fetchPosts())
+  }
   render() {
     return (
       <div>
         <ul className={css(styles.list)}>
-          {PostsMockup.map((post, key) => (
+          { this.props.posts &&
+            this.props.posts.map((post, key) => (
             <li className={css(styles.post)} key={key}>
               <h2>{post.title}</h2>
               <p>{post.category}</p>
               <p>By {post.author}</p>
               <p>{post.body}</p>
               <ul className={css(styles.utils)}>
-                <li className={css(styles.utilsItem)}>{post.comments} Comments</li>
+                <li className={css(styles.utilsItem)}>{post.commentCount} Comments</li>
                 <li className={css(styles.utilsItem)}>{post.voteScore} votes</li>
                 <li className={css(styles.utilsItem)}>edit</li>
               </ul>
@@ -42,4 +47,8 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ListPosts
+const mapStateToProps = ({ posts }) => ({
+  posts
+})
+
+export default connect(mapStateToProps)(ListPosts)
