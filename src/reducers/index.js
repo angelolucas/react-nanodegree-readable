@@ -5,12 +5,9 @@ const defaultState = {
 }
 
 export default function reducer(state = defaultState, action) {
-  const posts = { action }
-
   switch (action.type) {
     case RECEIVE_POSTS:
       return { posts: action.posts }
-    break
     default:
       return state
   }

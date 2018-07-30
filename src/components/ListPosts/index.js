@@ -8,11 +8,12 @@ class ListPosts extends Component {
     this.props.dispatch(fetchPosts())
   }
   render() {
+    const { posts } = this.props
+
     return (
       <div>
         <ul className={css(styles.list)}>
-          { this.props.posts &&
-            this.props.posts.map((post, key) => (
+          { posts && posts.map((post, key) => (
             <li className={css(styles.post)} key={key}>
               <h2>{post.title}</h2>
               <p>{post.category}</p>
@@ -33,7 +34,7 @@ class ListPosts extends Component {
 
 const styles = StyleSheet.create({
   list: {
-    columnCount: 3,
+    display: 'flex'
   },
 
   utils: {
