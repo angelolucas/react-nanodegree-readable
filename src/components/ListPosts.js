@@ -14,7 +14,7 @@ class ListPosts extends Component {
     return (
       <div>
         <ul className={css(styles.list)}>
-          { posts && posts.map((post, key) => (
+          {posts && posts.map((post, key) => (
             <li className={css(styles.post)} key={key}>
               <h2>{post.title}</h2>
               <p>{post.category}</p>

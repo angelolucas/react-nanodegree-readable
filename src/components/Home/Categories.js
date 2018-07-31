@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchCategories } from '../../actions'
 import { StyleSheet, css } from 'aphrodite/no-important'
 
 class Categories extends Component {
+  componentDidMount() {
+    this.props.dispatch(fetchCategories())
+  }
   render() {
+    const { categories } = this.props
+
     return (
       <ul>
-        <li className={css(styles.item)}><a href="">World</a></li>
-        <li className={css(styles.item)}><a href="">Sport</a></li>
-        <li className={css(styles.item)}><a href="">Politic</a></li>
-        <li className={css(styles.item)}><a href="">Business</a></li>
-        <li className={css(styles.item)}><a href="">Tech</a></li>
-        <li className={css(styles.item)}><a href="">Science</a></li>
+        {categories && categories.map((category, key) => (
+          <li className={css(styles.item)} key={key}><a href="">{category.name}</a></li>
+        ))}
       </ul>
     )
   }
@@ -23,4 +27,8 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Categories
+const mapStateToProps = ({categories}) => ({
+  categories
+})
+
+export default connect(mapStateToProps)(Categories)
