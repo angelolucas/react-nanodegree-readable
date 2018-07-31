@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import colors from '../theme/colors'
+import { colors } from '../theme'
 
 class Logo extends Component {
   render() {

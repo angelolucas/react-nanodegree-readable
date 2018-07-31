@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import colors from '../../theme/colors'
+import { colors, spaces } from '../../theme'
 import Logo from '../Logo'
 import Categories from './Categories'
 
@@ -20,7 +20,7 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    padding: 10,
+    padding: spaces.x2,
     textAlign: 'center',
   },
 

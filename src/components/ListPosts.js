@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { connect } from 'react-redux'
 import { fetchPosts } from '../actions'
+import { spaces } from '../theme'
 
 class ListPosts extends Component {
   componentDidMount = () => {
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
   },
 
   post: {
-    padding: 20,
+    padding: spaces.x2,
     display: 'inline-block',
   }
 })

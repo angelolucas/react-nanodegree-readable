@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import colors from '../../theme/colors'
+import { colors, spaces } from '../../theme'
 
 class Footer extends Component {
   render() {
     return (
-      <header className={css(styles.footer)}>
+      <footer className={css(styles.footer)}>
         <div className={css(styles.aboutContainer)}>
           <h5 className={css(styles.about)}>
             <a href="https://github.com/angelolucas/react-nanodegree-readable" target="_blank" rel="noopener noreferrer">
@@ -23,14 +23,14 @@ class Footer extends Component {
             </a>
           </h5>
         </div>
-      </header>
+      </footer>
     )
   }
 }
 
 const styles = StyleSheet.create({
   footer: {
-    padding: 10,
+    padding: spaces.x2,
     textAlign: 'center',
   },
 
