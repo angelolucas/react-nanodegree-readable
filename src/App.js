@@ -5,7 +5,6 @@ import injectGlobalStyles from 'aphrodite-globals/no-important'
 import { fetchCategories } from './actions'
 import Home from './components/Home'
 import Category from './components/Category'
-import Page404 from './components/404'
 import { globals } from './theme'
 
 injectGlobalStyles(globals)
@@ -21,8 +20,6 @@ class App extends Component {
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" component={Home} />
-
             {categories && categories.map(category => (
               <Route
                 path={`/${category.path}`}
@@ -31,7 +28,7 @@ class App extends Component {
               />
             ))}
 
-            <Route component={Page404} />
+            <Route component={Home} />
           </Switch>
         </div>
       </Router>
