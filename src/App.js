@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import injectGlobalStyles from 'aphrodite-globals/no-important'
-import { fetchCategories } from './actions'
+import { fetchPosts, fetchCategories } from './actions'
 import Home from './components/Home'
 import Category from './components/Category'
 import { globals } from './theme'
@@ -10,32 +10,39 @@ import { globals } from './theme'
 injectGlobalStyles(globals)
 
 class App extends Component {
-  componentDidMount() {
-    this.props.dispatch(fetchCategories())
+  state = {
+    initialContent: false
+  }
+  componentWillMount() {
+    // Dispatch initial content
+    this.props.dispatch(fetchPosts())
+    this.props.dispatch(fetchCategories()).then(() => {
+      this.setState({initialContent: true})
+    })
   }
   render() {
-    let { categories } = this.props
-
     return (
       <Router>
-        <div>
+        {this.state.initialContent &&
           <Switch>
-            {categories && categories.map(category => (
+            {/* Home Page */}
+            <Route exact path="/" component={Home} />
+
+            {/* Category Page */}
+            {this.props.categories.map(category => (
               <Route
                 path={`/${category.path}`}
                 key={category.path}
                 render={() => <Category category={category.name} />}
               />
             ))}
-
-            <Route component={Home} />
           </Switch>
-        </div>
+        }
       </Router>
     );
   }
 }
 
-const mapStateToProps = ({ categories }) => ({ categories })
+const mapStateToProps = ({ categories, posts }) => ({ categories, posts })
 
 export default connect(mapStateToProps)(App);

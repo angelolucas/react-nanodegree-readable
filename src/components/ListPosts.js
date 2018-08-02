@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { connect } from 'react-redux'
-import { fetchPosts } from '../actions'
 import { spaces } from '../theme'
 
 class ListPosts extends Component {
-  componentDidMount = () => {
-    this.props.dispatch(fetchPosts())
-  }
   render() {
     const { posts } = this.props
 
