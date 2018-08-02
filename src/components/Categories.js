@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchCategories } from '../actions'
 import { StyleSheet, css } from 'aphrodite/no-important'
@@ -13,7 +14,9 @@ class Categories extends Component {
     return (
       <ul>
         {categories && categories.map((category, key) => (
-          <li className={css(styles.item)} key={key}><a href="">{category.name}</a></li>
+          <li className={css(styles.item)} key={key}>
+            <Link to={`/${category.path}`}>{category.name}</Link>
+          </li>
         ))}
       </ul>
     )
