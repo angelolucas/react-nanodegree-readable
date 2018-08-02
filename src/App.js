@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import injectGlobalStyles from 'aphrodite-globals/no-important'
 import { fetchPosts, fetchCategories } from './actions'
@@ -36,6 +36,9 @@ class App extends Component {
                 render={() => <Category category={category.name} />}
               />
             ))}
+
+            {/* Redirect to home if Routes above don't match */}
+            <Redirect to="/" />
           </Switch>
         }
       </Router>
