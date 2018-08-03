@@ -14,6 +14,7 @@ class App extends Component {
 
   componentWillMount() {
     // Dispatch initial content
+    // TODO: check if both was received before trigger render
     this.props.dispatch(fetchPosts())
     this.props.dispatch(fetchCategories()).then(() => {
       this.setState({initialContent: true})
