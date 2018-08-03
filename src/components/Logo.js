@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { colors } from '../theme'
 
 class Logo extends Component {
   render() {
     return (
-      <h2 className={css(styles.logo)}>Readable</h2>
+      <h2 className={css(styles.logo)}>
+        <Link to="/">Readable</Link>
+      </h2>
     )
   }
 }
