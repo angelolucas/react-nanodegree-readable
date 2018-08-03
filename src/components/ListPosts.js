@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { spaces } from '../theme'
+import { spaces, breakpoint } from '../theme'
 
 class ListPosts extends Component {
   render() {
@@ -30,17 +30,27 @@ class ListPosts extends Component {
 
 const styles = StyleSheet.create({
   list: {
-    display: 'flex'
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+
+  post: {
+    flex: '33%',
+    padding: spaces.x2,
+    display: 'inline-block',
+
+    [breakpoint.medium]: {
+      flex: '50%'
+    },
+    [breakpoint.small]: {
+      flex: '100%',
+      padding: spaces.x1
+    }
   },
 
   utils: {
     display: 'flex',
     justifyContent: 'space-between',
-  },
-
-  post: {
-    padding: spaces.x2,
-    display: 'inline-block',
   }
 })
 

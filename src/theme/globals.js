@@ -3,7 +3,7 @@ import fonts from './fonts'
 
 const globals = {
   '*': {
-    boxSizing: 'borber-box',
+    boxSizing: 'border-box',
   },
 
   body: {
