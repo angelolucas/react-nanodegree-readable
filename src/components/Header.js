@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 // import { Route } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { colors, spaces } from '../theme'
+import { colors, spaces, breakpoint } from '../theme'
 import Logo from './Logo'
 import Categories from './Categories'
 
@@ -24,6 +24,10 @@ const styles = StyleSheet.create({
   header: {
     padding: spaces.x2,
     textAlign: 'center',
+
+    [breakpoint.small]: {
+      padding: spaces.x1,
+    },
   },
 
   dateContainer: {
@@ -38,7 +42,7 @@ const styles = StyleSheet.create({
       left: '0',
       top: 'calc(50% - 2px)',
       width: '100%',
-    }
+    },
   },
 
   date: {
@@ -47,7 +51,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     padding: 10,
     zIndex: 2,
-  }
+  },
 })
 
 export default Header
