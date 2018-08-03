@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Header from './Header'
 import ListPosts from './ListPosts'
 import Footer from './Footer'
@@ -8,11 +9,13 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <ListPosts />
+        <ListPosts posts={this.props.posts} />
         <Footer />
       </div>
     )
   }
 }
 
-export default Home
+const mapStateToProps = ({ posts }) => ({ posts })
+
+export default connect(mapStateToProps)(Home)

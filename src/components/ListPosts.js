@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { connect } from 'react-redux'
 import { spaces } from '../theme'
 
 class ListPosts extends Component {
@@ -45,8 +44,4 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ posts }) => ({
-  posts
-})
-
-export default connect(mapStateToProps)(ListPosts)
+export default ListPosts

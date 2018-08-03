@@ -10,9 +10,8 @@ import { globals } from './theme'
 injectGlobalStyles(globals)
 
 class App extends Component {
-  state = {
-    initialContent: false
-  }
+  state = { initialContent: false }
+
   componentWillMount() {
     // Dispatch initial content
     this.props.dispatch(fetchPosts())
