@@ -5,6 +5,7 @@ import injectGlobalStyles from 'aphrodite-globals/no-important'
 import { fetchPosts, fetchCategories } from './actions'
 import Home from './components/Home'
 import Category from './components/Category'
+import Post from './components/Post'
 import { globals } from './theme'
 
 injectGlobalStyles(globals)
@@ -31,9 +32,19 @@ class App extends Component {
             {/* Category Page */}
             {this.props.categories.map(category => (
               <Route
+                exact
                 path={`/${category.path}`}
                 key={category.path}
                 render={() => <Category category={category.name} />}
+              />
+            ))}
+
+            {/* Post page */}
+            {this.props.posts.map(post => (
+              <Route
+                path={`/${post.category}/${post.id}`}
+                key={post.id}
+                render={() => <Post post={post} />}
               />
             ))}
 

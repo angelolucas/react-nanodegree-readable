@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { spaces, breakpoint } from '../theme'
 
@@ -11,7 +12,7 @@ class Posts extends Component {
         <ul className={css(styles.list)}>
           {posts && posts.map((post, key) => (
             <li className={css(styles.post)} key={key}>
-              <h2>{post.title}</h2>
+              <h2><Link to={`/${post.category}/${post.id}`}>{post.title}</Link></h2>
               <p>{post.category}</p>
               <p>By {post.author}</p>
               <p>{post.body}</p>
