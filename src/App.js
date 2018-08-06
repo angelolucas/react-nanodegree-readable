@@ -36,7 +36,7 @@ class App extends Component {
                 exact
                 path={`/${category.path}`}
                 key={category.path}
-                render={() => <Category category={category.name} />}
+                render={() => <Category name={category.name} path={category.path} />}
               />
             ))}
 
