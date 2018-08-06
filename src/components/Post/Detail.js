@@ -12,7 +12,6 @@ class Detail extends Component {
         <p>By {post.author}</p>
         <p>{post.body}</p>
         <ul className={css(styles.utils)}>
-          <li className={css(styles.utilsItem)}>{post.commentCount} Comments</li>
           <li className={css(styles.utilsItem)}>{post.voteScore} votes</li>
           <li className={css(styles.utilsItem)}>edit</li>
         </ul>

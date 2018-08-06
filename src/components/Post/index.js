@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Header from '../Header'
 import Detail from './Detail'
+import Comments from './Comments'
 import Footer from '../Footer'
 
 class Post extends Component {
@@ -11,6 +12,7 @@ class Post extends Component {
       <div>
         <Header />
         <Detail post={post} />
+        <Comments />
         <Footer />
       </div>
     )
