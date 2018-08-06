@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Header from './Header'
-import ListPosts from './ListPosts'
+import Posts from './Posts'
 import Footer from './Footer'
 
 class Category extends Component {
@@ -9,12 +9,11 @@ class Category extends Component {
     const categoryPosts = this.props.posts.filter(
       post => post.category === this.props.category
     )
-
     return (
       <div>
         <Header />
         <h1 style={{marginLeft: 40}}>{this.props.category}</h1>
-        <ListPosts posts={categoryPosts} />
+        <Posts posts={categoryPosts} />
         <Footer />
       </div>
     )

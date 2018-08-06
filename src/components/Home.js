@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Header from './Header'
-import ListPosts from './ListPosts'
+import Posts from './Posts'
 import Footer from './Footer'
 
 class Home extends Component {
@@ -9,7 +9,7 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <ListPosts posts={this.props.posts} />
+        <Posts posts={this.props.posts} />
         <Footer />
       </div>
     )
