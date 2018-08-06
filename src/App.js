@@ -7,6 +7,7 @@ import Home from './components/Home'
 import Category from './components/Category'
 import Post from './components/Post'
 import { globals } from './theme'
+import slugify from './utils/slugify'
 
 injectGlobalStyles(globals)
 
@@ -42,7 +43,7 @@ class App extends Component {
             {/* Post page */}
             {this.props.posts.map(post => (
               <Route
-                path={`/${post.category}/${post.id}`}
+                path={`/${post.category}/${slugify(post.title)}`}
                 key={post.id}
                 render={() => <Post post={post} />}
               />
