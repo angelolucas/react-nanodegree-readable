@@ -11,7 +11,7 @@ class Posts extends Component {
     return (
       <div>
         <ul className={css(styles.list)}>
-          {posts && posts.map((post, key) => (
+          {posts.map((post, key) => (
             <li className={css(styles.post)} key={key}>
               <h2><Link to={`/${post.category}/${slugify(post.title)}`}>{post.title}</Link></h2>
               <p>{post.category}</p>

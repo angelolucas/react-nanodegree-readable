@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import injectGlobalStyles from 'aphrodite-globals/no-important'
-import { fetchPosts, fetchCategories } from './actions'
+import { fetchPosts } from './actions/posts'
+import { fetchCategories } from './actions/categories'
 import Home from './components/Home'
 import Category from './components/Category'
 import Post from './components/Post'
@@ -23,6 +24,8 @@ class App extends Component {
     })
   }
   render() {
+    const { categories, posts } = this.props
+
     return (
       <Router>
         {this.state.initialContent &&
@@ -31,7 +34,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
 
             {/* Category Page */}
-            {this.props.categories.map(category => (
+            {categories.map(category => (
               <Route
                 exact
                 path={`/${category.path}`}
@@ -41,7 +44,7 @@ class App extends Component {
             ))}
 
             {/* Post page */}
-            {this.props.posts.map(post => (
+            {posts.map(post => (
               <Route
                 path={`/${post.category}/${slugify(post.title)}`}
                 key={post.id}
