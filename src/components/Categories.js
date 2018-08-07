@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { StyleSheet, css } from 'aphrodite/no-important'
@@ -24,6 +25,14 @@ class Categories extends Component {
   }
 }
 
+Categories.propTypes = {
+  categories: PropTypes.array.isRequired,
+}
+
+const mapStateToProps = ({categories}) => ({
+  categories
+})
+
 const styles = StyleSheet.create({
   item: {
     display: 'inline-block',
@@ -32,10 +41,6 @@ const styles = StyleSheet.create({
   currentItem: {
     fontWeight: 'bold',
   },
-})
-
-const mapStateToProps = ({categories}) => ({
-  categories
 })
 
 export default connect(mapStateToProps)(Categories)

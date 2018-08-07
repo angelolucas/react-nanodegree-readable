@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { spaces } from '../../theme'
 
@@ -18,6 +19,10 @@ class Detail extends Component {
       </main>
     )
   }
+}
+
+Detail.propTypes = {
+  post: PropTypes.object.isRequired,
 }
 
 const styles = StyleSheet.create({

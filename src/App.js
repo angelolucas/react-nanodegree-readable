@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import injectGlobalStyles from 'aphrodite-globals/no-important'
@@ -59,6 +60,11 @@ class App extends Component {
       </Router>
     );
   }
+}
+
+App.propTypes = {
+  categories: PropTypes.array,
+  posts: PropTypes.array,
 }
 
 const mapStateToProps = ({ categories, posts }) => ({ categories, posts })

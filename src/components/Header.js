@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { Route } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { colors, spaces, breakpoint } from '../theme'
 import Logo from './Logo'
@@ -14,7 +13,6 @@ class Header extends Component {
         <div className={css(styles.dateContainer)}>
           <h5 className={css(styles.date)}>Wednesday, July 11, 2018, sort by Date</h5>
         </div>
-        {/*<Route path={['/category', '/test']} render={() => <h1>Show Category</h1>} />*/}
       </header>
     )
   }

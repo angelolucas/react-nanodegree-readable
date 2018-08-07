@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { spaces, breakpoint } from '../theme'
@@ -28,6 +29,10 @@ class Posts extends Component {
       </div>
     )
   }
+}
+
+Posts.propTypes = {
+  posts: PropTypes.array.isRequired,
 }
 
 const styles = StyleSheet.create({
