@@ -4,22 +4,25 @@ import { spaces } from '../../theme'
 
 class Comments extends Component {
   render() {
+    const { comments } = this.props
+
+    const title = comments && comments.length > 1 ?
+      `${comments.length} Comments` :
+      'No Comments'
+
     return (
       <div className={css(styles.container)}>
-        <h3>4 Comments</h3>
+        <h3>{title}</h3>
         <ul>
-          <li>
-            <h5>thingtwo</h5>
-            <p>Hi there! I am a COMMENT.</p>
-            <span>6 Votes</span>
-            <span>Edit</span>
-            <span>Delete</span>
-          </li>
-          <li>
-            <h5>thingtwo</h5>
-            <p>Hi there! I am a COMMENT.</p>
-            <span>6 Votes</span>
-          </li>
+          {comments && comments.map(comment => (
+            <li key={comment.id}>
+              <h6>{comment.author}</h6>
+              <p>{comment.body}</p>
+              <span>{comment.voteScore}</span>
+              <span>Edit</span>
+              <span>Delete</span>
+            </li>
+          ))}
         </ul>
       </div>
     )

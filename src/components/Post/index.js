@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
+import * as API from '../../API'
 import Header from '../Header'
 import Detail from './Detail'
 import Comments from './Comments'
 import Footer from '../Footer'
 
 class Post extends Component {
+  state = { comments: null }
+  componentWillMount() {
+    API.getComments(this.props.post.id)
+      .then(comments => this.setState({ comments }))
+  }
   render() {
     const { post } = this.props
 
@@ -12,7 +18,7 @@ class Post extends Component {
       <div>
         <Header />
         <Detail post={post} />
-        <Comments />
+        <Comments comments={this.state.comments} />
         <Footer />
       </div>
     )
