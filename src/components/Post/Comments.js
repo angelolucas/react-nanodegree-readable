@@ -7,7 +7,7 @@ class Comments extends Component {
   render() {
     const { comments } = this.props
 
-    const title = comments && comments.length > 1 ?
+    const title = comments && comments.length > 0 ?
       `${comments.length} Comments` :
       'No Comments'
 
