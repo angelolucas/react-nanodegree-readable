@@ -26,6 +26,7 @@ Detail.propTypes = { post: PropTypes.object.isRequired }
 
 const styles = StyleSheet.create({
   post: { marginBottom: spaces.x3 },
+
   utils: {
     display: 'flex',
     justifyContent: 'space-between',

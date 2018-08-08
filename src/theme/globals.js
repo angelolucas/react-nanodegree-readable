@@ -28,6 +28,19 @@ const globals = {
     textDecoration: 'none',
     color: 'inherit',
   },
+
+  'input, textarea, button': { outline: 'none' },
+
+  'input::placeholder, textarea::placeholder': {
+    fontFamily: fonts.main,
+    fontSize: 14,
+  },
+
+  button: {
+    fontFamily: fonts.main,
+    cursor: 'pointer',
+    border: 'none',
+  },
 }
 
 export default globals
