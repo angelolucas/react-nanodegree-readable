@@ -11,7 +11,9 @@ class Header extends Component {
         <Logo />
         <Categories />
         <div className={css(styles.dateContainer)}>
-          <h5 className={css(styles.date)}>Wednesday, July 11, 2018, sort by Date</h5>
+          <h5 className={css(styles.date)}>
+            Wednesday, July 11, 2018, sort by Date
+          </h5>
         </div>
       </header>
     )

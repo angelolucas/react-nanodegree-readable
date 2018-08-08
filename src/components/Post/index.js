@@ -10,7 +10,9 @@ class Post extends Component {
   state = { comments: null }
 
   UNSAFE_componentWillMount() {
-    API.getComments(this.props.post.id).then(comments => this.setState({ comments }))
+    API.getComments(this.props.post.id).then(comments =>
+      this.setState({ comments })
+    )
   }
 
   render() {

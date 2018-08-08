@@ -26,7 +26,11 @@ class Footer extends Component {
                 </svg>
               </span>
             </a>
-            <a href="https://angelolucas.github.io/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://angelolucas.github.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               By Ângelo Lucas.
             </a>
           </h5>

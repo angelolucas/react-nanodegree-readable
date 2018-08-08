@@ -7,7 +7,9 @@ import Footer from './Footer'
 
 class Category extends Component {
   render() {
-    const categoryPosts = this.props.posts.filter(post => post.category === this.props.path)
+    const categoryPosts = this.props.posts.filter(
+      post => post.category === this.props.path
+    )
 
     return (
       <div>

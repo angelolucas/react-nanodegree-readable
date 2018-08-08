@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
 import { connect } from 'react-redux'
 import injectGlobalStyles from 'aphrodite-globals/no-important'
 import { fetchPosts } from './actions/posts'
@@ -40,7 +45,9 @@ class App extends Component {
                 exact
                 path={`/${category.path}`}
                 key={category.path}
-                render={() => <Category name={category.name} path={category.path} />}
+                render={() => (
+                  <Category name={category.name} path={category.path} />
+                )}
               />
             ))}
 

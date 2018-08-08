@@ -12,7 +12,10 @@ class Categories extends Component {
       <ul>
         {categories.map((category, key) => (
           <li className={css(styles.item)} key={key}>
-            <NavLink to={`/${category.path}`} activeClassName={css(styles.currentItem)}>
+            <NavLink
+              to={`/${category.path}`}
+              activeClassName={css(styles.currentItem)}
+            >
               {category.name}
             </NavLink>
           </li>
