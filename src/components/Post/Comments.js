@@ -13,7 +13,7 @@ class Comments extends Component {
         : 'No Comments'
 
     return (
-      <div className={css(styles.container)}>
+      <div className={css(styles.comments)}>
         <h3>{title}</h3>
         <ul>
           {comments &&
@@ -34,6 +34,6 @@ class Comments extends Component {
 
 Comments.propTypes = { comments: PropTypes.array }
 
-const styles = StyleSheet.create({ container: { padding: spaces.x2 } })
+const styles = StyleSheet.create({ comments: { marginBottom: spaces.x3 } })
 
 export default Comments

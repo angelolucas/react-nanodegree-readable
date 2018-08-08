@@ -25,8 +25,7 @@ class Detail extends Component {
 Detail.propTypes = { post: PropTypes.object.isRequired }
 
 const styles = StyleSheet.create({
-  post: { padding: spaces.x2 },
-
+  post: { marginBottom: spaces.x3 },
   utils: {
     display: 'flex',
     justifyContent: 'space-between',
