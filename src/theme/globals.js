@@ -2,9 +2,7 @@ import colors from './colors'
 import fonts from './fonts'
 
 const globals = {
-  '*': {
-    boxSizing: 'border-box',
-  },
+  '*': { boxSizing: 'border-box' },
 
   body: {
     fontFamily: fonts.main,
@@ -28,8 +26,8 @@ const globals = {
 
   a: {
     textDecoration: 'none',
-    color: 'inherit'
-  }
+    color: 'inherit',
+  },
 }
 
 export default globals

@@ -7,13 +7,12 @@ import Footer from './Footer'
 
 class Category extends Component {
   render() {
-    const categoryPosts = this.props.posts.filter(
-      post => post.category === this.props.path
-    )
+    const categoryPosts = this.props.posts.filter(post => post.category === this.props.path)
+
     return (
       <div>
         <Header />
-        <h1 style={{marginLeft: 40}}>{this.props.name}</h1>
+        <h1 style={{ marginLeft: 40 }}>{this.props.name}</h1>
         <Posts posts={categoryPosts} />
         <Footer />
       </div>
@@ -23,6 +22,8 @@ class Category extends Component {
 
 Category.propTypes = {
   posts: PropTypes.array.isRequired,
+  path: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = ({ posts }) => ({ posts })

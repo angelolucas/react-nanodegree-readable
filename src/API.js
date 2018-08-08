@@ -1,21 +1,18 @@
-const api = "http://localhost:3001"
+const api = 'http://localhost:3001'
 
 let token = localStorage.token
+
 if (!token)
-  token = localStorage.token = Math.random().toString(36).substr(-8)
+  token = localStorage.token = Math.random()
+    .toString(36)
+    .substr(-8)
 
-const headers = {
-  'Authorization': token
-}
+const headers = { Authorization: token }
 
-export const getPosts = () =>
-  fetch(`${api}/posts`, { headers })
-    .then(result => result.json())
+export const getPosts = () => fetch(`${api}/posts`, { headers }).then(result => result.json())
 
 export const getCategories = () =>
-  fetch(`${api}/categories`, { headers })
-    .then(result => result.json())
+  fetch(`${api}/categories`, { headers }).then(result => result.json())
 
-export const getComments = (postID) =>
-  fetch(`${api}/posts/${postID}/comments`, { headers })
-  .then(result => result.json())
+export const getComments = postID =>
+  fetch(`${api}/posts/${postID}/comments`, { headers }).then(result => result.json())

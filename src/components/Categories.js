@@ -12,10 +12,7 @@ class Categories extends Component {
       <ul>
         {categories.map((category, key) => (
           <li className={css(styles.item)} key={key}>
-            <NavLink
-              to={`/${category.path}`}
-              activeClassName={css(styles.currentItem)}
-            >
+            <NavLink to={`/${category.path}`} activeClassName={css(styles.currentItem)}>
               {category.name}
             </NavLink>
           </li>
@@ -25,22 +22,16 @@ class Categories extends Component {
   }
 }
 
-Categories.propTypes = {
-  categories: PropTypes.array.isRequired,
-}
+Categories.propTypes = { categories: PropTypes.array.isRequired }
 
-const mapStateToProps = ({categories}) => ({
-  categories
-})
+const mapStateToProps = ({ categories }) => ({ categories })
 
 const styles = StyleSheet.create({
   item: {
     display: 'inline-block',
     padding: 10,
   },
-  currentItem: {
-    fontWeight: 'bold',
-  },
+  currentItem: { fontWeight: 'bold' },
 })
 
 export default connect(mapStateToProps)(Categories)

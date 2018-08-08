@@ -23,9 +23,7 @@ const styles = StyleSheet.create({
     padding: spaces.x2,
     textAlign: 'center',
 
-    [breakpoint.small]: {
-      padding: spaces.x1,
-    },
+    [breakpoint.small]: { padding: spaces.x1 },
   },
 
   dateContainer: {

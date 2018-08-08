@@ -25,7 +25,7 @@
     "react-scripts": "1.1.4"
   },
   "lint-staged": {
-    "*.js": ["prettier --single-quote --write", "eslint", "git add"]
+    "*.js": ["prettier --single-quote --write", "eslint --fix", "git add"]
   },
   "scripts": {
     "precommit": "lint-staged",

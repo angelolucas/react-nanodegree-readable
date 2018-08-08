@@ -9,9 +9,8 @@ import Footer from '../Footer'
 class Post extends Component {
   state = { comments: null }
 
-  componentWillMount() {
-    API.getComments(this.props.post.id)
-      .then(comments => this.setState({ comments }))
+  UNSAFE_componentWillMount() {
+    API.getComments(this.props.post.id).then(comments => this.setState({ comments }))
   }
 
   render() {
@@ -28,8 +27,6 @@ class Post extends Component {
   }
 }
 
-Post.propTypes = {
-  post: PropTypes.object.isRequired,
-}
+Post.propTypes = { post: PropTypes.object.isRequired }
 
 export default Post

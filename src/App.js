@@ -16,12 +16,12 @@ injectGlobalStyles(globals)
 class App extends Component {
   state = { initialContent: false }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     // Dispatch initial content
     // TODO: check if both was received before trigger render
     this.props.dispatch(fetchPosts())
     this.props.dispatch(fetchCategories()).then(() => {
-      this.setState({initialContent: true})
+      this.setState({ initialContent: true })
     })
   }
   render() {
@@ -29,7 +29,7 @@ class App extends Component {
 
     return (
       <Router>
-        {this.state.initialContent &&
+        {this.state.initialContent && (
           <Switch>
             {/* Home Page */}
             <Route exact path="/" component={Home} />
@@ -56,17 +56,21 @@ class App extends Component {
             {/* Redirect to home if Routes above don't match */}
             <Redirect to="/" />
           </Switch>
-        }
+        )}
       </Router>
-    );
+    )
   }
 }
 
 App.propTypes = {
   categories: PropTypes.array,
   posts: PropTypes.array,
+  dispatch: PropTypes.func,
 }
 
-const mapStateToProps = ({ categories, posts }) => ({ categories, posts })
+const mapStateToProps = ({ categories, posts }) => ({
+  categories,
+  posts,
+})
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App)

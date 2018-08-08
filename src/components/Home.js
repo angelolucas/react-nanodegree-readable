@@ -17,9 +17,7 @@ class Home extends Component {
   }
 }
 
-Home.propTypes = {
-  posts: PropTypes.array.isRequired,
-}
+Home.propTypes = { posts: PropTypes.array.isRequired }
 
 const mapStateToProps = ({ posts }) => ({ posts })
 

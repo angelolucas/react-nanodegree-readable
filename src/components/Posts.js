@@ -14,7 +14,9 @@ class Posts extends Component {
         <ul className={css(styles.list)}>
           {posts.map((post, key) => (
             <li className={css(styles.post)} key={key}>
-              <h2><Link to={`/${post.category}/${slugify(post.title)}`}>{post.title}</Link></h2>
+              <h2>
+                <Link to={`/${post.category}/${slugify(post.title)}`}>{post.title}</Link>
+              </h2>
               <p>{post.category}</p>
               <p>By {post.author}</p>
               <p>{post.body}</p>
@@ -31,14 +33,12 @@ class Posts extends Component {
   }
 }
 
-Posts.propTypes = {
-  posts: PropTypes.array.isRequired,
-}
+Posts.propTypes = { posts: PropTypes.array.isRequired }
 
 const styles = StyleSheet.create({
   list: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
 
   post: {
@@ -46,19 +46,17 @@ const styles = StyleSheet.create({
     padding: spaces.x2,
     display: 'inline-block',
 
-    [breakpoint.medium]: {
-      flex: '50%'
-    },
+    [breakpoint.medium]: { flex: '50%' },
     [breakpoint.small]: {
       flex: '100%',
-      padding: spaces.x1
-    }
+      padding: spaces.x1,
+    },
   },
 
   utils: {
     display: 'flex',
     justifyContent: 'space-between',
-  }
+  },
 })
 
 export default Posts

@@ -6,6 +6,7 @@ import { spaces } from '../../theme'
 class Detail extends Component {
   render() {
     const { post } = this.props
+
     return (
       <main className={css(styles.post)}>
         <h1>{post.title}</h1>
@@ -21,19 +22,15 @@ class Detail extends Component {
   }
 }
 
-Detail.propTypes = {
-  post: PropTypes.object.isRequired,
-}
+Detail.propTypes = { post: PropTypes.object.isRequired }
 
 const styles = StyleSheet.create({
-  post: {
-    padding: spaces.x2,
-  },
+  post: { padding: spaces.x2 },
 
   utils: {
     display: 'flex',
     justifyContent: 'space-between',
-  }
+  },
 })
 
 export default Detail
