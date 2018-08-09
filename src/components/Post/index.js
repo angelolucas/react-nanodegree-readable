@@ -27,7 +27,7 @@ class Post extends Component {
         <div className={css(styles.content)}>
           <Detail post={post} />
           <Comments comments={this.state.comments} />
-          <CommentForm />
+          <CommentForm postID={post.id} />
         </div>
         <Footer />
       </div>
