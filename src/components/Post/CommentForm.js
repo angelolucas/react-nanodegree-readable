@@ -4,22 +4,21 @@ import serializeForm from 'form-serialize'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import uuid from 'uuid'
 import { spaces, colors } from '../../theme'
-import * as API from '../../API'
 
 class CommentForm extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
     const formInputs = serializeForm(e.target, { hash: true })
-    const postId = this.props.postID
+    const parentId = this.props.parentID
 
     if (formInputs.body && formInputs.author) {
-      API.postComment({
+      this.props.postComment({
         id: uuid(),
         body: formInputs.body,
         author: formInputs.author,
         timestamp: Date.now(),
-        parentId: postId,
+        parentId: parentId,
       })
     }
   }
@@ -44,7 +43,10 @@ class CommentForm extends Component {
   }
 }
 
-CommentForm.propTypes = { postID: PropTypes.string.isRequired }
+CommentForm.propTypes = {
+  postComment: PropTypes.func.isRequired,
+  parentID: PropTypes.string.isRequired,
+}
 
 const styles = StyleSheet.create({
   input: {

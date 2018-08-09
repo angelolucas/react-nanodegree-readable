@@ -13,6 +13,16 @@ class Post extends Component {
   state = { comments: null }
 
   UNSAFE_componentWillMount() {
+    this.getComments()
+  }
+
+  postComment = comment => {
+    API.postComment(comment).then(
+      API.getComments(this.props.post.id).then(this.getComments())
+    )
+  }
+
+  getComments = () => {
     API.getComments(this.props.post.id).then(comments =>
       this.setState({ comments })
     )
@@ -27,7 +37,10 @@ class Post extends Component {
         <div className={css(styles.content)}>
           <Detail post={post} />
           <Comments comments={this.state.comments} />
-          <CommentForm postID={post.id} />
+          <CommentForm
+            postComment={this.postComment}
+            parentID={this.props.post.id}
+          />
         </div>
         <Footer />
       </div>
