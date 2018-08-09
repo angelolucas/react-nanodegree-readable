@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { spaces } from '../../theme'
+import date from '../../utils/date'
 
 class Detail extends Component {
   render() {
@@ -12,6 +13,7 @@ class Detail extends Component {
         <h1>{post.title}</h1>
         <p>{post.category}</p>
         <p>By {post.author}</p>
+        <p>{date(post.timestamp)}</p>
         <p>{post.body}</p>
         <ul className={css(styles.utils)}>
           <li className={css(styles.utilsItem)}>{post.voteScore} votes</li>
