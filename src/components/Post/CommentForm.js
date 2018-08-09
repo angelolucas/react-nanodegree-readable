@@ -20,6 +20,9 @@ class CommentForm extends Component {
         timestamp: Date.now(),
         parentId: parentId,
       })
+
+      // Reset Form after post
+      e.target.reset()
     }
   }
 
