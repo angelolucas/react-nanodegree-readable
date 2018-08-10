@@ -1,5 +1,6 @@
 import colors from './colors'
 import fonts from './fonts'
+import spaces from './spaces'
 
 const globals = {
   '*': { boxSizing: 'border-box' },
@@ -29,17 +30,34 @@ const globals = {
     color: 'inherit',
   },
 
-  'input, textarea, button': { outline: 'none' },
+  'input, textarea': {
+    background: 'transparent',
+    border: `2px solid ${colors.text}`,
+    marginBottom: spaces.x1,
+    padding: 10,
+    outline: 'none',
+    width: '100%',
+    maxWidth: '100%',
+    fontFamily: fonts.main,
+    fontSize: 16,
+  },
 
   'input::placeholder, textarea::placeholder': {
     fontFamily: fonts.main,
     fontSize: 14,
   },
 
+  textarea: {
+    display: 'block',
+    resize: 'vertical',
+  },
+
   button: {
+    background: 'transparent',
     fontFamily: fonts.main,
     cursor: 'pointer',
     border: 'none',
+    outline: 'none',
   },
 }
 

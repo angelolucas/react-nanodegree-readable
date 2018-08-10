@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import serializeForm from 'form-serialize'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import uuid from 'uuid'
-import { spaces, colors } from '../../theme'
+import { colors } from '../../theme'
 
 class CommentForm extends Component {
   handleSubmit = e => {
@@ -32,10 +32,10 @@ class CommentForm extends Component {
         <textarea
           name="body"
           placeholder="Comment"
-          className={css(styles.input, styles.textarea)}
+          className={css(styles.field, styles.textarea)}
         />
         <input
-          className={css(styles.input)}
+          className={css(styles.field)}
           type="text"
           placeholder="Name"
           name="author"
@@ -52,20 +52,9 @@ CommentForm.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  input: {
-    background: 'transparent',
-    border: `2px solid ${colors.text}`,
-    padding: 10,
-    marginBottom: spaces.x1,
-    width: 400,
-    maxWidth: '100%',
-  },
+  field: { width: 400 },
 
-  textarea: {
-    display: 'block',
-    height: 200,
-    resize: 'vertical',
-  },
+  textarea: { height: 200 },
 
   button: {
     background: colors.text,
