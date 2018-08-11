@@ -29,7 +29,7 @@ class Comment extends Component {
   }
 
   render() {
-    const { comment } = this.props
+    const { comment, deleteComment } = this.props
     const { editMode } = this.state
 
     return (
@@ -56,7 +56,12 @@ class Comment extends Component {
         {editMode ? (
           // Show delete (comment) and cancel (editing) buttons
           <div className={css(styles.tools)}>
-            <button className={css(styles.tool)}>delete</button>
+            <button
+              className={css(styles.tool)}
+              onClick={() => deleteComment(comment.id)}
+            >
+              delete
+            </button>
             <button onClick={this.cancelEditing} className={css(styles.tool)}>
               cancel
             </button>
@@ -83,7 +88,10 @@ class Comment extends Component {
   }
 }
 
-Comment.propTypes = { comment: PropTypes.object.isRequired }
+Comment.propTypes = {
+  comment: PropTypes.object.isRequired,
+  deleteComment: PropTypes.func.isRequired,
+}
 
 const styles = StyleSheet.create({
   comment: {
