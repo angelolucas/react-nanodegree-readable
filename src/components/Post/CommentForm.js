@@ -39,6 +39,7 @@ class CommentForm extends Component {
           type="text"
           placeholder="Name"
           name="author"
+          autoComplete="off"
         />
         <button className={css(styles.button)}>Post Comment</button>
       </form>
