@@ -3,6 +3,7 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 import { colors, spaces, breakpoint } from '../theme'
 import Logo from './Logo'
 import Categories from './Categories'
+import * as moment from 'moment'
 
 class Header extends Component {
   render() {
@@ -12,7 +13,7 @@ class Header extends Component {
         <Categories />
         <div className={css(styles.dateContainer)}>
           <h5 className={css(styles.date)}>
-            Wednesday, July 11, 2018, sort by Date
+            {moment(Date.now()).format('dddd, MMMM Do YYYY')}, sort by Date
           </h5>
         </div>
       </header>
