@@ -38,25 +38,20 @@ class Comment extends Component {
         <span className={css(styles.date)}>{date(comment.timestamp)}</span>
         <span className={css(styles.voteScore)}>{comment.voteScore}</span>
 
-        {editMode ? (
-          /**
-           * Edit body Comment
-           * `contentEditable` enable us to edit a div like a textarea
-           * `suppressContentEditableWarning` is to prevent console warning
-           * https://github.com/facebook/draft-js/issues/53
-           */
-          <div
-            contentEditable
-            suppressContentEditableWarning
-            ref={input => (this.editableBody = input)}
-            className={css(styles.body, styles.editableBody)}
-          >
-            {comment.body}
-          </div>
-        ) : (
-          // View body comment
-          <p className={css(styles.body)}>{comment.body}</p>
-        )}
+        {/**
+         * Editable body Comment
+         * `contentEditable="true"` enable us to edit a div content like a textarea
+         * `suppressContentEditableWarning` is to prevent console warning
+         * https://github.com/facebook/draft-js/issues/53
+         */}
+        <div
+          contentEditable={editMode ? 'true' : false}
+          suppressContentEditableWarning
+          ref={input => (this.editableBody = input)}
+          className={css(styles.body)}
+        >
+          {comment.body}
+        </div>
 
         {editMode ? (
           // Show delete (comment) and cancel (editing) buttons
@@ -88,7 +83,7 @@ class Comment extends Component {
   }
 }
 
-Comment.propTypes = { comment: PropTypes.object }
+Comment.propTypes = { comment: PropTypes.object.isRequired }
 
 const styles = StyleSheet.create({
   comment: {
@@ -111,15 +106,8 @@ const styles = StyleSheet.create({
   date: { marginRight: spaces.x2 },
 
   body: {
-    border: `2px solid transparent`,
-    padding: 10,
     marginTop: 5,
     marginBottom: 5,
-  },
-
-  editableBody: {
-    border: `2px solid ${colors.text}`,
-    outline: 'none',
   },
 
   tools: {

@@ -30,7 +30,7 @@ const globals = {
     color: 'inherit',
   },
 
-  'input, textarea': {
+  'input, textarea, [contentEditable]': {
     background: 'transparent',
     border: `2px solid ${colors.text}`,
     marginBottom: spaces.x1,
@@ -41,6 +41,8 @@ const globals = {
     fontFamily: fonts.main,
     fontSize: 16,
   },
+
+  '[contentEditable = "false"]': { borderColor: `transparent` },
 
   'input::placeholder, textarea::placeholder': {
     fontFamily: fonts.main,
