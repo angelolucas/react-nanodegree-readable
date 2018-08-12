@@ -21,6 +21,7 @@ class Comment extends Component {
   }
 
   cancelEditing = () => {
+    this.editableBody.innerHTML = this.props.comment.body
     this.editMode(false)
   }
 
