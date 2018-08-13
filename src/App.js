@@ -13,6 +13,7 @@ import { fetchCategories } from './actions/categories'
 import Home from './components/Home'
 import Category from './components/Category'
 import Post from './components/Post'
+import CreatePost from './components/Post/Create'
 import { globals } from './theme'
 import slugify from './utils/slugify'
 
@@ -36,10 +37,10 @@ class App extends Component {
       <Router>
         {this.state.initialContent && (
           <Switch>
-            {/* Home Page */}
+            {/* Home page */}
             <Route exact path="/" component={Home} />
 
-            {/* Category Page */}
+            {/* Category page */}
             {categories.map(category => (
               <Route
                 exact
@@ -59,6 +60,9 @@ class App extends Component {
                 render={() => <Post post={post} />}
               />
             ))}
+
+            {/* New post page*/}
+            <Route path="/new-post" component={CreatePost} />
 
             {/* Redirect to home if Routes above don't match */}
             <Redirect to="/" />
