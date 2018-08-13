@@ -17,6 +17,16 @@ class Comment extends Component {
   }
 
   saveEdition = () => {
+    const { comment, renderComments } = this.props
+
+    API.editComment({
+      id: comment.id,
+      changes: {
+        timestamp: Date.now(),
+        body: this.editableBody.innerHTML,
+      },
+    }).then(renderComments)
+
     this.editMode(false)
   }
 
@@ -48,18 +58,18 @@ class Comment extends Component {
 
         {/**
          * Editable body comment
-         * `contentEditable="true"` enable us to edit a div content like a textarea
+         * `contentEditable="true"` enable us to edit a `<p>` like a textarea
          * `suppressContentEditableWarning` is to prevent console warning
          * https://github.com/facebook/draft-js/issues/53
          */}
-        <div
+        <p
           contentEditable={editMode ? 'true' : false}
           suppressContentEditableWarning
           ref={input => (this.editableBody = input)}
           className={css(styles.body)}
         >
           {comment.body}
-        </div>
+        </p>
 
         {editMode ? (
           // Show delete (comment) and cancel (editing) buttons
