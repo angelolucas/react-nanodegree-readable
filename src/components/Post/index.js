@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Header from '../Header'
-import Detail from './Detail'
+import Content from './Content'
 import Comments from '../Comments'
 import Footer from '../Footer'
 import { spaces, breakpoint } from '../../theme'
@@ -15,7 +15,7 @@ class Post extends Component {
       <div>
         <Header />
         <div className={css(styles.content)}>
-          <Detail post={post} />
+          <Content post={post} />
           <Comments postID={post.id} />
         </div>
         <Footer />

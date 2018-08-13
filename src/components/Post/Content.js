@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 import { spaces } from '../../theme'
 import date from '../../utils/date'
 
-class Detail extends Component {
+class Content extends Component {
   render() {
     const { post } = this.props
 
@@ -24,7 +24,7 @@ class Detail extends Component {
   }
 }
 
-Detail.propTypes = { post: PropTypes.object.isRequired }
+Content.propTypes = { post: PropTypes.object.isRequired }
 
 const styles = StyleSheet.create({
   post: { marginBottom: spaces.x3 },
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Detail
+export default Content
