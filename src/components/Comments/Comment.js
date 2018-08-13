@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import TextareaAutosize from 'react-autosize-textarea'
+import Textarea from 'react-autosize-textarea'
 import * as API from '../../API'
 import { colors, spaces } from '../../theme'
 import date from '../../utils/date'
@@ -63,7 +63,7 @@ class Comment extends Component {
          * For some reasons, it was necessary to hide in the dom
          * instead of show/erase
          */}
-        <TextareaAutosize
+        <Textarea
           className={editMode ? css(styles.textarea) : 'hidden'}
           defaultValue={comment.body}
           innerRef={ref => (this.textarea = ref)}
