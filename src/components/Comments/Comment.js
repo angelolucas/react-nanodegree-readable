@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
+import TextareaAutosize from 'react-autosize-textarea'
 import * as API from '../../API'
 import { colors, spaces } from '../../theme'
 import date from '../../utils/date'
@@ -12,7 +13,6 @@ class Comment extends Component {
   state = { editMode: false }
 
   cancelEdition = () => {
-    this.editableBody.innerHTML = this.props.comment.body
     this.editMode(false)
   }
 
@@ -23,7 +23,7 @@ class Comment extends Component {
       id: comment.id,
       changes: {
         timestamp: Date.now(),
-        body: this.editableBody.innerHTML,
+        body: this.textarea.value,
       },
     }).then(renderComments)
 
@@ -40,7 +40,7 @@ class Comment extends Component {
     if (boleaon) {
       this.setState({ editMode: true })
 
-      setTimeout(() => this.editableBody.focus())
+      this.textarea.focus()
     } else {
       this.setState({ editMode: false })
     }
@@ -56,20 +56,18 @@ class Comment extends Component {
         <span className={css(styles.date)}>{date(comment.timestamp)}</span>
         <span className={css(styles.voteScore)}>{comment.voteScore}</span>
 
+        {!editMode && <p className={css(styles.body)}>{comment.body}</p>}
+
         {/**
-         * Editable body comment
-         * `contentEditable="true"` enable us to edit a `<p>` like a textarea
-         * `suppressContentEditableWarning` is to prevent console warning
-         * https://github.com/facebook/draft-js/issues/53
+         * TextareaAutosize
+         * For some reasons, it was necessary to hide in the dom
+         * instead of show/erase
          */}
-        <p
-          contentEditable={editMode ? 'true' : false}
-          suppressContentEditableWarning
-          ref={input => (this.editableBody = input)}
-          className={css(styles.body)}
-        >
-          {comment.body}
-        </p>
+        <TextareaAutosize
+          className={editMode ? css(styles.textarea) : 'hidden'}
+          defaultValue={comment.body}
+          innerRef={ref => (this.textarea = ref)}
+        />
 
         {editMode ? (
           // Show delete (comment) and cancel (editing) buttons
@@ -128,9 +126,15 @@ const styles = StyleSheet.create({
 
   date: { marginRight: spaces.x2 },
 
+  textarea: {
+    marginTop: 5,
+    marginBottom: 5,
+  },
+
   body: {
     marginTop: 5,
     marginBottom: 5,
+    padding: 12,
   },
 
   tools: {
