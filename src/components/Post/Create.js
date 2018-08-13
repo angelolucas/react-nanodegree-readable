@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import serializeForm from 'form-serialize'
 import uuid from 'uuid'
+import slugify from '../../utils/slugify'
 import * as API from '../../API'
 import Textarea from 'react-autosize-textarea'
+import { fetchPosts } from '../../actions/posts'
 import { connect } from 'react-redux'
 
 class Create extends Component {
@@ -22,7 +24,25 @@ class Create extends Component {
     })
   }
 
-  postPost = post => API.postPost(post)
+  postPost = post => {
+    API.postPost(post)
+      .then(this.props.dispatch(fetchPosts()))
+      .then(
+        /**
+         * dispatch `fetchPosts()` triggers rendering of routes in App.js
+         * `setTimeout` is to wait to finish this rendering
+         */
+        setTimeout(() => {
+          this.goToPostPage(post)
+        }, 100)
+      )
+  }
+
+  goToPostPage = post => {
+    const postPath = `/${post.category}/${slugify(post.title)}`
+
+    this.props.history.push(postPath)
+  }
 
   render() {
     let { categories } = this.props
@@ -49,7 +69,11 @@ class Create extends Component {
   }
 }
 
-Create.propTypes = { categories: PropTypes.array.isRequired }
+Create.propTypes = {
+  categories: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+}
 
 const mapStateToProps = ({ categories }) => ({ categories })
 
