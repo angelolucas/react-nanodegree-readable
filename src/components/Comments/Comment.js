@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
+import * as API from '../../API'
 import { colors, spaces } from '../../theme'
 import date from '../../utils/date'
 
@@ -9,6 +10,21 @@ class Comment extends Component {
    * This component has the viewing and editing mode
    */
   state = { editMode: false }
+
+  cancelEdition = () => {
+    this.editableBody.innerHTML = this.props.comment.body
+    this.editMode(false)
+  }
+
+  saveEdition = () => {
+    this.editMode(false)
+  }
+
+  delete = () => {
+    const { comment, renderComments } = this.props
+
+    API.deleteComment(comment.id).then(renderComments)
+  }
 
   editMode = (boleaon = true) => {
     if (boleaon) {
@@ -20,17 +36,8 @@ class Comment extends Component {
     }
   }
 
-  cancelEditing = () => {
-    this.editableBody.innerHTML = this.props.comment.body
-    this.editMode(false)
-  }
-
-  saveEdition = () => {
-    this.editMode(false)
-  }
-
   render() {
-    const { comment, deleteComment } = this.props
+    const { comment } = this.props
     const { editMode } = this.state
 
     return (
@@ -40,7 +47,7 @@ class Comment extends Component {
         <span className={css(styles.voteScore)}>{comment.voteScore}</span>
 
         {/**
-         * Editable body Comment
+         * Editable body comment
          * `contentEditable="true"` enable us to edit a div content like a textarea
          * `suppressContentEditableWarning` is to prevent console warning
          * https://github.com/facebook/draft-js/issues/53
@@ -57,13 +64,10 @@ class Comment extends Component {
         {editMode ? (
           // Show delete (comment) and cancel (editing) buttons
           <div className={css(styles.tools)}>
-            <button
-              className={css(styles.tool)}
-              onClick={() => deleteComment(comment.id)}
-            >
+            <button className={css(styles.tool)} onClick={this.delete}>
               delete
             </button>
-            <button onClick={this.cancelEditing} className={css(styles.tool)}>
+            <button onClick={this.cancelEdition} className={css(styles.tool)}>
               cancel
             </button>
             <button
@@ -91,7 +95,7 @@ class Comment extends Component {
 
 Comment.propTypes = {
   comment: PropTypes.object.isRequired,
-  deleteComment: PropTypes.func.isRequired,
+  renderComments: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import serializeForm from 'form-serialize'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import uuid from 'uuid'
+import * as API from '../../API'
 import { colors } from '../../theme'
 
 class CommentForm extends Component {
@@ -10,21 +11,23 @@ class CommentForm extends Component {
     e.preventDefault()
 
     const formInputs = serializeForm(e.target, { hash: true })
-    const parentId = this.props.parentID
 
     if (formInputs.body && formInputs.author) {
-      this.props.postComment({
+      this.postComment({
         id: uuid(),
         body: formInputs.body,
         author: formInputs.author,
         timestamp: Date.now(),
-        parentId: parentId,
+        parentId: this.props.postID,
       })
 
       // Reset Form after post
       e.target.reset()
     }
   }
+
+  postComment = comment =>
+    API.postComment(comment).then(this.props.renderComments)
 
   render() {
     return (
@@ -48,8 +51,8 @@ class CommentForm extends Component {
 }
 
 CommentForm.propTypes = {
-  postComment: PropTypes.func.isRequired,
-  parentID: PropTypes.string.isRequired,
+  renderComments: PropTypes.func.isRequired,
+  postID: PropTypes.string.isRequired,
 }
 
 const styles = StyleSheet.create({
