@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { colors, spaces } from '../theme'
 import Logo from './Logo'
@@ -11,6 +12,7 @@ class Header extends Component {
       <header className={css(styles.header)}>
         <Logo />
         <Categories />
+        <Link to="/new-post">Creact post</Link>
         <div className={css(styles.dateContainer)}>
           <h5 className={css(styles.date)}>
             {moment(Date.now()).format('dddd, MMMM Do YYYY')}, sort by Date
