@@ -10,31 +10,27 @@ class Posts extends Component {
     const { posts } = this.props
 
     return (
-      <div>
-        <ul className={css(styles.list)}>
-          {posts.map((post, key) => (
-            <li className={css(styles.post)} key={key}>
-              <h2>
-                <Link to={`/${post.category}/${slugify(post.title)}`}>
-                  {post.title}
-                </Link>
-              </h2>
-              <p>{post.category}</p>
-              <p>By {post.author}</p>
-              <p>{post.body}</p>
-              <ul className={css(styles.utils)}>
-                <li className={css(styles.utilsItem)}>
-                  {post.commentCount} Comments
-                </li>
-                <li className={css(styles.utilsItem)}>
-                  {post.voteScore} votes
-                </li>
-                <li className={css(styles.utilsItem)}>edit</li>
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ul className={css(styles.list)}>
+        {posts.map((post, key) => (
+          <li className={css(styles.post)} key={key}>
+            <h2>
+              <Link to={`/${post.category}/${slugify(post.title)}`}>
+                {post.title}
+              </Link>
+            </h2>
+            <p>{post.category}</p>
+            <p>By {post.author}</p>
+            <p>{post.body}</p>
+            <ul className={css(styles.utils)}>
+              <li className={css(styles.utilsItem)}>
+                {post.commentCount} Comments
+              </li>
+              <li className={css(styles.utilsItem)}>{post.voteScore} votes</li>
+              <li className={css(styles.utilsItem)}>edit</li>
+            </ul>
+          </li>
+        ))}
+      </ul>
     )
   }
 }
@@ -45,18 +41,19 @@ const styles = StyleSheet.create({
   list: {
     display: 'flex',
     flexWrap: 'wrap',
+    marginTop: spaces.x1,
+    marginBottom: spaces.x1,
+    marginLeft: -spaces.x1,
+    marginRight: -spaces.x1,
   },
 
   post: {
     flex: '33%',
-    padding: spaces.x2,
+    padding: spaces.x1,
     display: 'inline-block',
 
     [breakpoint.medium]: { flex: '50%' },
-    [breakpoint.small]: {
-      flex: '100%',
-      padding: spaces.x1,
-    },
+    [breakpoint.small]: { flex: '100%' },
   },
 
   utils: {

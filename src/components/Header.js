@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { colors, spaces, breakpoint } from '../theme'
+import { colors, spaces } from '../theme'
 import Logo from './Logo'
 import Categories from './Categories'
 import * as moment from 'moment'
@@ -23,10 +23,8 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    padding: spaces.x2,
     textAlign: 'center',
-
-    [breakpoint.small]: { padding: spaces.x1 },
+    marginBottom: spaces.x2,
   },
 
   dateContainer: {

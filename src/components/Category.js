@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Header from './Header'
 import Posts from './Posts'
-import Footer from './Footer'
 
 class Category extends Component {
   render() {
@@ -13,10 +11,8 @@ class Category extends Component {
 
     return (
       <div>
-        <Header />
-        <h1 style={{ marginLeft: 40 }}>{this.props.name}</h1>
+        <h1>{this.props.name}</h1>
         <Posts posts={categoryPosts} />
-        <Footer />
       </div>
     )
   }

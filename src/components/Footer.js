@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { colors, spaces, breakpoint } from '../theme'
+import { colors } from '../theme'
 
 class Footer extends Component {
   render() {
@@ -41,12 +41,7 @@ class Footer extends Component {
 }
 
 const styles = StyleSheet.create({
-  footer: {
-    padding: spaces.x2,
-    textAlign: 'center',
-
-    [breakpoint.small]: { padding: spaces.x1 },
-  },
+  footer: { textAlign: 'center' },
 
   aboutContainer: {
     position: 'relative',
