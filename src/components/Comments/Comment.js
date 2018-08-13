@@ -23,7 +23,7 @@ class Comment extends Component {
       id: comment.id,
       changes: {
         timestamp: Date.now(),
-        body: this.textarea.value,
+        body: this.textarea.value.trim(),
       },
     }).then(renderComments)
 
@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     padding: 12,
+    whiteSpace: 'pre-wrap',
   },
 
   tools: {

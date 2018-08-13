@@ -15,7 +15,7 @@ class CommentForm extends Component {
     if (formInputs.body && formInputs.author) {
       this.postComment({
         id: uuid(),
-        body: formInputs.body,
+        body: formInputs.body.trim(),
         author: formInputs.author,
         timestamp: Date.now(),
         parentId: this.props.postID,
