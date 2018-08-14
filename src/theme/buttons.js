@@ -10,8 +10,8 @@ const buttons = {
   },
 
   light: {
-    background: colors.dark,
-    color: colors.light,
+    background: colors.light,
+    color: colors.dark,
     padding: '10px 20px',
     fontSize: 14,
     display: 'block',

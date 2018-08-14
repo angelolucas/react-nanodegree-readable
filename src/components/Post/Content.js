@@ -1,37 +1,144 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { spaces } from '../../theme'
+import Textarea from 'react-textarea-autosize'
+import { spaces, buttons } from '../../theme'
 import date from '../../utils/date'
 
 class Content extends Component {
+  /**
+   * This component has the viewing and editing mode
+   */
+  state = {
+    editMode: false,
+    titleEdition: this.props.title,
+    bodyEdition: this.props.body,
+  }
+
+  cancelEdition = () => {
+    this.setState({
+      editMode: false,
+      titleEdition: this.props.title,
+      bodyEdition: this.props.body,
+    })
+  }
+
+  editMode = (boleaon = true) => {
+    if (boleaon) {
+      this.setState({ editMode: true })
+    } else {
+      this.setState({ editMode: false })
+    }
+  }
+
   render() {
-    const { post } = this.props
+    const { timestamp, title, body, author, voteScore, category } = this.props
+    const { editMode } = this.state
 
     return (
       <main className={css(styles.post)}>
-        <h1>{post.title}</h1>
-        <p>{post.category}</p>
-        <p>By {post.author}</p>
-        <p>{date(post.timestamp)}</p>
-        <p>{post.body}</p>
-        <ul className={css(styles.utils)}>
-          <li className={css(styles.utilsItem)}>{post.voteScore} votes</li>
-          <li className={css(styles.utilsItem)}>edit</li>
+        <ul className={css(styles.postInfo)}>
+          <li className={css(styles.info)}>
+            By <strong>{author}</strong> on {date(timestamp)}
+          </li>
+          <li className={css(styles.info)}>{voteScore} votes</li>
+          <li className={css(styles.info)}>{category}</li>
         </ul>
+
+        {editMode ? (
+          <form>
+            {/**
+             * Edit title.
+             * `Textarea` rather than input
+             * is for the title to behave as in the view
+             */}
+            <Textarea
+              placeholder="Post Title"
+              className={css(styles.editTitle)}
+              value={this.state.titleEdition}
+              autoFocus
+              onChange={e => {
+                // Prevent line break
+                const titleEdition = e.target.value.replace(/\n/g, '')
+
+                this.setState({ titleEdition })
+              }}
+            />
+
+            {/* Edit Body */}
+            <Textarea
+              placeholder="Post body"
+              className={css(styles.textarea)}
+              value={this.state.bodyEdition}
+              onChange={e => {
+                this.setState({ bodyEdition: e.target.value })
+              }}
+            />
+            <button
+              className={css(styles.editButton)}
+              onClick={() => this.cancelEdition()}
+            >
+              cancel
+            </button>
+          </form>
+        ) : (
+          <div>
+            <h1 className={css(styles.title)}>{title}</h1>
+            <p className={css(styles.body)}>{body}</p>
+            <button
+              className={css(styles.editButton)}
+              onClick={() => this.editMode()}
+            >
+              edit
+            </button>
+          </div>
+        )}
       </main>
     )
   }
 }
 
-Content.propTypes = { post: PropTypes.object.isRequired }
+Content.propTypes = {
+  timestamp: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  voteScore: PropTypes.number.isRequired,
+  category: PropTypes.string.isRequired,
+}
 
 const styles = StyleSheet.create({
-  post: { marginBottom: spaces.x3 },
+  post: { marginBottom: spaces.x2 },
 
-  utils: {
+  postInfo: {
     display: 'flex',
-    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+
+  info: { marginRight: spaces.x2 },
+
+  title: {
+    padding: 12,
+    lineHeight: 1.1,
+    marginBottom: spaces.x1,
+  },
+
+  editTitle: {
+    fontSize: 32,
+    lineHeight: 1.1,
+    fontWeight: 'bold',
+
+    '::placeholder': { fontSize: 32 },
+  },
+
+  body: {
+    padding: 12,
+    marginTop: 0,
+  },
+
+  editButton: {
+    float: 'right',
+    ...buttons.smallLight,
   },
 })
 

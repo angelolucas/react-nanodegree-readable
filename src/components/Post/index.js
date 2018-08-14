@@ -10,7 +10,7 @@ class Post extends Component {
 
     return (
       <div className={css(styles.post)}>
-        <Content post={post} />
+        <Content {...post} />
         <Comments postID={post.id} />
       </div>
     )
