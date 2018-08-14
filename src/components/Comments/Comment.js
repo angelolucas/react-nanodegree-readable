@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Textarea from 'react-autosize-textarea'
 import * as API from '../../API'
-import { colors, spaces } from '../../theme'
+import { spaces, buttons } from '../../theme'
 import date from '../../utils/date'
 
 class Comment extends Component {
@@ -72,16 +72,13 @@ class Comment extends Component {
         {editMode ? (
           // Show delete (comment) and cancel (editing) buttons
           <div className={css(styles.tools)}>
-            <button className={css(styles.tool)} onClick={this.delete}>
+            <button className={css(styles.button)} onClick={this.delete}>
               delete
             </button>
-            <button onClick={this.cancelEdition} className={css(styles.tool)}>
+            <button className={css(styles.button)} onClick={this.cancelEdition}>
               cancel
             </button>
-            <button
-              className={css(styles.saveButton)}
-              onClick={this.saveEdition}
-            >
+            <button className={css(styles.save)} onClick={this.saveEdition}>
               save
             </button>
           </div>
@@ -90,7 +87,7 @@ class Comment extends Component {
           <div className={css(styles.tools)}>
             <button
               onClick={() => this.editMode()}
-              className={css(styles.tool)}
+              className={css(styles.button)}
             >
               edit
             </button>
@@ -143,14 +140,9 @@ const styles = StyleSheet.create({
     fontSize: 11,
   },
 
-  tool: { padding: '10px' },
+  button: { ...buttons.smallLight },
 
-  saveButton: {
-    backgroundColor: colors.dark,
-    color: colors.light,
-    fontSize: 14,
-    marginLeft: 10,
-  },
+  save: { ...buttons.small },
 })
 
 export default Comment

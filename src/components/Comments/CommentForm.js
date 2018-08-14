@@ -4,7 +4,7 @@ import serializeForm from 'form-serialize'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import uuid from 'uuid'
 import * as API from '../../API'
-import { colors } from '../../theme'
+import { buttons } from '../../theme'
 
 class CommentForm extends Component {
   handleSubmit = e => {
@@ -58,14 +58,7 @@ CommentForm.propTypes = {
 const styles = StyleSheet.create({
   textarea: { height: 200 },
 
-  button: {
-    background: colors.dark,
-    color: colors.light,
-    padding: '10px 20px',
-    fontWeight: 'bold',
-    fontSize: 14,
-    display: 'block',
-  },
+  button: { ...buttons.default },
 })
 
 export default CommentForm

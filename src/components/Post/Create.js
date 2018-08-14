@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import serializeForm from 'form-serialize'
+import Textarea from 'react-autosize-textarea'
 import uuid from 'uuid'
+import { buttons } from '../../theme'
 import slugify from '../../utils/slugify'
 import * as API from '../../API'
-import Textarea from 'react-autosize-textarea'
 import { fetchPosts } from '../../actions/posts'
-import { connect } from 'react-redux'
 
 class Create extends Component {
   handleSubmit = e => {
@@ -63,7 +64,7 @@ class Create extends Component {
             ))}
           </select>
           <Textarea placeholder="body" rows={10} name="body" />
-          <button>Save</button>
+          <button className={css(styles.submit)}>Save</button>
         </form>
       </div>
     )
@@ -78,6 +79,9 @@ Create.propTypes = {
 
 const mapStateToProps = ({ categories }) => ({ categories })
 
-const styles = StyleSheet.create({ wrapper: { maxWidth: 900 } })
+const styles = StyleSheet.create({
+  wrapper: { maxWidth: 900 },
+  submit: { ...buttons.default },
+})
 
 export default connect(mapStateToProps)(Create)
