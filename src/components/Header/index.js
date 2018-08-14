@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
       position: 'absolute',
       borderBottomWidth: '3px',
       borderBottomStyle: 'solid',
-      borderBottomColor: colors.text,
+      borderBottomColor: colors.dark,
       left: '0',
       top: 'calc(50% - 2px)',
       width: '100%',
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 
   date: {
     display: 'inline-block',
-    background: colors.background,
+    background: colors.light,
     position: 'relative',
     padding: 10,
     zIndex: 2,

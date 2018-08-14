@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
   textarea: { height: 200 },
 
   button: {
-    background: colors.text,
-    color: colors.background,
+    background: colors.dark,
+    color: colors.light,
     padding: '10px 20px',
     fontWeight: 'bold',
     fontSize: 14,

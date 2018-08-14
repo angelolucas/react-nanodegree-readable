@@ -7,8 +7,8 @@ const globals = {
 
   body: {
     fontFamily: fonts.main,
-    color: colors.text,
-    backgroundColor: colors.background,
+    color: colors.dark,
+    backgroundColor: colors.light,
     margin: 0,
     overflowX: 'hidden',
     fontSmoothing: 'antialiased',
@@ -32,7 +32,7 @@ const globals = {
 
   'input, textarea': {
     background: 'transparent',
-    border: `2px solid ${colors.text}`,
+    border: `2px solid ${colors.dark}`,
     marginBottom: spaces.x1,
     padding: 10,
     outline: 'none',

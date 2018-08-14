@@ -1,6 +1,6 @@
 const colors = {
-  text: '#222',
-  background: '#F0F1EB',
+  dark: '#222',
+  light: '#F0F1EB',
 }
 
 export default colors

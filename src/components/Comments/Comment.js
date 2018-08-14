@@ -146,8 +146,8 @@ const styles = StyleSheet.create({
   tool: { padding: '10px' },
 
   saveButton: {
-    backgroundColor: colors.text,
-    color: colors.background,
+    backgroundColor: colors.dark,
+    color: colors.light,
     fontSize: 14,
     marginLeft: 10,
   },

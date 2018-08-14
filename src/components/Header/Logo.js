@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     padding: '10px 20px',
     display: 'inline-block',
     borderRadius: 10,
-    color: colors.background,
-    background: colors.text,
+    color: colors.light,
+    background: colors.dark,
   },
 })
 

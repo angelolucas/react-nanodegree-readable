@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
       position: 'absolute',
       borderBottomWidth: '3px',
       borderBottomStyle: 'solid',
-      borderBottomColor: colors.text,
+      borderBottomColor: colors.dark,
       left: '0',
       top: 'calc(50% - 1px)',
       width: '100%',
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 
   content: {
     display: 'flex',
-    background: colors.background,
+    background: colors.light,
     position: 'relative',
     padding: 10,
     zIndex: 2,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   icon: {
     marginLeft: 5,
     marginRight: 5,
-    fill: colors.text,
+    fill: colors.dark,
   },
 })
 
