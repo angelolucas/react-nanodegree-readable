@@ -56,8 +56,6 @@ CommentForm.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  field: { width: 400 },
-
   textarea: { height: 200 },
 
   button: {

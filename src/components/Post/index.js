@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { StyleSheet, css } from 'aphrodite/no-important'
 import Content from './Content'
 import Comments from '../Comments'
 
@@ -8,7 +9,7 @@ class Post extends Component {
     const { post } = this.props
 
     return (
-      <div>
+      <div className={css(styles.post)}>
         <Content post={post} />
         <Comments postID={post.id} />
       </div>
@@ -17,5 +18,7 @@ class Post extends Component {
 }
 
 Post.propTypes = { post: PropTypes.object.isRequired }
+
+const styles = StyleSheet.create({ post: { maxWidth: 900 } })
 
 export default Post

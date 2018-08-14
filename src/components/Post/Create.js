@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { StyleSheet, css } from 'aphrodite/no-important'
 import serializeForm from 'form-serialize'
 import uuid from 'uuid'
 import slugify from '../../utils/slugify'
@@ -48,7 +49,7 @@ class Create extends Component {
     let { categories } = this.props
 
     return (
-      <div>
+      <div className={css(styles.wrapper)}>
         <h1>New Post</h1>
         <form onSubmit={this.handleSubmit}>
           <input type="text" placeholder="Title" name="title" />
@@ -76,5 +77,7 @@ Create.propTypes = {
 }
 
 const mapStateToProps = ({ categories }) => ({ categories })
+
+const styles = StyleSheet.create({ wrapper: { maxWidth: 900 } })
 
 export default connect(mapStateToProps)(Create)
