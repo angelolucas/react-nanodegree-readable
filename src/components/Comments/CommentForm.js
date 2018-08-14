@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import serializeForm from 'form-serialize'
 import { StyleSheet, css } from 'aphrodite/no-important'
+import Textarea from 'react-textarea-autosize'
 import uuid from 'uuid'
 import * as API from '../../API'
 import { buttons } from '../../theme'
@@ -32,10 +33,11 @@ class CommentForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <textarea
+        <Textarea
           name="body"
           placeholder="Comment"
           className={css(styles.field, styles.textarea)}
+          minRows={5}
         />
         <input
           className={css(styles.field)}

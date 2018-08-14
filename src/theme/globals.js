@@ -49,7 +49,7 @@ const globals = {
 
   textarea: {
     display: 'block',
-    resize: 'vertical',
+    resize: 'none',
   },
 
   button: {
