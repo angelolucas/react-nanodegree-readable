@@ -21,7 +21,7 @@ const buttons = {
     background: colors.dark,
     color: colors.light,
     padding: '3px 10px',
-    fontSize: 13,
+    fontSize: 12,
     marginLeft: 10,
   },
 
@@ -29,7 +29,7 @@ const buttons = {
     background: colors.light,
     color: colors.dark,
     padding: '3px 10px',
-    fontSize: 13,
+    fontSize: 12,
     marginLeft: 10,
   },
 }

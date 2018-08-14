@@ -59,11 +59,6 @@ const globals = {
     border: 'none',
     outline: 'none',
   },
-
-  '.hidden': {
-    position: 'absolute',
-    left: '-999em',
-  },
 }
 
 export default globals

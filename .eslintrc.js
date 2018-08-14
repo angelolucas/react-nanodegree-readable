@@ -14,7 +14,11 @@ module.exports = {
     },
   },
   plugins: ['prettier', 'react', 'jsx-a11y', 'import'],
-  extends: ['plugin:react/recommended', 'plugin:jsx-a11y/recommended', 'plugin:import/warnings'],
+  extends: [
+    'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:import/warnings',
+  ],
   rules: {
     'newline-after-var': 2,
     'object-property-newline': 2,
@@ -44,6 +48,12 @@ module.exports = {
     ],
     'jsx-a11y/click-events-have-key-events': 0,
     'jsx-a11y/no-static-element-interactions': 0,
+    'jsx-a11y/no-autofocus': [
+      2,
+      {
+        ignoreNonDOM: true,
+      },
+    ],
     'react/no-unused-prop-types': 2,
     'react/no-children-prop': 0,
   },

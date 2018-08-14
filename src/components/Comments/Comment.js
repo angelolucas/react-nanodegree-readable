@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import Textarea from 'react-autosize-textarea'
+import Textarea from 'react-textarea-autosize'
+import serializeForm from 'form-serialize'
 import * as API from '../../API'
 import { spaces, buttons } from '../../theme'
 import date from '../../utils/date'
@@ -12,22 +13,26 @@ class Comment extends Component {
    */
   state = { editMode: false }
 
-  cancelEdition = () => {
-    this.editMode(false)
+  handleEdit = e => {
+    const body = serializeForm(e.target, { hash: true }).body
+
+    e.preventDefault()
+
+    if (body) {
+      this.editComment({
+        id: this.props.comment.id,
+        changes: {
+          timestamp: Date.now(),
+          body,
+        },
+      })
+
+      this.editMode(false)
+    }
   }
 
-  saveEdition = () => {
-    const { comment, renderComments } = this.props
-
-    API.editComment({
-      id: comment.id,
-      changes: {
-        timestamp: Date.now(),
-        body: this.textarea.value.trim(),
-      },
-    }).then(renderComments)
-
-    this.editMode(false)
+  editComment = comment => {
+    API.editComment(comment).then(this.props.renderComments)
   }
 
   delete = () => {
@@ -36,11 +41,13 @@ class Comment extends Component {
     API.deleteComment(comment.id).then(renderComments)
   }
 
+  cancelEdition = () => {
+    this.editMode(false)
+  }
+
   editMode = (boleaon = true) => {
     if (boleaon) {
       this.setState({ editMode: true })
-
-      this.textarea.focus()
     } else {
       this.setState({ editMode: false })
     }
@@ -56,41 +63,48 @@ class Comment extends Component {
         <span className={css(styles.date)}>{date(comment.timestamp)}</span>
         <span className={css(styles.voteScore)}>{comment.voteScore}</span>
 
-        {!editMode && <p className={css(styles.body)}>{comment.body}</p>}
-
-        {/**
-         * TextareaAutosize
-         * For some reasons, it was necessary to hide in the dom
-         * instead of show/erase
-         */}
-        <Textarea
-          className={editMode ? css(styles.textarea) : 'hidden'}
-          defaultValue={comment.body}
-          innerRef={ref => (this.textarea = ref)}
-        />
-
         {editMode ? (
-          // Show delete (comment) and cancel (editing) buttons
-          <div className={css(styles.tools)}>
-            <button className={css(styles.button)} onClick={this.delete}>
-              delete
-            </button>
-            <button className={css(styles.button)} onClick={this.cancelEdition}>
-              cancel
-            </button>
-            <button className={css(styles.save)} onClick={this.saveEdition}>
-              save
-            </button>
-          </div>
+          <form onSubmit={this.handleEdit}>
+            {/* Textarea autosize */}
+            <Textarea
+              className={css(styles.textarea)}
+              defaultValue={comment.body}
+              name="body"
+              autoFocus
+            />
+
+            {/* Delete, cancel and save buttons */}
+            <div className={css(styles.tools)}>
+              <button
+                className={css(styles.button)}
+                onClick={this.delete}
+                type="button"
+              >
+                delete
+              </button>
+              <button
+                className={css(styles.button)}
+                onClick={this.cancelEdition}
+                type="button"
+              >
+                cancel
+              </button>
+              <button className={css(styles.save)}>save</button>
+            </div>
+          </form>
         ) : (
-          // Show edit button
-          <div className={css(styles.tools)}>
-            <button
-              onClick={() => this.editMode()}
-              className={css(styles.button)}
-            >
-              edit
-            </button>
+          <div>
+            <p className={css(styles.body)}>{comment.body}</p>
+
+            {/* Show edit button */}
+            <div className={css(styles.tools)}>
+              <button
+                onClick={() => this.editMode()}
+                className={css(styles.button)}
+              >
+                edit
+              </button>
+            </div>
           </div>
         )}
       </div>
@@ -108,11 +122,6 @@ const styles = StyleSheet.create({
     borderBottom: '1px solid',
     marginBottom: spaces.x2,
     paddingBottom: spaces.x2,
-
-    ':last-child': {
-      borderBottom: 'none',
-      paddingBottom: 0,
-    },
   },
 
   author: {
@@ -135,10 +144,7 @@ const styles = StyleSheet.create({
     whiteSpace: 'pre-wrap',
   },
 
-  tools: {
-    float: 'right',
-    fontSize: 11,
-  },
+  tools: { float: 'right' },
 
   button: { ...buttons.smallLight },
 
