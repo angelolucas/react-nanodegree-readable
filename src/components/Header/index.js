@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { colors, spaces } from '../theme'
+import * as moment from 'moment'
+import { colors, spaces } from '../../theme'
 import Logo from './Logo'
 import Categories from './Categories'
-import * as moment from 'moment'
 
 class Header extends Component {
   render() {
@@ -13,9 +13,9 @@ class Header extends Component {
         <Logo />
         <Categories />
         <Link to="/new-post">Creact post</Link>
-        <div className={css(styles.dateContainer)}>
+        <div className={css(styles.horizontalLine)}>
           <h5 className={css(styles.date)}>
-            {moment(Date.now()).format('dddd, MMMM Do YYYY')}, sort by Date
+            {moment(Date.now()).format('dddd, MMMM Do YYYY')}
           </h5>
         </div>
       </header>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     marginBottom: spaces.x2,
   },
 
-  dateContainer: {
+  horizontalLine: {
     position: 'relative',
 
     ':before': {

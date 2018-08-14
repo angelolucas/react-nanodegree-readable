@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { colors } from '../theme'
+import { colors } from '../../theme'
 
 class Logo extends Component {
   render() {
