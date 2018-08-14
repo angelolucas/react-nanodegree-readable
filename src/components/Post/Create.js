@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import serializeForm from 'form-serialize'
-import Textarea from 'react-autosize-textarea'
+import Textarea from 'react-textarea-autosize'
 import uuid from 'uuid'
 import { buttons } from '../../theme'
 import slugify from '../../utils/slugify'
@@ -63,7 +63,7 @@ class Create extends Component {
               </option>
             ))}
           </select>
-          <Textarea placeholder="body" rows={10} name="body" />
+          <Textarea placeholder="body" minRows={10} name="body" />
           <button className={css(styles.submit)}>Save</button>
         </form>
       </div>
