@@ -4,6 +4,7 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 import Textarea from 'react-textarea-autosize'
 import { spaces, buttons } from '../../theme'
 import date from '../../utils/date'
+import VoteScore from '../VoteScore'
 
 class Content extends Component {
   /**
@@ -32,7 +33,15 @@ class Content extends Component {
   }
 
   render() {
-    const { timestamp, title, body, author, voteScore, category } = this.props
+    const {
+      id,
+      timestamp,
+      title,
+      body,
+      author,
+      voteScore,
+      category,
+    } = this.props
     const { editMode } = this.state
 
     return (
@@ -41,7 +50,9 @@ class Content extends Component {
           <li className={css(styles.info)}>
             By <strong>{author}</strong> on {date(timestamp)}
           </li>
-          <li className={css(styles.info)}>{voteScore} votes</li>
+          <li className={css(styles.info)}>
+            <VoteScore score={voteScore} contentType="post" contentId={id} />
+          </li>
           <li className={css(styles.info)}>{category}</li>
         </ul>
 
@@ -100,6 +111,7 @@ class Content extends Component {
 }
 
 Content.propTypes = {
+  id: PropTypes.string.isRequired,
   timestamp: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,

@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
   icon: {
     marginLeft: 5,
     marginRight: 5,
-    fill: colors.dark,
   },
 })
 

@@ -57,3 +57,13 @@ export const editComment = comment =>
     },
     body: JSON.stringify(comment.changes),
   })
+
+export const vote = (contentType, vote, contentId) =>
+  fetch(`${api}/${contentType}s/${contentId}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ option: vote }),
+  })

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { spaces, breakpoint } from '../theme'
 import slugify from '../utils/slugify'
+import VoteScore from './VoteScore'
 
 class Posts extends Component {
   render() {
@@ -25,7 +26,13 @@ class Posts extends Component {
               <li className={css(styles.utilsItem)}>
                 {post.commentCount} Comments
               </li>
-              <li className={css(styles.utilsItem)}>{post.voteScore} votes</li>
+              <li className={css(styles.utilsItem)}>
+                <VoteScore
+                  score={post.voteScore}
+                  contentType="post"
+                  contentId={post.id}
+                />
+              </li>
               <li className={css(styles.utilsItem)}>edit</li>
             </ul>
           </li>

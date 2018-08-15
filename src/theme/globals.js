@@ -8,6 +8,7 @@ const globals = {
   body: {
     fontFamily: fonts.main,
     color: colors.dark,
+    fill: colors.dark,
     backgroundColor: colors.light,
     margin: 0,
     overflowX: 'hidden',
@@ -58,6 +59,7 @@ const globals = {
     cursor: 'pointer',
     border: 'none',
     outline: 'none',
+    padding: 0,
   },
 }
 

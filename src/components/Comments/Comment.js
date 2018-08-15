@@ -6,6 +6,7 @@ import serializeForm from 'form-serialize'
 import * as API from '../../API'
 import { spaces, buttons } from '../../theme'
 import date from '../../utils/date'
+import VoteScore from '../VoteScore'
 
 class Comment extends Component {
   /**
@@ -61,7 +62,13 @@ class Comment extends Component {
       <div className={css(styles.comment)}>
         <span className={css(styles.author)}>{comment.author}</span>
         <span className={css(styles.date)}>{date(comment.timestamp)}</span>
-        <span className={css(styles.voteScore)}>{comment.voteScore}</span>
+        <span className={css(styles.voteScore)}>
+          <VoteScore
+            score={comment.voteScore}
+            contentType="comment"
+            contentId={comment.id}
+          />
+        </span>
 
         {editMode ? (
           <form onSubmit={this.handleEdit}>
