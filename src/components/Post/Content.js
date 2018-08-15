@@ -55,6 +55,7 @@ class Content extends Component {
             <Textarea
               placeholder="Post Title"
               className={css(styles.editTitle)}
+              style={{ fontSize: '32px' }}
               value={this.state.titleEdition}
               autoFocus
               onChange={e => {
@@ -119,13 +120,10 @@ const styles = StyleSheet.create({
 
   title: {
     padding: 12,
-    lineHeight: 1.1,
     marginBottom: spaces.x1,
   },
 
   editTitle: {
-    fontSize: 32,
-    lineHeight: 1.1,
     fontWeight: 'bold',
 
     '::placeholder': { fontSize: 32 },
