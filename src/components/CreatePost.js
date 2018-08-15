@@ -5,10 +5,10 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 import serializeForm from 'form-serialize'
 import Textarea from 'react-textarea-autosize'
 import uuid from 'uuid'
-import { buttons } from '../../theme'
-import slugify from '../../utils/slugify'
-import * as API from '../../API'
-import { fetchPosts } from '../../actions/posts'
+import { buttons } from '../theme'
+import slugify from '../utils/slugify'
+import * as API from '../API'
+import { fetchPosts } from '../actions/posts'
 
 class Create extends Component {
   handleSubmit = e => {

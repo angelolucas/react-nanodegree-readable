@@ -20,7 +20,7 @@ import { fetchCategories } from './actions/categories'
 import Home from './components/Home'
 import Category from './components/Category'
 import Post from './components/Post'
-import CreatePost from './components/Post/Create'
+import CreatePost from './components/CreatePost'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
