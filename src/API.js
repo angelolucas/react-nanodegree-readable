@@ -30,7 +30,7 @@ export const postComment = comment =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(comment),
-  })
+  }).then(result => result.json())
 
 export const postPost = post =>
   fetch(`${api}/posts`, {

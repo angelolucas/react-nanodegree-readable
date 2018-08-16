@@ -31,7 +31,7 @@ class Comments extends Component {
         <h3 className={css(styles.title)}>{title}</h3>
         {comments &&
           comments.map(comment => <Comment {...comment} key={comment.id} />)}
-        <CommentForm renderComments={this.getComments} postID={postID} />
+        <CommentForm postID={postID} />
       </div>
     )
   }

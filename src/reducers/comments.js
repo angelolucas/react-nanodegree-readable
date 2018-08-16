@@ -1,4 +1,9 @@
-import { GET_COMMENTS, DELETE_COMMENT, EDIT_COMMENT } from '../actions/comments'
+import {
+  GET_COMMENTS,
+  POST_COMMENT,
+  DELETE_COMMENT,
+  EDIT_COMMENT,
+} from '../actions/comments'
 
 const defaultState = null
 
@@ -7,6 +12,10 @@ export default function reducer(state = defaultState, action) {
     case GET_COMMENTS:
       return action.comments
 
+    case POST_COMMENT: {
+      console.log(action)
+      return [...state, action.comment]
+    }
     case DELETE_COMMENT:
       return state.filter(comment => comment.id !== action.id)
 

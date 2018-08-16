@@ -1,6 +1,7 @@
 import * as API from '../API'
 
 export const GET_COMMENTS = 'GET_COMMENTS'
+export const POST_COMMENT = 'POST_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 
@@ -10,6 +11,15 @@ export const getComments = postId => dispatch =>
     dispatch({
       type: GET_COMMENTS,
       comments,
+    })
+  )
+
+// Post
+export const postComment = comment => dispatch =>
+  API.postComment(comment).then(comment =>
+    dispatch({
+      type: POST_COMMENT,
+      comment,
     })
   )
 
