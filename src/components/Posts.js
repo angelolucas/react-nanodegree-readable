@@ -12,37 +12,38 @@ class Posts extends Component {
 
     return (
       <ul className={css(styles.list)}>
-        {posts.map((post, key) => (
-          <li className={css(styles.post)} key={key}>
-            <h2>
-              <Link to={`/${post.category}/${slugify(post.title)}`}>
-                {post.title}
-              </Link>
-            </h2>
-            <p>{post.category}</p>
-            <p>By {post.author}</p>
-            <p>{post.body}</p>
-            <ul className={css(styles.utils)}>
-              <li className={css(styles.utilsItem)}>
-                {post.commentCount} Comments
-              </li>
-              <li className={css(styles.utilsItem)}>
-                <VoteScore
-                  score={post.voteScore}
-                  contentType="post"
-                  contentId={post.id}
-                />
-              </li>
-              <li className={css(styles.utilsItem)}>edit</li>
-            </ul>
-          </li>
-        ))}
+        {posts &&
+          posts.map((post, key) => (
+            <li className={css(styles.post)} key={key}>
+              <h2>
+                <Link to={`/${post.category}/${slugify(post.title)}`}>
+                  {post.title}
+                </Link>
+              </h2>
+              <p>{post.category}</p>
+              <p>By {post.author}</p>
+              <p>{post.body}</p>
+              <ul className={css(styles.utils)}>
+                <li className={css(styles.utilsItem)}>
+                  {post.commentCount} Comments
+                </li>
+                <li className={css(styles.utilsItem)}>
+                  <VoteScore
+                    score={post.voteScore}
+                    contentType="post"
+                    contentId={post.id}
+                  />
+                </li>
+                <li className={css(styles.utilsItem)}>edit</li>
+              </ul>
+            </li>
+          ))}
       </ul>
     )
   }
 }
 
-Posts.propTypes = { posts: PropTypes.array.isRequired }
+Posts.propTypes = { posts: PropTypes.array }
 
 const styles = StyleSheet.create({
   list: {

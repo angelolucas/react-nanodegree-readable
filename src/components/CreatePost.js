@@ -8,7 +8,7 @@ import uuid from 'uuid'
 import { buttons } from '../theme'
 import slugify from '../utils/slugify'
 import * as API from '../API'
-import { fetchPosts } from '../actions/posts'
+import { getPosts } from '../actions/posts'
 
 class Create extends Component {
   handleSubmit = e => {
@@ -28,10 +28,10 @@ class Create extends Component {
 
   postPost = post => {
     API.postPost(post)
-      .then(this.props.dispatch(fetchPosts()))
+      .then(this.props.dispatch(getPosts()))
       .then(
         /**
-         * dispatch `fetchPosts()` triggers rendering of routes in App.js
+         * dispatch `getPosts()` triggers rendering of routes in App.js
          * `setTimeout` is to wait to finish this rendering
          */
         setTimeout(() => {

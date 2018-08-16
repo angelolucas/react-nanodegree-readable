@@ -13,7 +13,7 @@ import { globals, spaces, breakpoint } from './theme'
 import slugify from './utils/slugify'
 
 // Actions
-import { fetchPosts } from './actions/posts'
+
 import { fetchCategories } from './actions/categories'
 
 // Components
@@ -28,8 +28,6 @@ injectGlobalStyles(globals)
 
 class App extends Component {
   UNSAFE_componentWillMount() {
-    // Dispatch initial content
-    this.props.dispatch(fetchPosts())
     this.props.dispatch(fetchCategories())
   }
   render() {
@@ -37,28 +35,28 @@ class App extends Component {
 
     return (
       <Router>
-        {categories &&
-          posts && (
-            <div className={css(styles.general)}>
-              <Header />
-              <Switch>
-                {/* Home page */}
-                <Route exact path="/" component={Home} />
+        {categories && (
+          <div className={css(styles.general)}>
+            <Header />
+            <Switch>
+              {/* Home page */}
+              <Route exact path="/" component={Home} />
 
-                {/* Category page */}
-                {categories.map(category => (
-                  <Route
-                    exact
-                    path={`/${category.path}`}
-                    key={category.path}
-                    render={() => (
-                      <Category name={category.name} path={category.path} />
-                    )}
-                  />
-                ))}
+              {/* Category page */}
+              {categories.map(category => (
+                <Route
+                  exact
+                  path={`/${category.path}`}
+                  key={category.path}
+                  render={() => (
+                    <Category name={category.name} path={category.path} />
+                  )}
+                />
+              ))}
 
-                {/* Post page */}
-                {posts.map(post => (
+              {/* Post page */}
+              {posts &&
+                posts.map(post => (
                   <Route
                     path={`/${post.category}/${slugify(post.title)}`}
                     key={post.id}
@@ -66,15 +64,15 @@ class App extends Component {
                   />
                 ))}
 
-                {/* New post page*/}
-                <Route path="/new-post" component={CreatePost} />
+              {/* New post page*/}
+              <Route path="/new-post" component={CreatePost} />
 
-                {/* Redirect to home if Routes above don't match */}
-                <Redirect to="/" />
-              </Switch>
-              <Footer />
-            </div>
-          )}
+              {/* Redirect to home if Routes above don't match */}
+              <Redirect to="/" />
+            </Switch>
+            <Footer />
+          </div>
+        )}
       </Router>
     )
   }
