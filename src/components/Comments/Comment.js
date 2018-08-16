@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Textarea from 'react-textarea-autosize'
 import serializeForm from 'form-serialize'
-import * as API from '../../API'
 import { spaces, buttons } from '../../theme'
 import date from '../../utils/date'
 import VoteScore from '../VoteScore'
+import { deleteComment, editComment } from '../../actions/comments'
 
 class Comment extends Component {
   /**
@@ -20,26 +21,18 @@ class Comment extends Component {
     e.preventDefault()
 
     if (body) {
-      this.editComment({
-        id: this.props.comment.id,
-        changes: {
+      this.props.dispatch(
+        editComment(this.props.id, {
           timestamp: Date.now(),
           body,
-        },
-      })
-
+        })
+      )
       this.editMode(false)
     }
   }
 
-  editComment = comment => {
-    API.editComment(comment).then(this.props.renderComments)
-  }
-
   delete = () => {
-    const { comment, renderComments } = this.props
-
-    API.deleteComment(comment.id).then(renderComments)
+    this.props.dispatch(deleteComment(this.props.id))
   }
 
   cancelEdition = () => {
@@ -55,19 +48,15 @@ class Comment extends Component {
   }
 
   render() {
-    const { comment } = this.props
+    const { id, author, timestamp, voteScore, body } = this.props
     const { editMode } = this.state
 
     return (
       <div className={css(styles.comment)}>
-        <span className={css(styles.author)}>{comment.author}</span>
-        <span className={css(styles.date)}>{date(comment.timestamp)}</span>
+        <span className={css(styles.author)}>{author}</span>
+        <span className={css(styles.date)}>{date(timestamp)}</span>
         <span className={css(styles.voteScore)}>
-          <VoteScore
-            score={comment.voteScore}
-            contentType="comment"
-            contentId={comment.id}
-          />
+          <VoteScore score={voteScore} contentType="comment" contentId={id} />
         </span>
 
         {editMode ? (
@@ -75,7 +64,7 @@ class Comment extends Component {
             {/* Textarea autosize */}
             <Textarea
               className={css(styles.textarea)}
-              defaultValue={comment.body}
+              defaultValue={body}
               name="body"
               autoFocus
             />
@@ -101,7 +90,7 @@ class Comment extends Component {
           </form>
         ) : (
           <div>
-            <p className={css(styles.body)}>{comment.body}</p>
+            <p className={css(styles.body)}>{body}</p>
 
             {/* Show edit button */}
             <div className={css(styles.tools)}>
@@ -120,8 +109,12 @@ class Comment extends Component {
 }
 
 Comment.propTypes = {
-  comment: PropTypes.object.isRequired,
-  renderComments: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  timestamp: PropTypes.number.isRequired,
+  voteScore: PropTypes.number.isRequired,
+  body: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({
@@ -158,4 +151,4 @@ const styles = StyleSheet.create({
   save: { ...buttons.small },
 })
 
-export default Comment
+export default connect()(Comment)

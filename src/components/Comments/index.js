@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import * as API from '../../API'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
 import { spaces } from '../../theme'
+import { getComments } from '../../actions/comments'
 
 class Comments extends Component {
   state = { comments: null }
@@ -14,14 +15,11 @@ class Comments extends Component {
   }
 
   getComments = () => {
-    API.getComments(this.props.postID).then(comments => {
-      this.setState({ comments })
-    })
+    this.props.dispatch(getComments(this.props.postID))
   }
 
   render() {
-    const { postID } = this.props
-    const { comments } = this.state
+    const { comments, postID } = this.props
 
     const title =
       comments && comments.length > 0
@@ -32,21 +30,21 @@ class Comments extends Component {
       <div>
         <h3 className={css(styles.title)}>{title}</h3>
         {comments &&
-          comments.map(comment => (
-            <Comment
-              comment={comment}
-              renderComments={this.getComments}
-              key={comment.id}
-            />
-          ))}
+          comments.map(comment => <Comment {...comment} key={comment.id} />)}
         <CommentForm renderComments={this.getComments} postID={postID} />
       </div>
     )
   }
 }
 
+Comments.propTypes = {
+  postID: PropTypes.string.isRequired,
+  comments: PropTypes.array,
+  dispatch: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = ({ comments }) => ({ comments })
+
 const styles = StyleSheet.create({ title: { marginBottom: spaces.x2 } })
 
-Comments.propTypes = { postID: PropTypes.string.isRequired }
-
-export default Comments
+export default connect(mapStateToProps)(Comments)
