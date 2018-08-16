@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { spaces, breakpoint } from '../theme'
-import slugify from '../utils/slugify'
 import VoteScore from './VoteScore'
 
 class Posts extends Component {
@@ -16,9 +15,7 @@ class Posts extends Component {
           posts.map((post, key) => (
             <li className={css(styles.post)} key={key}>
               <h2>
-                <Link to={`/${post.category}/${slugify(post.title)}`}>
-                  {post.title}
-                </Link>
+                <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
               </h2>
               <p>{post.category}</p>
               <p>By {post.author}</p>

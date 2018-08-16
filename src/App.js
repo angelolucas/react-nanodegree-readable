@@ -10,10 +10,8 @@ import { connect } from 'react-redux'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import injectGlobalStyles from 'aphrodite-globals/no-important'
 import { globals, spaces, breakpoint } from './theme'
-import slugify from './utils/slugify'
 
 // Actions
-
 import { fetchCategories } from './actions/categories'
 
 // Components
@@ -31,7 +29,7 @@ class App extends Component {
     this.props.dispatch(fetchCategories())
   }
   render() {
-    const { categories, posts } = this.props
+    const { categories } = this.props
 
     return (
       <Router>
@@ -55,14 +53,7 @@ class App extends Component {
               ))}
 
               {/* Post page */}
-              {posts &&
-                posts.map(post => (
-                  <Route
-                    path={`/${post.category}/${slugify(post.title)}`}
-                    key={post.id}
-                    render={() => <Post post={post} />}
-                  />
-                ))}
+              <Route path="/:category/:post" component={Post} />
 
               {/* New post page*/}
               <Route path="/new-post" component={CreatePost} />
@@ -80,14 +71,10 @@ class App extends Component {
 
 App.propTypes = {
   categories: PropTypes.array,
-  posts: PropTypes.array,
   dispatch: PropTypes.func,
 }
 
-const mapStateToProps = ({ categories, posts }) => ({
-  categories,
-  posts,
-})
+const mapStateToProps = ({ categories }) => ({ categories })
 
 const styles = StyleSheet.create({
   general: {

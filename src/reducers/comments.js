@@ -12,10 +12,9 @@ export default function reducer(state = defaultState, action) {
     case GET_COMMENTS:
       return action.comments
 
-    case POST_COMMENT: {
-      console.log(action)
+    case POST_COMMENT:
       return [...state, action.comment]
-    }
+
     case DELETE_COMMENT:
       return state.filter(comment => comment.id !== action.id)
 
