@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Comment from './Comment'
-import CommentForm from './CommentForm'
-import { spaces } from '../../theme'
-import { getComments } from '../../actions/comments'
+import { spaces } from '../../../theme'
+import { getComments } from '../../../actions/comments'
 
 class Comments extends Component {
   state = { comments: null }
@@ -19,7 +18,7 @@ class Comments extends Component {
   }
 
   render() {
-    const { comments, postID } = this.props
+    const { comments } = this.props
 
     const title =
       comments && comments.length > 0
@@ -31,7 +30,6 @@ class Comments extends Component {
         <h3 className={css(styles.title)}>{title}</h3>
         {comments &&
           comments.map(comment => <Comment {...comment} key={comment.id} />)}
-        <CommentForm postID={postID} />
       </div>
     )
   }

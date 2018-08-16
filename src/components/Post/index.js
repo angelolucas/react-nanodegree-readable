@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Content from './Content'
-import Comments from '../Comments'
+import Comments from './Comments'
+import CreateComment from './CreateComment'
 
 class Post extends Component {
   render() {
@@ -12,6 +13,7 @@ class Post extends Component {
       <div className={css(styles.post)}>
         <Content {...post} />
         <Comments postID={post.id} />
+        <CreateComment postID={post.id} />
       </div>
     )
   }

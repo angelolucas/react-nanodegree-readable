@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Textarea from 'react-textarea-autosize'
 import serializeForm from 'form-serialize'
-import { spaces, buttons } from '../../theme'
-import date from '../../utils/date'
-import VoteScore from '../VoteScore'
-import { deleteComment, editComment } from '../../actions/comments'
+import { spaces, buttons } from '../../../theme'
+import date from '../../../utils/date'
+import VoteScore from '../../VoteScore'
+import { deleteComment, editComment } from '../../../actions/comments'
 
 class Comment extends Component {
   /**
