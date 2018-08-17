@@ -1,11 +1,11 @@
 import * as API from '../API'
 
-export const GET_CATEGORIES = 'GET_CATEGORIES'
+export const STORE_CATEGORIES = 'STORE_CATEGORIES'
 
-export const getCategories = () => dispatch =>
+export const storeCategories = () => dispatch =>
   API.getCategories().then(categories =>
     dispatch({
-      type: GET_CATEGORIES,
+      type: STORE_CATEGORIES,
       categories,
     })
   )

@@ -8,7 +8,7 @@ import uuid from 'uuid'
 import { buttons } from '../theme'
 import slugify from '../utils/slugify'
 import * as API from '../API'
-import { getPosts } from '../actions/posts'
+import { storePosts } from '../actions/posts'
 
 class Create extends Component {
   handleSubmit = e => {
@@ -28,7 +28,7 @@ class Create extends Component {
 
   postPost = post => {
     API.postPost(post)
-      .then(this.props.dispatch(getPosts()))
+      .then(this.props.dispatch(storePosts()))
       .then(
         /**
          * dispatch `getPosts()` triggers rendering of routes in App.js

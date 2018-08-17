@@ -1,5 +1,5 @@
 import {
-  GET_COMMENTS,
+  STORE_COMMENTS,
   POST_COMMENT,
   DELETE_COMMENT,
   EDIT_COMMENT,
@@ -9,7 +9,7 @@ const defaultState = null
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
-    case GET_COMMENTS:
+    case STORE_COMMENTS:
       return action.comments
 
     case POST_COMMENT:

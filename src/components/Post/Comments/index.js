@@ -4,17 +4,13 @@ import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Comment from './Comment'
 import { spaces } from '../../../theme'
-import { getComments } from '../../../actions/comments'
+import { storeComments } from '../../../actions/comments'
 
 class Comments extends Component {
   state = { comments: null }
 
   UNSAFE_componentWillMount() {
-    this.getComments()
-  }
-
-  getComments = () => {
-    this.props.dispatch(getComments(this.props.postID))
+    this.props.dispatch(storeComments(this.props.postID))
   }
 
   render() {

@@ -1,33 +1,30 @@
 import * as API from '../API'
 
-export const GET_POSTS = 'GET_POSTS'
-export const GET_POST = 'GET_POST'
-export const GET_POSTS_BY_CATEGORY = 'GET_POSTS_BY_CATEGORY'
+export const STORE_POSTS = 'STORE_POSTS'
+export const STORE_POSTS_BY_CATEGORY = 'STORE_POSTS_BY_CATEGORY'
+export const STORE_POST = 'STORE_POST'
 
-// Get all posts
-export const getPosts = () => dispatch =>
+export const storePosts = () => dispatch =>
   API.getPosts().then(posts =>
     dispatch({
-      type: GET_POSTS,
+      type: STORE_POSTS,
       posts,
     })
   )
 
-// Get posts by category
-export const getPostsByCategory = category => dispatch =>
+export const storePostsByCategory = category => dispatch =>
   API.getPostsByCategory(category).then(posts =>
     dispatch({
-      type: GET_POSTS_BY_CATEGORY,
+      type: STORE_POSTS_BY_CATEGORY,
       category,
       posts,
     })
   )
 
-// Get single post
-export const getPost = id => dispatch =>
+export const storePost = id => dispatch =>
   API.getPost(id).then(post =>
     dispatch({
-      type: GET_POST,
+      type: STORE_POST,
       post,
     })
   )

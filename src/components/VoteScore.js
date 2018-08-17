@@ -3,13 +3,15 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import * as API from '../API'
-import { getPosts } from '../actions/posts'
+import { storePosts } from '../actions/posts'
 
 class voteScore extends Component {
   vote = vote => {
     const { contentType, contentId } = this.props
 
-    API.vote(contentType, vote, contentId).then(this.props.dispatch(getPosts()))
+    API.vote(contentType, vote, contentId).then(
+      this.props.dispatch(storePosts())
+    )
   }
   render() {
     return (

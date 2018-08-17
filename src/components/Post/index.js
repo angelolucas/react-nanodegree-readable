@@ -5,7 +5,7 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 import Content from './Content'
 import Comments from './Comments'
 import CreateComment from './CreateComment'
-import { getPost } from '../../actions/posts'
+import { storePost } from '../../actions/posts'
 
 class Post extends Component {
   UNSAFE_componentWillMount() {
@@ -14,9 +14,9 @@ class Post extends Component {
 
     /**
      * Check if the post is already in the store
-     * Users coming from home already have all posts in store
+     * Users coming from home already have all posts stored
      */
-    if (!posts) dispatch(getPost(id))
+    if (!posts) dispatch(storePost(id))
   }
 
   render() {

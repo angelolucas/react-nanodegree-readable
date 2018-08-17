@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Posts from './Posts'
-import { getPostsByCategory } from '../actions/posts'
+import { storePostsByCategory } from '../actions/posts'
 
 class Category extends Component {
   state = { category: null }
@@ -24,7 +24,7 @@ class Category extends Component {
 
     this.setState({ category })
 
-    dispatch(getPostsByCategory(category))
+    dispatch(storePostsByCategory(category))
   }
   render() {
     const { match, postsByCategory } = this.props

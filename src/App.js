@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import injectGlobalStyles from 'aphrodite-globals/no-important'
 import { globals, spaces, breakpoint } from './theme'
-import { getCategories } from './actions/categories'
+import { storeCategories } from './actions/categories'
 
 // Components
 import Home from './components/Home'
@@ -25,7 +25,7 @@ injectGlobalStyles(globals)
 class App extends Component {
   UNSAFE_componentWillMount() {
     // Categories is used in `Header` and `CreatePost`
-    this.props.dispatch(getCategories())
+    this.props.dispatch(storeCategories())
   }
   render() {
     return (

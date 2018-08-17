@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getPosts } from '../actions/posts'
+import { storePosts } from '../actions/posts'
 import Posts from './Posts'
 
 class Home extends Component {
   UNSAFE_componentWillMount() {
-    this.props.dispatch(getPosts())
+    this.props.dispatch(storePosts())
   }
   render() {
     return <Posts posts={this.props.posts} />

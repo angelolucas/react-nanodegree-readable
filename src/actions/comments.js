@@ -1,20 +1,19 @@
 import * as API from '../API'
 
-export const GET_COMMENTS = 'GET_COMMENTS'
+export const STORE_COMMENTS = 'STORE_COMMENTS'
 export const POST_COMMENT = 'POST_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 
-// Get comments of current post
-export const getComments = postId => dispatch =>
+// Store comments of current post
+export const storeComments = postId => dispatch =>
   API.getComments(postId).then(comments =>
     dispatch({
-      type: GET_COMMENTS,
+      type: STORE_COMMENTS,
       comments,
     })
   )
 
-// Post
 export const postComment = comment => dispatch =>
   API.postComment(comment).then(comment =>
     dispatch({
@@ -23,7 +22,6 @@ export const postComment = comment => dispatch =>
     })
   )
 
-// Delete
 export const deleteComment = id => dispatch =>
   API.deleteComment(id).then(() =>
     dispatch({
@@ -32,7 +30,6 @@ export const deleteComment = id => dispatch =>
     })
   )
 
-// Edit
 export const editComment = (id, changes) => dispatch =>
   API.editComment(id, changes).then(() =>
     dispatch({
