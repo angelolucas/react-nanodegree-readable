@@ -3,6 +3,7 @@ import * as API from '../API'
 export const STORE_POSTS = 'STORE_POSTS'
 export const STORE_POSTS_BY_CATEGORY = 'STORE_POSTS_BY_CATEGORY'
 export const STORE_POST = 'STORE_POST'
+export const DELETE_POST = 'DELETE_POST'
 
 export const storePosts = () => dispatch =>
   API.getPosts().then(posts =>
@@ -26,5 +27,13 @@ export const storePost = id => dispatch =>
     dispatch({
       type: STORE_POST,
       post,
+    })
+  )
+
+export const deletePost = id => dispatch =>
+  API.deletePost(id).then(() =>
+    dispatch({
+      type: DELETE_POST,
+      id,
     })
   )

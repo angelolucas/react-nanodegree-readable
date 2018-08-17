@@ -20,6 +20,12 @@ export const getPostsByCategory = category =>
 export const getPost = id =>
   fetch(`${api}/posts/${id}`, { headers }).then(result => result.json())
 
+export const deletePost = id =>
+  fetch(`${api}/posts/${id}`, {
+    method: 'DELETE',
+    headers: { ...headers },
+  })
+
 export const getCategories = () =>
   fetch(`${api}/categories`, { headers }).then(result => result.json())
 

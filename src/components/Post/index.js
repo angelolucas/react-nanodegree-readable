@@ -26,7 +26,7 @@ class Post extends Component {
       <div className={css(styles.post)}>
         {post && (
           <div>
-            <Content {...post} />
+            <Content {...post} history={this.props.history} />
             <Comments postID={post.id} />
             <CreateComment postID={post.id} />
           </div>
@@ -41,6 +41,7 @@ Post.propTypes = {
   posts: PropTypes.array,
   dispatch: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = ({ posts }, props) => {

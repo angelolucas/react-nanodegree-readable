@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Textarea from 'react-textarea-autosize'
 import { spaces, buttons } from '../../theme'
 import date from '../../utils/date'
 import VoteScore from '../VoteScore'
+import { deletePost } from '../../actions/posts'
 
 class Content extends Component {
   /**
@@ -22,6 +24,12 @@ class Content extends Component {
       titleEdition: this.props.title,
       bodyEdition: this.props.body,
     })
+  }
+
+  delete = () => {
+    const { dispatch, history } = this.props
+
+    dispatch(deletePost(this.props.id)).then(history.push('/'))
   }
 
   editMode = (boleaon = true) => {
@@ -86,11 +94,18 @@ class Content extends Component {
                 this.setState({ bodyEdition: e.target.value })
               }}
             />
+
             <button
-              className={css(styles.editButton)}
+              className={css(styles.button)}
               onClick={() => this.cancelEdition()}
             >
               cancel
+            </button>
+            <button
+              className={css(styles.button)}
+              onClick={() => this.delete()}
+            >
+              delete
             </button>
           </form>
         ) : (
@@ -98,7 +113,7 @@ class Content extends Component {
             <h1 className={css(styles.title)}>{title}</h1>
             <p className={css(styles.body)}>{body}</p>
             <button
-              className={css(styles.editButton)}
+              className={css(styles.button)}
               onClick={() => this.editMode()}
             >
               edit
@@ -118,6 +133,8 @@ Content.propTypes = {
   author: PropTypes.string.isRequired,
   voteScore: PropTypes.number.isRequired,
   category: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 }
 
 const styles = StyleSheet.create({
@@ -146,10 +163,10 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
 
-  editButton: {
+  button: {
     float: 'right',
     ...buttons.smallLight,
   },
 })
 
-export default Content
+export default connect()(Content)
