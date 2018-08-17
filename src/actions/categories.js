@@ -1,13 +1,11 @@
 import * as API from '../API'
 
-export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
+export const GET_CATEGORIES = 'GET_CATEGORIES'
 
-export const fetchCategories = () => dispatch =>
+export const getCategories = () => dispatch =>
   API.getCategories().then(categories =>
-    dispatch(receiveCategories(categories))
+    dispatch({
+      type: GET_CATEGORIES,
+      categories,
+    })
   )
-
-export const receiveCategories = categories => ({
-  type: RECEIVE_CATEGORIES,
-  categories,
-})

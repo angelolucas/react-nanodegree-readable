@@ -1,10 +1,10 @@
-import { RECEIVE_CATEGORIES } from '../actions/categories'
+import { GET_CATEGORIES } from '../actions/categories'
 
 const defaultState = null
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
-    case RECEIVE_CATEGORIES:
+    case GET_CATEGORIES:
       return action.categories
     default:
       return state

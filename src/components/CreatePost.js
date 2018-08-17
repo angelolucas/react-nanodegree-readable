@@ -57,11 +57,12 @@ class Create extends Component {
           <input type="text" placeholder="Author" name="author" />
           <select name="category">
             <option>Select category</option>
-            {categories.map(category => (
-              <option key={category.path} value={category.path}>
-                {category.name}
-              </option>
-            ))}
+            {categories &&
+              categories.map(category => (
+                <option key={category.path} value={category.path}>
+                  {category.name}
+                </option>
+              ))}
           </select>
           <Textarea placeholder="body" minRows={10} name="body" />
           <button className={css(styles.submit)}>Save</button>
@@ -72,7 +73,7 @@ class Create extends Component {
 }
 
 Create.propTypes = {
-  categories: PropTypes.array.isRequired,
+  categories: PropTypes.array,
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
 }

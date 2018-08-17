@@ -10,9 +10,7 @@ import { connect } from 'react-redux'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import injectGlobalStyles from 'aphrodite-globals/no-important'
 import { globals, spaces, breakpoint } from './theme'
-
-// Actions
-import { fetchCategories } from './actions/categories'
+import { getCategories } from './actions/categories'
 
 // Components
 import Home from './components/Home'
@@ -26,22 +24,23 @@ injectGlobalStyles(globals)
 
 class App extends Component {
   UNSAFE_componentWillMount() {
-    this.props.dispatch(fetchCategories())
+    // Categories is used in `Header` and `CreatePost`
+    this.props.dispatch(getCategories())
   }
   render() {
     const { categories } = this.props
 
     return (
       <Router>
-        {categories && (
-          <div className={css(styles.general)}>
-            <Header />
-            <Switch>
-              {/* Home page */}
-              <Route exact path="/" component={Home} />
+        <div className={css(styles.general)}>
+          <Header />
+          <Switch>
+            {/* Home page */}
+            <Route exact path="/" component={Home} />
 
-              {/* Category page */}
-              {categories.map(category => (
+            {/* Category page */}
+            {categories &&
+              categories.map(category => (
                 <Route
                   exact
                   path={`/${category.path}`}
@@ -52,18 +51,17 @@ class App extends Component {
                 />
               ))}
 
-              {/* Post page */}
-              <Route path="/:category/:post" component={Post} />
+            {/* Post page */}
+            <Route path="/:category/:post" component={Post} />
 
-              {/* New post page*/}
-              <Route path="/new-post" component={CreatePost} />
+            {/* New post page*/}
+            <Route path="/new-post" component={CreatePost} />
 
-              {/* Redirect to home if Routes above don't match */}
-              <Redirect to="/" />
-            </Switch>
-            <Footer />
-          </div>
-        )}
+            {/* Redirect to home if Routes above don't match */}
+            <Redirect to="/" />
+          </Switch>
+          <Footer />
+        </div>
       </Router>
     )
   }
