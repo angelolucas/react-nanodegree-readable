@@ -51,7 +51,7 @@ class Create extends Component {
 
     return (
       <div className={css(styles.wrapper)}>
-        <h1>New Post</h1>
+        <h1>Create Post</h1>
         <form onSubmit={this.handleSubmit}>
           <input type="text" placeholder="Title" name="title" />
           <input type="text" placeholder="Author" name="author" />

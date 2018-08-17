@@ -12,7 +12,7 @@ class Header extends Component {
       <header className={css(styles.header)}>
         <Logo />
         <Categories />
-        <Link to="/new-post">Creact post</Link>
+        <Link to="/create-post">Creact post</Link>
         <div className={css(styles.horizontalLine)}>
           <h5 className={css(styles.date)}>
             {moment(Date.now()).format('dddd, MMMM Do YYYY')}

@@ -38,6 +38,9 @@ class App extends Component {
             {/* Home page */}
             <Route exact path="/" component={Home} />
 
+            {/* Create Post page*/}
+            <Route extact path="/create-post" component={CreatePost} />
+
             {/* Category page */}
             {categories &&
               categories.map(category => (
@@ -53,9 +56,6 @@ class App extends Component {
 
             {/* Post page */}
             <Route path="/:category/:post" component={Post} />
-
-            {/* New post page*/}
-            <Route path="/new-post" component={CreatePost} />
 
             {/* Redirect to home if Routes above don't match */}
             <Redirect to="/" />
