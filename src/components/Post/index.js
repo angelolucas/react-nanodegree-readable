@@ -9,13 +9,14 @@ import { getPost } from '../../actions/posts'
 
 class Post extends Component {
   UNSAFE_componentWillMount() {
-    const id = this.props.match.params.post
+    const { match, posts, dispatch } = this.props
+    const id = match.params.post
 
     /**
      * Check if the post is already in the store
-     * Users coming from home already have post in store
+     * Users coming from home already have all posts in store
      */
-    if (!this.props.posts) this.props.dispatch(getPost(id))
+    if (!posts) dispatch(getPost(id))
   }
 
   render() {

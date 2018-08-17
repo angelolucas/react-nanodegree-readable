@@ -28,8 +28,6 @@ class App extends Component {
     this.props.dispatch(getCategories())
   }
   render() {
-    const { categories } = this.props
-
     return (
       <Router>
         <div className={css(styles.general)}>
@@ -39,23 +37,13 @@ class App extends Component {
             <Route exact path="/" component={Home} />
 
             {/* Create Post page*/}
-            <Route extact path="/create-post" component={CreatePost} />
+            <Route exact path="/create-post" component={CreatePost} />
 
             {/* Category page */}
-            {categories &&
-              categories.map(category => (
-                <Route
-                  exact
-                  path={`/${category.path}`}
-                  key={category.path}
-                  render={() => (
-                    <Category name={category.name} path={category.path} />
-                  )}
-                />
-              ))}
+            <Route exact path="/:category" component={Category} />
 
             {/* Post page */}
-            <Route path="/:category/:post" component={Post} />
+            <Route exact path="/:category/:post" component={Post} />
 
             {/* Redirect to home if Routes above don't match */}
             <Redirect to="/" />
@@ -67,10 +55,7 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  categories: PropTypes.array,
-  dispatch: PropTypes.func,
-}
+App.propTypes = { dispatch: PropTypes.func }
 
 const mapStateToProps = ({ categories }) => ({ categories })
 
