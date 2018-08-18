@@ -6,7 +6,6 @@ import serializeForm from 'form-serialize'
 import Textarea from 'react-textarea-autosize'
 import uuid from 'uuid'
 import { buttons } from '../theme'
-import slugify from '../utils/slugify'
 import * as API from '../API'
 import { storePosts } from '../actions/posts'
 
@@ -41,7 +40,7 @@ class Create extends Component {
   }
 
   goToPostPage = post => {
-    const postPath = `/${post.category}/${slugify(post.title)}`
+    const postPath = `/${post.category}/${post.id}`
 
     this.props.history.push(postPath)
   }
