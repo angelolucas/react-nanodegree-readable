@@ -11,8 +11,12 @@ class Header extends Component {
     return (
       <header className={css(styles.header)}>
         <Logo />
-        <Categories />
-        <Link to="/create-post">Creact post</Link>
+        <div>
+          <Categories />
+          <Link className={css(styles.createPost)} to="/create-post">
+            Creact post
+          </Link>
+        </div>
         <div className={css(styles.horizontalLine)}>
           <h5 className={css(styles.date)}>
             {moment(Date.now()).format('dddd, MMMM Do YYYY')}
@@ -44,12 +48,23 @@ const styles = StyleSheet.create({
     },
   },
 
+  createPost: {
+    padding: 10,
+    color: colors.dark,
+
+    ':before': {
+      content: '"• "',
+      marginRight: 15,
+    },
+  },
+
   date: {
     display: 'inline-block',
     background: colors.light,
     position: 'relative',
     padding: 10,
     zIndex: 2,
+    margin: 0,
   },
 })
 

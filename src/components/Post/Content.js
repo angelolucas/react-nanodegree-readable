@@ -143,6 +143,8 @@ const styles = StyleSheet.create({
   postInfo: {
     display: 'flex',
     marginBottom: 10,
+    padding: 0,
+    listStyle: 'none',
   },
 
   info: { marginRight: spaces.x2 },

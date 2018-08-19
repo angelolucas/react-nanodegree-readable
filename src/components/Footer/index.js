@@ -13,6 +13,7 @@ class Footer extends Component {
               href="https://github.com/angelolucas/react-nanodegree-readable"
               target="_blank"
               rel="noopener noreferrer"
+              className={css(styles.link)}
             >
               An Udacity Project.
             </a>
@@ -21,6 +22,7 @@ class Footer extends Component {
               href="https://angelolucas.github.io/"
               target="_blank"
               rel="noopener noreferrer"
+              className={css(styles.link)}
             >
               By Ângelo Lucas.
             </a>
@@ -61,7 +63,10 @@ const styles = StyleSheet.create({
     padding: 10,
     zIndex: 2,
     lineHeight: '20px',
+    margin: 0,
   },
+
+  link: { color: colors.dark },
 
   icon: {
     marginLeft: 5,

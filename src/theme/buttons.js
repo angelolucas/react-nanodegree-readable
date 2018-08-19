@@ -6,6 +6,9 @@ const format = {
   cursor: 'pointer',
   border: 'none',
   outline: 'none',
+  marginRight: 10,
+
+  ':last-child': { marginRight: 0 },
 }
 
 const buttons = {
@@ -18,7 +21,7 @@ const buttons = {
     fontWeight: 'bold',
   },
 
-  light: {
+  defaultLight: {
     ...format,
     background: colors.light,
     color: colors.dark,
@@ -33,7 +36,6 @@ const buttons = {
     color: colors.light,
     padding: '3px 10px',
     fontSize: 12,
-    marginLeft: 10,
   },
 
   smallLight: {
@@ -42,7 +44,6 @@ const buttons = {
     color: colors.dark,
     padding: '3px 10px',
     fontSize: 12,
-    marginLeft: 10,
   },
 }
 

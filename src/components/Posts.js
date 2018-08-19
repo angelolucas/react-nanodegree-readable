@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { spaces, breakpoint } from '../theme'
+import { spaces, breakpoint, colors } from '../theme'
 import VoteScore from './VoteScore'
 
 class Posts extends Component {
@@ -15,7 +15,12 @@ class Posts extends Component {
           posts.map((post, key) => (
             <li className={css(styles.post)} key={key}>
               <h2>
-                <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
+                <Link
+                  className={css(styles.title)}
+                  to={`/${post.category}/${post.id}`}
+                >
+                  {post.title}
+                </Link>
               </h2>
               <p>{post.category}</p>
               <p>By {post.author}</p>
@@ -50,6 +55,7 @@ const styles = StyleSheet.create({
     marginBottom: spaces.x1,
     marginLeft: -spaces.x1,
     marginRight: -spaces.x1,
+    padding: 0,
   },
 
   post: {
@@ -61,9 +67,13 @@ const styles = StyleSheet.create({
     [breakpoint.small]: { flex: '100%' },
   },
 
+  title: { color: colors.dark },
+
   utils: {
     display: 'flex',
     justifyContent: 'space-between',
+    listStyle: 'none',
+    padding: 0,
   },
 })
 

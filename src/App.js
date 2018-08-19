@@ -36,7 +36,7 @@ class App extends Component {
             {/* Home page */}
             <Route exact path="/" component={Home} />
 
-            {/* Create Post page*/}
+            {/* Create Post page */}
             <Route exact path="/create-post" component={CreatePost} />
 
             {/* Category page */}

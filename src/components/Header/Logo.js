@@ -7,7 +7,9 @@ class Logo extends Component {
   render() {
     return (
       <h2 className={css(styles.logo)}>
-        <Link to="/">Readable</Link>
+        <Link className={css(styles.link)} to="/">
+          Readable
+        </Link>
       </h2>
     )
   }
@@ -24,7 +26,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     color: colors.light,
     background: colors.dark,
+    margin: 0,
   },
+
+  link: { color: colors.light },
 })
 
 export default Logo
