@@ -18,19 +18,54 @@ const globals = {
     '-webkit-font-smoothing': 'antialiased',
   },
 
-  'h1, h2, h3, h4, h5, h6': { margin: 0 },
-
-  ul: {
-    margin: 0,
-    padding: 0,
-    listStyle: 'none',
-  },
-
+  // Inline
   a: {
     textDecoration: 'none',
-    color: 'inherit',
+    color: '#0366d6',
   },
 
+  code: {
+    padding: '2px 4px',
+    fontSize: '90%',
+    color: 'black',
+    backgroundColor: '#e0e0e0',
+    borderRadius: '4px',
+    fontFamily: [
+      'SFMono-Regular',
+      'Consolas',
+      'Liberation Mono',
+      'Menlo',
+      'Courier',
+      'monospace',
+    ],
+  },
+
+  // Blocks
+  blockquote: {
+    padding: '0 1em',
+    marginLeft: 0,
+    borderLeft: '0.25em solid',
+  },
+
+  pre: {
+    background: colors.dark,
+    color: colors.light,
+    border: '2px solid',
+    padding: spaces.x1,
+  },
+
+  'pre code': {
+    padding: 0,
+    fontSize: 'inherit',
+    color: 'inherit',
+    whiteSpace: 'pre-wrap',
+    backgroundColor: 'transparent',
+    borderRadius: 0,
+  },
+
+  img: { maxWidth: '100%' },
+
+  // Form
   'input, textarea': {
     background: 'transparent',
     border: `2px solid ${colors.dark}`,
@@ -53,13 +88,25 @@ const globals = {
     resize: 'none',
   },
 
-  button: {
-    background: 'transparent',
-    fontFamily: fonts.main,
-    cursor: 'pointer',
-    border: 'none',
-    outline: 'none',
-    padding: 0,
+  // Table
+  table: {
+    width: '100%',
+    maxWidth: '100%',
+    borderSpacing: 0,
+  },
+
+  'table > thead > tr > th': {
+    verticalAlign: 'bottom',
+    borderBottom: '2px solid',
+    borderTop: 'none',
+  },
+
+  th: { textAlign: 'left' },
+
+  'tr th, tr td': {
+    padding: 8,
+    verticalAlign: 'top',
+    borderTop: '1px solid',
   },
 }
 

@@ -1,7 +1,16 @@
 import colors from './colors'
+import fonts from './fonts'
+
+const format = {
+  fontFamily: fonts.main,
+  cursor: 'pointer',
+  border: 'none',
+  outline: 'none',
+}
 
 const buttons = {
   default: {
+    ...format,
     background: colors.dark,
     color: colors.light,
     padding: '10px 20px',
@@ -10,6 +19,7 @@ const buttons = {
   },
 
   light: {
+    ...format,
     background: colors.light,
     color: colors.dark,
     padding: '10px 20px',
@@ -18,6 +28,7 @@ const buttons = {
   },
 
   small: {
+    ...format,
     background: colors.dark,
     color: colors.light,
     padding: '3px 10px',
@@ -26,6 +37,7 @@ const buttons = {
   },
 
   smallLight: {
+    ...format,
     background: colors.light,
     color: colors.dark,
     padding: '3px 10px',
