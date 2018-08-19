@@ -4,7 +4,7 @@ Udacity React Nanodegree.
 This project is composed by Front-end (react) and Server (node).
 
 ## Install and Start
-Front-End:
+Front-end:
   - `npm install`
   - `npm start`
 
@@ -13,15 +13,15 @@ Server:
   - `npm install`
   - `node server`
 
-Then open [http://localhost:3000] to see your app.
+Then open http://localhost:3000 to see your app.
 
 The page will reload if you make edits.
 You will also see any lint errors in the console.
 
 ## Documentation
 
-### Front-End
-The Front-End was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+### Front-end
+The Front-end was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 You can find the most recent version of the guide [here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
