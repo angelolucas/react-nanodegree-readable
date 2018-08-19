@@ -1,4 +1,6 @@
 require('dotenv').config()
+const chalk = require('chalk')
+const log = console.log
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -128,7 +130,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/categories', (req, res) => {
-  console.log('GET /:categories')
+  log(chalk.cyan.bold('\nGET /:categories'))
 
   categories.getAll(req.token).then(
     data => res.send(data),
@@ -140,9 +142,9 @@ app.get('/categories', (req, res) => {
 })
 
 app.get('/:category/posts', (req, res) => {
-  console.log('GET /:category/posts')
-  console.log('USAGE: Get all of the categories available for the app.')
-  console.log('category: ', req.params.category)
+  log(chalk.cyan.bold('\nGET /:category/posts'))
+  log(chalk.gray('USAGE: Get all of the categories available for the app.'))
+  log('category: ', req.params.category)
 
   posts.getByCategory(req.token, req.params.category).then(
     data => res.send(data),
@@ -154,8 +156,8 @@ app.get('/:category/posts', (req, res) => {
 })
 
 app.get('/posts', (req, res) => {
-  console.log('GET /posts')
-  console.log('USAGE: Get all of the posts for a particular category')
+  log(chalk.cyan.bold('\nGET /posts'))
+  log(chalk.gray('USAGE Get all of the posts for a particular category'))
 
   posts.getAll(req.token).then(
     data => res.send(data),
@@ -167,9 +169,9 @@ app.get('/posts', (req, res) => {
 })
 
 app.post('/posts', bodyParser.json(), (req, res) => {
-  console.log('POST /posts')
-  console.log('USAGE: Add a new post')
-  console.log(req.body)
+  log(chalk.cyan.bold('\nPOST /posts'))
+  log(chalk.gray('USAGE: Add a new post'))
+  log(req.body)
 
   posts.add(req.token, req.body).then(
     data => res.send(data),
@@ -181,9 +183,9 @@ app.post('/posts', bodyParser.json(), (req, res) => {
 })
 
 app.get('/posts/:id', (req, res) => {
-  console.log('GET /posts/:id')
-  console.log('USAGE: Get the details of a single post')
-  console.log('id ', req.params.id)
+  log(chalk.cyan.bold('\nGET /posts/:id'))
+  log(chalk.gray('USAGE: Get the details of a single post'))
+  log('id ', req.params.id)
 
   posts.get(req.token, req.params.id).then(
     data => res.send(data),
@@ -195,8 +197,8 @@ app.get('/posts/:id', (req, res) => {
 })
 
 app.post('/posts/:id', bodyParser.json(), (req, res) => {
-  console.log('POST /posts/:id - (voting on a post)')
-  console.log(req.body)
+  log(chalk.cyan.bold('\nPOST /posts/:id - (voting on a post)'))
+  log(req.body)
 
   const { option } = req.body
   const id = req.params.id
@@ -211,9 +213,9 @@ app.post('/posts/:id', bodyParser.json(), (req, res) => {
 })
 
 app.put('/posts/:id', bodyParser.json(), (req, res) => {
-  console.log('PUT /posts/:id')
-  console.log('USAGE: Edit the details of an existing post')
-  console.log(req.body)
+  log(chalk.cyan.bold('\nPUT /posts/:id'))
+  log(chalk.gray('USAGE: Edit the details of an existing post'))
+  log(req.body)
 
   posts.edit(req.token, req.params.id, req.body).then(
     data => res.send(data),
@@ -225,8 +227,8 @@ app.put('/posts/:id', bodyParser.json(), (req, res) => {
 })
 
 app.delete('/posts/:id', (req, res) => {
-  console.log('DELETE /posts/:id')
-  console.log('post id: ', req.params.id)
+  log(chalk.cyan.bold('\nDELETE /posts/:id'))
+  log('post id: ', req.params.id)
 
   posts
     .disable(req.token, req.params.id)
@@ -241,12 +243,12 @@ app.delete('/posts/:id', (req, res) => {
 })
 
 app.get('/posts/:id/comments', (req, res) => {
-  console.log('GET /posts/:id/comments')
-  console.log('USAGE: Get all the comments for a single post')
+  log(chalk.cyan.bold('\nGET /posts/:id/comments'))
+  log(chalk.gray('USAGE: Get all the comments for a single post'))
 
   comments.getByParent(req.token, req.params.id).then(
     data => {
-      console.log(data.length + ' comment(s)')
+      log(data.length + ' comment(s)')
 
       return res.send(data)
     },
@@ -258,9 +260,9 @@ app.get('/posts/:id/comments', (req, res) => {
 })
 
 app.post('/comments', bodyParser.json(), (req, res) => {
-  console.log('POST /comments')
-  console.log('USAGE: Add a comment to a post')
-  console.log(req.body)
+  log(chalk.cyan.bold('\nPOST /comments'))
+  log(chalk.gray('USAGE: Add a comment to a post'))
+  log(req.body)
 
   comments.add(req.token, req.body).then(
     data => res.send(data),
@@ -272,9 +274,9 @@ app.post('/comments', bodyParser.json(), (req, res) => {
 })
 
 app.get('/comments/:id', (req, res) => {
-  console.log('GET /comments/:id')
-  console.log('USAGE: Get the details for a single comment')
-  console.log('comment id: ', req.params.id)
+  log(chalk.cyan.bold('\nGET /comments/:id'))
+  log(chalk.gray('USAGE: Get the details for a single comment'))
+  log('comment id: ', req.params.id)
 
   comments.get(req.token, req.params.id).then(
     data => res.send(data),
@@ -286,8 +288,8 @@ app.get('/comments/:id', (req, res) => {
 })
 
 app.post('/comments/:id', bodyParser.json(), (req, res) => {
-  console.log('POST /comments/:id')
-  console.log('USAGE: Used for voting on a comment.')
+  log(chalk.cyan.bold('\nPOST /comments/:id'))
+  log(chalk.gray('USAGE: Used for voting on a comment.'))
 
   const { option } = req.body
 
@@ -301,10 +303,10 @@ app.post('/comments/:id', bodyParser.json(), (req, res) => {
 })
 
 app.put('/comments/:id', bodyParser.json(), (req, res) => {
-  console.log('PUT /comments/:id')
-  console.log('USAGE: Edit the details of an existing comment')
-  console.log('post id: ', req.params.id)
-  console.log('changes: ', req.body)
+  log(chalk.cyan.bold('\nPUT /comments/:id'))
+  log(chalk.gray('USAGE: Edit the details of an existing comment'))
+  log('post id: ', req.params.id)
+  log('changes: ', req.body)
 
   comments.edit(req.token, req.params.id, req.body).then(
     data => res.send(data),
@@ -316,9 +318,9 @@ app.put('/comments/:id', bodyParser.json(), (req, res) => {
 })
 
 app.delete('/comments/:id', (req, res) => {
-  console.log('DELETE /comments/:id')
-  console.log("USAGE: Sets a comment's deleted flag to `true`")
-  console.log(req.params.id)
+  log(chalk.cyan.bold('\nDELETE /comments/:id'))
+  log(chalk.gray("USAGE: Sets a comment's deleted flag to `true`"))
+  log('id: ', req.params.id)
 
   comments.disable(req.token, req.params.id).then(
     data => res.send(data),
@@ -330,5 +332,8 @@ app.delete('/comments/:id', (req, res) => {
 })
 
 app.listen(config.port, () => {
-  console.log('Server listening on port %s, Ctrl+C to stop', config.port)
+  log(
+    chalk.black.bold.bgCyan('Server listening on port %s, Ctrl+C to stop'),
+    config.port
+  )
 })
