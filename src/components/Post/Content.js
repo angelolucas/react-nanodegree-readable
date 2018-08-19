@@ -7,6 +7,7 @@ import { spaces, buttons } from '../../theme'
 import date from '../../utils/date'
 import VoteScore from '../VoteScore'
 import { deletePost } from '../../actions/posts'
+import ReactMarkdown from 'react-markdown'
 
 class Content extends Component {
   /**
@@ -111,7 +112,7 @@ class Content extends Component {
         ) : (
           <div>
             <h1 className={css(styles.title)}>{title}</h1>
-            <p className={css(styles.body)}>{body}</p>
+            <ReactMarkdown className={css(styles.body)} source={body} />
             <button
               className={css(styles.button)}
               onClick={() => this.editMode()}
