@@ -9,14 +9,10 @@ import { storePost } from '../../actions/posts'
 
 class Post extends Component {
   UNSAFE_componentWillMount() {
-    const { match, posts, dispatch } = this.props
+    const { match, dispatch } = this.props
     const id = match.params.post
 
-    /**
-     * Check if the post is already in the store
-     * Users coming from home already have all posts stored
-     */
-    if (!posts) dispatch(storePost(id))
+    dispatch(storePost(id))
   }
 
   render() {
@@ -38,7 +34,6 @@ class Post extends Component {
 
 Post.propTypes = {
   post: PropTypes.object,
-  posts: PropTypes.array,
   dispatch: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
@@ -49,10 +44,7 @@ const mapStateToProps = ({ posts }, props) => {
     ? posts.find(post => post.id === props.match.params.post)
     : null
 
-  return {
-    post,
-    posts,
-  }
+  return { post }
 }
 
 const styles = StyleSheet.create({ post: { maxWidth: 900 } })

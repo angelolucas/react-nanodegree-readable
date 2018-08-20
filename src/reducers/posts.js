@@ -13,18 +13,10 @@ export default function reducer(state = defaultState, action) {
       return action.posts
 
     case STORE_POSTS_BY_CATEGORY:
-      if (state)
-        return [
-          ...state.filter(post => post.category !== action.category),
-          ...action.posts,
-        ]
-      else return action.posts
+      return action.posts
 
-    case STORE_POST: {
-      if (state)
-        return [...state.filter(post => post.id !== action.id), action.post]
-      else return [action.post]
-    }
+    case STORE_POST:
+      return [action.post]
 
     case DELETE_POST:
       return state.filter(post => post.id !== action.id)
