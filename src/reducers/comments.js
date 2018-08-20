@@ -20,10 +20,12 @@ export default function reducer(state = defaultState, action) {
 
     case EDIT_COMMENT:
       return state.map(comment => {
-        if (comment.id === action.id) {
-          comment.timestamp = action.changes.timestamp
-          comment.body = action.changes.body
-        }
+        if (comment.id === action.id)
+          comment = {
+            ...comment,
+            ...action.changes,
+          }
+
         return comment
       })
 
