@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Textarea from 'react-textarea-autosize'
 import { spaces, buttons } from '../../theme'
 import date from '../../utils/date'
 import VoteScore from '../VoteScore'
-import { deletePost } from '../../actions/posts'
 import ReactMarkdown from 'react-markdown'
+import * as API from '../../API'
 
 class Content extends Component {
   /**
@@ -28,9 +27,9 @@ class Content extends Component {
   }
 
   delete = () => {
-    const { dispatch, history } = this.props
+    const { id, history } = this.props
 
-    dispatch(deletePost(this.props.id)).then(history.push('/'))
+    API.deletePost(id).then(history.push('/'))
   }
 
   editMode = (boleaon = true) => {
@@ -134,7 +133,6 @@ Content.propTypes = {
   author: PropTypes.string.isRequired,
   voteScore: PropTypes.number.isRequired,
   category: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
 }
 
@@ -172,4 +170,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default connect()(Content)
+export default Content

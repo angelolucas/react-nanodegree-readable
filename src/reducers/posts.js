@@ -2,7 +2,6 @@ import {
   STORE_POSTS,
   STORE_POSTS_BY_CATEGORY,
   STORE_POST,
-  DELETE_POST,
 } from '../actions/posts'
 
 const defaultState = null
@@ -17,9 +16,6 @@ export default function reducer(state = defaultState, action) {
 
     case STORE_POST:
       return [action.post]
-
-    case DELETE_POST:
-      return state.filter(post => post.id !== action.id)
 
     default:
       return state
