@@ -31,9 +31,9 @@ class Posts extends Component {
                 </li>
                 <li className={css(styles.utilsItem)}>
                   <VoteScore
-                    score={post.voteScore}
+                    id={post.id}
                     contentType="post"
-                    contentId={post.id}
+                    score={post.voteScore}
                   />
                 </li>
                 <li className={css(styles.utilsItem)}>edit</li>

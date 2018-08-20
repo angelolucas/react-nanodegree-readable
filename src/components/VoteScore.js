@@ -2,17 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import * as API from '../API'
-import { storePosts } from '../actions/posts'
+import { voteComment } from '../actions/comments'
+import { votePost } from '../actions/posts'
 import { buttons } from '../theme'
 
 class voteScore extends Component {
   vote = vote => {
-    const { contentType, contentId } = this.props
+    const { id, contentType } = this.props
 
-    API.vote(contentType, vote, contentId).then(
-      this.props.dispatch(storePosts())
-    )
+    if (contentType === 'comment') this.props.dispatch(voteComment(id, vote))
+    if (contentType === 'post') this.props.dispatch(votePost(id, vote))
   }
   render() {
     return (
@@ -44,7 +43,7 @@ class voteScore extends Component {
 voteScore.propTypes = {
   score: PropTypes.number.isRequired,
   contentType: PropTypes.string.isRequired,
-  contentId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
 

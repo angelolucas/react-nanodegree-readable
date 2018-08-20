@@ -59,7 +59,7 @@ class Content extends Component {
             By <strong>{author}</strong> on {date(timestamp)}
           </li>
           <li className={css(styles.info)}>
-            <VoteScore score={voteScore} contentType="post" contentId={id} />
+            <VoteScore id={id} contentType="post" score={voteScore} />
           </li>
           <li className={css(styles.info)}>{category}</li>
         </ul>

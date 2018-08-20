@@ -56,7 +56,7 @@ class Comment extends Component {
         <span className={css(styles.author)}>{author}</span>
         <span className={css(styles.date)}>{date(timestamp)}</span>
         <span className={css(styles.voteScore)}>
-          <VoteScore score={voteScore} contentType="comment" contentId={id} />
+          <VoteScore id={id} contentType="comment" score={voteScore} />
         </span>
 
         {editMode ? (

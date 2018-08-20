@@ -73,8 +73,8 @@ export const editComment = (id, changes) =>
   })
 
 // Vote post & comment
-export const vote = (contentType, vote, contentId) =>
-  fetch(`${api}/${contentType}s/${contentId}`, {
+export const vote = (id, contentType, vote) =>
+  fetch(`${api}/${contentType}/${id}`, {
     method: 'POST',
     headers: {
       ...headers,

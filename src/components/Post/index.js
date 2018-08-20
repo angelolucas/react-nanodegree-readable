@@ -44,7 +44,10 @@ const mapStateToProps = ({ posts }, props) => {
     ? posts.find(post => post.id === props.match.params.post)
     : null
 
-  return { post }
+  return {
+    posts,
+    post,
+  }
 }
 
 const styles = StyleSheet.create({ post: { maxWidth: 900 } })
