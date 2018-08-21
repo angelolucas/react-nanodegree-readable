@@ -17,15 +17,14 @@ class Comments extends Component {
     const { comments } = this.props
 
     const title =
-      comments && comments.length > 0
-        ? `${comments.length} Comment(s)`
-        : `No Comments`
+      comments.length > 0 ? `${comments.length} Comment(s)` : `No Comments`
 
     return (
       <div>
         <h3 className={css(styles.title)}>{title}</h3>
-        {comments &&
-          comments.map(comment => <Comment {...comment} key={comment.id} />)}
+        {comments.map(comment => (
+          <Comment {...comment} key={comment.id} />
+        ))}
       </div>
     )
   }
@@ -33,7 +32,7 @@ class Comments extends Component {
 
 Comments.propTypes = {
   postID: PropTypes.string.isRequired,
-  comments: PropTypes.array,
+  comments: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
 

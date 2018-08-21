@@ -1,6 +1,6 @@
 import { STORE_CATEGORIES } from '../actions/categories'
 
-const defaultState = null
+const defaultState = []
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {

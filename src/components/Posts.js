@@ -12,42 +12,41 @@ class Posts extends Component {
 
     return (
       <ul className={css(styles.list)}>
-        {posts &&
-          posts.map((post, key) => (
-            <li className={css(styles.post)} key={key}>
-              <h2>
-                <Link
-                  className={css(styles.title)}
-                  to={`/${post.category}/${post.id}`}
-                >
-                  {post.title}
-                </Link>
-              </h2>
-              <p>{date(post.timestamp)}</p>
-              <p>{post.category}</p>
-              <p>By {post.author}</p>
-              <p>{post.body}</p>
-              <ul className={css(styles.utils)}>
-                <li className={css(styles.utilsItem)}>
-                  {post.commentCount} Comments
-                </li>
-                <li className={css(styles.utilsItem)}>
-                  <VoteScore
-                    id={post.id}
-                    contentType="post"
-                    score={post.voteScore}
-                  />
-                </li>
-                <li className={css(styles.utilsItem)}>edit</li>
-              </ul>
-            </li>
-          ))}
+        {posts.map((post, key) => (
+          <li className={css(styles.post)} key={key}>
+            <h2>
+              <Link
+                className={css(styles.title)}
+                to={`/${post.category}/${post.id}`}
+              >
+                {post.title}
+              </Link>
+            </h2>
+            <p>{date(post.timestamp)}</p>
+            <p>{post.category}</p>
+            <p>By {post.author}</p>
+            <p>{post.body}</p>
+            <ul className={css(styles.utils)}>
+              <li className={css(styles.utilsItem)}>
+                {post.commentCount} Comments
+              </li>
+              <li className={css(styles.utilsItem)}>
+                <VoteScore
+                  id={post.id}
+                  contentType="post"
+                  score={post.voteScore}
+                />
+              </li>
+              <li className={css(styles.utilsItem)}>edit</li>
+            </ul>
+          </li>
+        ))}
       </ul>
     )
   }
 }
 
-Posts.propTypes = { posts: PropTypes.array }
+Posts.propTypes = { posts: PropTypes.array.isRequired }
 
 const styles = StyleSheet.create({
   list: {

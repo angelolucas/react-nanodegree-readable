@@ -55,7 +55,7 @@ class App extends Component {
   }
 }
 
-App.propTypes = { dispatch: PropTypes.func }
+App.propTypes = { dispatch: PropTypes.func.isRequired }
 
 const mapStateToProps = ({ categories }) => ({ categories })
 

@@ -5,7 +5,7 @@ import {
   VOTE_POST,
 } from '../actions/posts'
 
-const defaultState = null
+const defaultState = []
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {

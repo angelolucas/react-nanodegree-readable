@@ -6,7 +6,7 @@ import {
   VOTE_COMMENT,
 } from '../actions/comments'
 
-const defaultState = null
+const defaultState = []
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {

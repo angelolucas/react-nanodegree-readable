@@ -40,7 +40,7 @@ class Category extends Component {
 }
 
 Category.propTypes = {
-  postsByCategory: PropTypes.array,
+  postsByCategory: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   sortBy: PropTypes.string.isRequired,

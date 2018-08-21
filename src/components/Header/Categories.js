@@ -11,24 +11,23 @@ class Categories extends Component {
 
     return (
       <ul className={css(styles.list)}>
-        {categories &&
-          categories.map(category => (
-            <li className={css(styles.item)} key={category.path}>
-              <NavLink
-                to={`/${category.path}`}
-                className={css(styles.link)}
-                activeClassName={css(styles.currentItem)}
-              >
-                {category.name}
-              </NavLink>
-            </li>
-          ))}
+        {categories.map(category => (
+          <li className={css(styles.item)} key={category.path}>
+            <NavLink
+              to={`/${category.path}`}
+              className={css(styles.link)}
+              activeClassName={css(styles.currentItem)}
+            >
+              {category.name}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     )
   }
 }
 
-Categories.propTypes = { categories: PropTypes.array }
+Categories.propTypes = { categories: PropTypes.array.isRequired }
 
 const mapStateToProps = ({ categories }) => ({ categories })
 

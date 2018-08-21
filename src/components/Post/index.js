@@ -40,9 +40,7 @@ Post.propTypes = {
 }
 
 const mapStateToProps = ({ posts }, props) => {
-  const post = posts
-    ? posts.find(post => post.id === props.match.params.post)
-    : null
+  const post = posts.find(post => post.id === props.match.params.post)
 
   return {
     posts,

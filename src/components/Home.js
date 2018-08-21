@@ -18,8 +18,8 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  posts: PropTypes.array,
-  sortBy: PropTypes.string,
+  posts: PropTypes.array.isRequired,
+  sortBy: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
 
