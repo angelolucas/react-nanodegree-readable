@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { spaces, breakpoint, colors } from '../theme'
 import VoteScore from './VoteScore'
+import date from '../utils/date'
 
 class Posts extends Component {
   render() {
@@ -22,6 +23,7 @@ class Posts extends Component {
                   {post.title}
                 </Link>
               </h2>
+              <p>{date(post.timestamp)}</p>
               <p>{post.category}</p>
               <p>By {post.author}</p>
               <p>{post.body}</p>

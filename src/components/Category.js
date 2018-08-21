@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Posts from './Posts'
 import { storePostsByCategory } from '../actions/posts'
+import sort from '../utils/sort'
 
 class Category extends Component {
   state = { category: null }
@@ -27,12 +28,12 @@ class Category extends Component {
     dispatch(storePostsByCategory(category))
   }
   render() {
-    const { match, postsByCategory } = this.props
+    const { match, sortBy, postsByCategory } = this.props
 
     return (
       <div>
         <h1>{match.params.category}</h1>
-        <Posts posts={postsByCategory} />
+        <Posts posts={sort(postsByCategory, sortBy)} />
       </div>
     )
   }
@@ -42,15 +43,17 @@ Category.propTypes = {
   postsByCategory: PropTypes.array,
   dispatch: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  sortBy: PropTypes.string.isRequired,
 }
 
-const mapStateToProps = ({ posts }, props) => {
+const mapStateToProps = ({ posts, sortBy }, props) => {
   const postsByCategory = posts
     ? posts.filter(post => post.category === props.match.params.category)
     : null
 
   return {
     postsByCategory,
+    sortBy,
     posts,
   }
 }

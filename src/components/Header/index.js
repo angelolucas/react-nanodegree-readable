@@ -5,6 +5,7 @@ import * as moment from 'moment'
 import { colors, spaces } from '../../theme'
 import Logo from './Logo'
 import Categories from './Categories'
+import SelectSortBy from './SelectSortBy'
 
 class Header extends Component {
   render() {
@@ -16,6 +17,7 @@ class Header extends Component {
           <Link className={css(styles.createPost)} to="/create-post">
             Creact post
           </Link>
+          <SelectSortBy />
         </div>
         <div className={css(styles.horizontalLine)}>
           <h5 className={css(styles.date)}>
