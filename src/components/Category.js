@@ -6,56 +6,60 @@ import { storePostsByCategory } from '../actions/posts'
 import sort from '../utils/sort'
 
 class Category extends Component {
-  state = { category: null }
+  currentCategory = ''
 
-  UNSAFE_componentWillMount() {
-    this.dispatchPosts()
-  }
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const category = nextProps.match.params.category
+    const nextCategory = nextProps.match.params.category
 
-    if (category !== this.state.category) {
-      this.setState({ category })
-      this.dispatchPosts()
+    if (nextCategory !== this.currentCategory) {
+      this.currentCategory = nextCategory
+
+      this.props.storePostsByCategory(this.currentCategory)
     }
   }
-  dispatchPosts() {
-    const { match, dispatch } = this.props
-    const category = match.params.category
 
-    this.setState({ category })
+  title = () => {
+    const { categories } = this.props
 
-    dispatch(storePostsByCategory(category))
+    if (categories.length > 0) {
+      const category = categories.find(
+        category => category.path === this.currentCategory
+      )
+
+      return category.name
+    }
   }
+
   render() {
-    const { match, sortBy, postsByCategory } = this.props
+    const { sortBy, posts } = this.props
 
     return (
       <div>
-        <h1>{match.params.category}</h1>
-        <Posts posts={sort(postsByCategory, sortBy)} />
+        <h1>{this.title()}</h1>
+        <Posts posts={sort(posts, sortBy)} />
       </div>
     )
   }
 }
 
 Category.propTypes = {
-  postsByCategory: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired,
+  posts: PropTypes.array.isRequired,
   sortBy: PropTypes.string.isRequired,
+  storePostsByCategory: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired,
 }
 
-const mapStateToProps = ({ posts, sortBy }, props) => {
-  const postsByCategory = posts
-    ? posts.filter(post => post.category === props.match.params.category)
-    : null
+const mapStateToProps = ({ posts, sortBy, categories }) => ({
+  posts,
+  sortBy,
+  categories,
+})
 
-  return {
-    postsByCategory,
-    sortBy,
-    posts,
-  }
+const mapDispatchToProps = dispatch => {
+  return { storePostsByCategory: data => dispatch(storePostsByCategory(data)) }
 }
 
-export default connect(mapStateToProps)(Category)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Category)

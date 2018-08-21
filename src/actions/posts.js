@@ -17,7 +17,6 @@ export const storePostsByCategory = category => dispatch =>
   API.getPostsByCategory(category).then(posts =>
     dispatch({
       type: STORE_POSTS_BY_CATEGORY,
-      category,
       posts,
     })
   )
