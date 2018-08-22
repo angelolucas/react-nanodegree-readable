@@ -3,6 +3,7 @@ import * as API from '../API'
 export const STORE_POSTS = 'STORE_POSTS'
 export const STORE_POST = 'STORE_POST'
 export const VOTE_POST = 'VOTE_POST'
+export const EDIT_POST = 'EDIT_POST'
 
 // Store all posts if category is undefined
 export const storePosts = category => dispatch =>
@@ -27,5 +28,14 @@ export const votePost = (id, vote) => dispatch =>
       type: VOTE_POST,
       id,
       vote,
+    })
+  )
+
+export const editPost = (id, changes) => dispatch =>
+  API.editPost(id, changes).then(() =>
+    dispatch({
+      type: EDIT_POST,
+      id,
+      changes,
     })
   )

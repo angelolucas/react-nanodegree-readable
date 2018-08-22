@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Textarea from 'react-textarea-autosize'
+import serializeForm from 'form-serialize'
 import { spaces, buttons } from '../../theme'
 import date from '../../utils/date'
 import VoteScore from '../VoteScore'
 import ReactMarkdown from 'react-markdown'
 import * as API from '../../API'
+import { editPost } from '../../actions/posts'
 
 class Content extends Component {
   /**
@@ -16,6 +19,22 @@ class Content extends Component {
     editMode: false,
     titleEdition: this.props.title,
     bodyEdition: this.props.body,
+  }
+
+  handleEdit = e => {
+    const body = serializeForm(e.target, { hash: true }).body
+
+    e.preventDefault()
+
+    if (body) {
+      this.props.dispatch(
+        editPost(this.props.id, {
+          timestamp: Date.now(),
+          body,
+        })
+      )
+      this.editMode(false)
+    }
   }
 
   cancelEdition = () => {
@@ -65,7 +84,7 @@ class Content extends Component {
         </ul>
 
         {editMode ? (
-          <form>
+          <form onSubmit={this.handleEdit}>
             {/**
              * Edit title.
              * `Textarea` rather than input
@@ -90,20 +109,23 @@ class Content extends Component {
               placeholder="Post body"
               className={css(styles.textarea)}
               value={this.state.bodyEdition}
+              name="body"
               onChange={e => {
                 this.setState({ bodyEdition: e.target.value })
               }}
             />
-
+            <button className={css(styles.save)}>save</button>
             <button
               className={css(styles.button)}
               onClick={() => this.cancelEdition()}
+              type="button"
             >
               cancel
             </button>
             <button
               className={css(styles.button)}
               onClick={() => this.delete()}
+              type="button"
             >
               delete
             </button>
@@ -134,6 +156,7 @@ Content.propTypes = {
   voteScore: PropTypes.number.isRequired,
   category: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({
@@ -168,6 +191,11 @@ const styles = StyleSheet.create({
     float: 'right',
     ...buttons.smallLight,
   },
+
+  save: {
+    float: 'right',
+    ...buttons.small,
+  },
 })
 
-export default Content
+export default connect()(Content)

@@ -1,4 +1,4 @@
-import { STORE_POSTS, STORE_POST, VOTE_POST } from '../actions/posts'
+import { STORE_POSTS, STORE_POST, VOTE_POST, EDIT_POST } from '../actions/posts'
 
 const defaultState = []
 
@@ -16,6 +16,17 @@ export default function reducer(state = defaultState, action) {
           if (action.vote === 'upVote') post.voteScore += 1
           else if (action.vote === 'downVote') post.voteScore -= 1
         }
+
+        return post
+      })
+
+    case EDIT_POST:
+      return state.map(post => {
+        if (post.id === action.id)
+          post = {
+            ...post,
+            ...action.changes,
+          }
 
         return post
       })
