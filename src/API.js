@@ -21,11 +21,12 @@ export const getComments = id =>
   )
 
 // Post
-export const getPosts = () =>
-  fetch(`${api}/posts`, { headers }).then(result => result.json())
+export const getPosts = category => {
+  // Fetch all posts if category is undefined
+  const url = category ? `${api}/${category}/posts` : `${api}/posts`
 
-export const getPostsByCategory = category =>
-  fetch(`${api}/${category}/posts`, { headers }).then(result => result.json())
+  return fetch(url, { headers }).then(result => result.json())
+}
 
 export const getPost = id =>
   fetch(`${api}/posts/${id}`, { headers }).then(result => result.json())

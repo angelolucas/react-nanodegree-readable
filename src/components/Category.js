@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Posts from './Posts'
-import { storePostsByCategory } from '../actions/posts'
+import { storePosts } from '../actions/posts'
 import sort from '../utils/sort'
 
 class Category extends Component {
-  currentCategory = ''
+  currentCategory = this.props.match.params.category
+
+  UNSAFE_componentWillMount() {
+    this.props.storePosts(this.currentCategory)
+  }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     const nextCategory = nextProps.match.params.category
@@ -14,7 +18,7 @@ class Category extends Component {
     if (nextCategory !== this.currentCategory) {
       this.currentCategory = nextCategory
 
-      this.props.storePostsByCategory(this.currentCategory)
+      this.props.storePosts(this.currentCategory)
     }
   }
 
@@ -45,8 +49,9 @@ class Category extends Component {
 Category.propTypes = {
   posts: PropTypes.array.isRequired,
   sortBy: PropTypes.string.isRequired,
-  storePostsByCategory: PropTypes.func.isRequired,
+  storePosts: PropTypes.func.isRequired,
   categories: PropTypes.array.isRequired,
+  match: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = ({ posts, sortBy, categories }) => ({
@@ -56,7 +61,7 @@ const mapStateToProps = ({ posts, sortBy, categories }) => ({
 })
 
 const mapDispatchToProps = dispatch => {
-  return { storePostsByCategory: data => dispatch(storePostsByCategory(data)) }
+  return { storePosts: data => dispatch(storePosts(data)) }
 }
 
 export default connect(

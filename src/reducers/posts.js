@@ -1,18 +1,10 @@
-import {
-  STORE_POSTS,
-  STORE_POSTS_BY_CATEGORY,
-  STORE_POST,
-  VOTE_POST,
-} from '../actions/posts'
+import { STORE_POSTS, STORE_POST, VOTE_POST } from '../actions/posts'
 
 const defaultState = []
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case STORE_POSTS:
-      return action.posts
-
-    case STORE_POSTS_BY_CATEGORY:
       return action.posts
 
     case STORE_POST:
