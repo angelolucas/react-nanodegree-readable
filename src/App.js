@@ -11,6 +11,7 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 import injectGlobalStyles from 'aphrodite-globals/no-important'
 import { globals, spaces, breakpoint } from './theme'
 import { storeCategories } from './actions/categories'
+import ScrollToTop from './components/ScrollToTop'
 
 // Components
 import Home from './components/Home'
@@ -30,26 +31,28 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className={css(styles.general)}>
-          <Header />
-          <Switch>
-            {/* Home page */}
-            <Route exact path="/" component={Home} />
+        <ScrollToTop>
+          <div className={css(styles.general)}>
+            <Header />
+            <Switch>
+              {/* Home page */}
+              <Route exact path="/" component={Home} />
 
-            {/* Create Post page */}
-            <Route exact path="/create-post" component={CreatePost} />
+              {/* Create Post page */}
+              <Route exact path="/create-post" component={CreatePost} />
 
-            {/* Category page */}
-            <Route exact path="/:category" component={Category} />
+              {/* Category page */}
+              <Route exact path="/:category" component={Category} />
 
-            {/* Post page */}
-            <Route exact path="/:category/:post" component={Post} />
+              {/* Post page */}
+              <Route exact path="/:category/:post" component={Post} />
 
-            {/* Redirect to home if Routes above don't match */}
-            <Redirect to="/" />
-          </Switch>
-          <Footer />
-        </div>
+              {/* Redirect to home if Routes above don't match */}
+              <Redirect to="/" />
+            </Switch>
+            <Footer />
+          </div>
+        </ScrollToTop>
       </Router>
     )
   }
