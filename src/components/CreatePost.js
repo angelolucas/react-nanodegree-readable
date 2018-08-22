@@ -52,8 +52,18 @@ class Create extends Component {
       <div className={css(styles.wrapper)}>
         <h1>Create Post</h1>
         <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="Title" name="title" />
-          <input type="text" placeholder="Author" name="author" />
+          <input
+            type="text"
+            placeholder="Title"
+            name="title"
+            autoComplete="off"
+          />
+          <input
+            type="text"
+            placeholder="Author"
+            name="author"
+            autoComplete="off"
+          />
           <select name="category">
             <option>Select category</option>
             {categories.map(category => (
