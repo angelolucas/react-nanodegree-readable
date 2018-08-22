@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { storePosts } from '../actions/posts'
 import Posts from './Posts'
 import sort from '../utils/sort'
+import Loading from './Loading'
+import Failure from './Failure'
 
 class Home extends Component {
   UNSAFE_componentWillMount() {
@@ -13,12 +15,20 @@ class Home extends Component {
   render() {
     const { posts, sortBy } = this.props
 
-    return <Posts posts={sort(posts, sortBy)} />
+    return (
+      <div>
+        <Posts posts={sort(posts.data, sortBy)} />
+
+        {posts.fetching && <Loading />}
+
+        {posts.failure && <Failure error={posts.failure} />}
+      </div>
+    )
   }
 }
 
 Home.propTypes = {
-  posts: PropTypes.array.isRequired,
+  posts: PropTypes.object.isRequired,
   sortBy: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 }

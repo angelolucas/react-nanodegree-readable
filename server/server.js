@@ -199,7 +199,10 @@ app.get('/posts/:id', (req, res) => {
 
   posts.get(req.token, req.params.id).then(
     data => {
-      log('success', `Details of the post '${data.title}' have been provided`)
+      log(
+        'success',
+        `Details of the post '${data[0].title}' have been provided`
+      )
       return res.send(data)
     },
     error => {

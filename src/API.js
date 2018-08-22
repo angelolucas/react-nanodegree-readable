@@ -20,16 +20,19 @@ export const getComments = id =>
     result.json()
   )
 
-// Post
-export const getPosts = category => {
-  // Fetch all posts if category is undefined
-  const url = category ? `${api}/${category}/posts` : `${api}/posts`
+// Posts
+export const getPosts = (type = {}) => {
+  let url
+
+  // Get posts by category
+  if (type.category) url = `${api}/${type.category}/posts`
+  // Get single post
+  else if (type.id) url = `${api}/posts/${type.id}`
+  // Get all poss
+  else url = `${api}/posts`
 
   return fetch(url, { headers }).then(result => result.json())
 }
-
-export const getPost = id =>
-  fetch(`${api}/posts/${id}`, { headers }).then(result => result.json())
 
 export const deletePost = id =>
   fetch(`${api}/posts/${id}`, {

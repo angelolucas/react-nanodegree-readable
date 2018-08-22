@@ -5,18 +5,21 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 import Content from './Content'
 import Comments from './Comments'
 import CreateComment from './CreateComment'
-import { storePost } from '../../actions/posts'
+import { storePosts } from '../../actions/posts'
+import Loading from '../Loading'
+import Failure from '../Failure'
 
 class Post extends Component {
   UNSAFE_componentWillMount() {
     const { match, dispatch } = this.props
     const id = match.params.post
 
-    dispatch(storePost(id))
+    dispatch(storePosts({ id }))
   }
 
   render() {
-    const { post } = this.props
+    const { posts, match } = this.props
+    const post = posts.data.find(post => post.id === match.params.post)
 
     return (
       <div className={css(styles.post)}>
@@ -27,26 +30,23 @@ class Post extends Component {
             <CreateComment postID={post.id} />
           </div>
         )}
+
+        {posts.fetching && <Loading />}
+
+        {posts.failure && <Failure error={posts.failure} />}
       </div>
     )
   }
 }
 
 Post.propTypes = {
-  post: PropTypes.object,
+  posts: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = ({ posts }, props) => {
-  const post = posts.find(post => post.id === props.match.params.post)
-
-  return {
-    posts,
-    post,
-  }
-}
+const mapStateToProps = ({ posts }) => ({ posts })
 
 const styles = StyleSheet.create({ post: { maxWidth: 900 } })
 
