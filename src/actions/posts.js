@@ -17,11 +17,11 @@ export const storePosts = type => dispatch => {
   })
 
   API.getPosts(type)
-    .then(posts => {
-      if (Object.keys(posts).length) {
+    .then(data => {
+      if (Object.keys(data).length) {
         dispatch({
           type: POSTS_SUCCESS,
-          posts,
+          data,
         })
       } else {
         dispatch({

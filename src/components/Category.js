@@ -33,12 +33,16 @@ class Category extends Component {
   }
 
   render() {
-    const { sortBy, posts } = this.props
+    const { sortBy, posts, match } = this.props
+    const postsAsArray = Object.keys(posts.data).map(key => posts.data[key])
+    const postsByCategory = postsAsArray.filter(
+      post => post.category === match.params.category
+    )
 
     return (
       <div>
         <h1>{this.title()}</h1>
-        <Posts posts={sort(posts.data, sortBy)} />
+        <Posts posts={sort(postsByCategory, sortBy)} />
 
         {posts.fetching && <Loading />}
 
@@ -56,17 +60,11 @@ Category.propTypes = {
   match: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = ({ posts, sortBy, categories }, props) => {
-  posts.data = Object.keys(posts.data)
-    .map(post => posts.data[post])
-    .filter(post => post.category === props.match.params.category)
-
-  return {
-    posts,
-    sortBy,
-    categories,
-  }
-}
+const mapStateToProps = ({ posts, sortBy, categories }) => ({
+  posts,
+  sortBy,
+  categories,
+})
 
 const mapDispatchToProps = dispatch => {
   return { storePosts: data => dispatch(storePosts(data)) }

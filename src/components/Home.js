@@ -14,10 +14,11 @@ class Home extends Component {
 
   render() {
     const { posts, sortBy } = this.props
+    const postsAsArray = Object.keys(posts.data).map(key => posts.data[key])
 
     return (
       <div>
-        <Posts posts={sort(posts.data, sortBy)} />
+        <Posts posts={sort(postsAsArray, sortBy)} />
 
         {posts.fetching && <Loading />}
 
@@ -33,13 +34,9 @@ Home.propTypes = {
   dispatch: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({ posts, sortBy }) => {
-  posts.data = Object.keys(posts.data).map(post => posts.data[post])
-
-  return {
-    posts,
-    sortBy,
-  }
-}
+const mapStateToProps = ({ posts, sortBy }) => ({
+  posts,
+  sortBy,
+})
 
 export default connect(mapStateToProps)(Home)

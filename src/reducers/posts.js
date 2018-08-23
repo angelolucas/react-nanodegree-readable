@@ -23,7 +23,7 @@ export default function reducer(state = defaultState, action) {
     case POSTS_SUCCESS:
       return {
         ...defaultState,
-        data: action.posts,
+        data: action.data,
       }
 
     case POSTS_FAILURE:
