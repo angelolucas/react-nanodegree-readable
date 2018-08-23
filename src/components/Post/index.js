@@ -11,10 +11,10 @@ import Failure from '../Failure'
 
 class Post extends Component {
   UNSAFE_componentWillMount() {
-    const { match, dispatch } = this.props
+    const { match, storePosts } = this.props
     const id = match.params.post
 
-    dispatch(storePosts({ id }))
+    storePosts({ id })
   }
 
   render() {
@@ -41,13 +41,20 @@ class Post extends Component {
 
 Post.propTypes = {
   posts: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  storePosts: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = ({ posts }) => ({ posts })
 
+const mapDispatchToProps = dispatch => {
+  return { storePosts: data => dispatch(storePosts(data)) }
+}
+
 const styles = StyleSheet.create({ post: { maxWidth: 900 } })
 
-export default connect(mapStateToProps)(Post)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Post)
