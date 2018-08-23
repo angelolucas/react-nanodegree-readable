@@ -56,11 +56,17 @@ Category.propTypes = {
   match: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = ({ posts, sortBy, categories }) => ({
-  posts,
-  sortBy,
-  categories,
-})
+const mapStateToProps = ({ posts, sortBy, categories }, props) => {
+  posts.data = Object.keys(posts.data)
+    .map(post => posts.data[post])
+    .filter(post => post.category === props.match.params.category)
+
+  return {
+    posts,
+    sortBy,
+    categories,
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return { storePosts: data => dispatch(storePosts(data)) }

@@ -7,7 +7,7 @@ import {
 } from '../actions/posts'
 
 const defaultState = {
-  data: [],
+  data: {},
   fetching: false,
   failure: false,
 }

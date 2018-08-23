@@ -15,12 +15,14 @@ function getData(token) {
 function getByCategory(token, category) {
   return new Promise(res => {
     let posts = getData(token)
-    let keys = Object.keys(posts)
-    let filtered_keys = keys.filter(
-      key => posts[key].category === category && !posts[key].deleted
-    )
+    let filteredPosts = {}
 
-    res(filtered_keys.map(key => posts[key]))
+    Object.keys(posts).forEach(key => {
+      if (posts[key].category === category && !posts[key].deleted)
+        filteredPosts[posts[key].id] = posts[key]
+    })
+
+    res(filteredPosts)
   })
 }
 
@@ -28,17 +30,20 @@ function get(token, id) {
   return new Promise(res => {
     const posts = getData(token)
 
-    res(posts[id].deleted ? [] : [posts[id]])
+    res(posts[id].deleted ? {} : { [posts[id].id]: posts[id] })
   })
 }
 
 function getAll(token) {
   return new Promise(res => {
     const posts = getData(token)
-    let keys = Object.keys(posts)
-    let filtered_keys = keys.filter(key => !posts[key].deleted)
+    let filteredPosts = {}
 
-    res(filtered_keys.map(key => posts[key]))
+    Object.keys(posts).forEach(key => {
+      if (!posts[key].deleted) filteredPosts[posts[key].id] = posts[key]
+    })
+
+    res(filteredPosts)
   })
 }
 

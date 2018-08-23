@@ -19,7 +19,7 @@ class Post extends Component {
 
   render() {
     const { posts, match } = this.props
-    const post = posts.data.find(post => post.id === match.params.post)
+    const post = posts.data[match.params.post]
 
     return (
       <div className={css(styles.post)}>

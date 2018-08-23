@@ -150,7 +150,7 @@ app.get('/:category/posts', (req, res) => {
     data => {
       log(
         'success',
-        `All (${data.length}) posts of the ${
+        `All (${Object.keys(data).length}) posts of the ${
           req.params.category
         } category have been provided`
       )
@@ -168,7 +168,10 @@ app.get('/posts', (req, res) => {
 
   posts.getAll(req.token).then(
     data => {
-      log('success', `All (${data.length}) posts have been provided`)
+      log(
+        'success',
+        `All (${Object.keys(data).length}) posts have been provided`
+      )
       return res.send(data)
     },
     error => {
@@ -201,7 +204,7 @@ app.get('/posts/:id', (req, res) => {
     data => {
       log(
         'success',
-        `Details of the post '${data[0].title}' have been provided`
+        `Details of the post '${data[req.params.id].title}' have been provided`
       )
       return res.send(data)
     },

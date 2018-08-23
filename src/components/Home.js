@@ -33,9 +33,13 @@ Home.propTypes = {
   dispatch: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({ posts, sortBy }) => ({
-  posts,
-  sortBy,
-})
+const mapStateToProps = ({ posts, sortBy }) => {
+  posts.data = Object.keys(posts.data).map(post => posts.data[post])
+
+  return {
+    posts,
+    sortBy,
+  }
+}
 
 export default connect(mapStateToProps)(Home)
