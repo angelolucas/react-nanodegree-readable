@@ -7,23 +7,32 @@ import { votePost } from '../actions/posts'
 import { buttons } from '../theme'
 
 class voteScore extends Component {
-  vote = vote => {
+  handleVote = choice => {
     const { id, contentType, score } = this.props
-    let changes = { voteScore: score }
 
-    if (vote === 'upVote') changes.voteScore += 1
-    else changes.voteScore -= 1
+    /*
+     * Changes on content type (post or comment)
+     * This is useful for reducer to apply `EDIT_POST` or `EDIT_COMMENT` case
+     */
+    const changes = { voteScore: choice === 'upVote' ? score + 1 : score - 1 }
 
-    if (contentType === 'comment') this.props.dispatch(voteComment(id, vote))
-    if (contentType === 'post') this.props.dispatch(votePost(id, changes, vote))
+    const vote = () => {
+      // `choice` as parameter is useful for server
+      return contentType === 'post'
+        ? votePost(id, changes, choice)
+        : voteComment(id, changes, choice)
+    }
+
+    this.props.dispatch(vote())
   }
+
   render() {
     return (
       <div className={css(styles.voteScore)}>
         <button
           className={css(styles.button)}
           title="Up vote"
-          onClick={() => this.vote('upVote')}
+          onClick={() => this.handleVote('upVote')}
         >
           <svg viewBox="0 0 100 75" width="15">
             <polygon points="50,0 100,75, 0,75 " />
@@ -33,7 +42,7 @@ class voteScore extends Component {
         <button
           className={css(styles.button)}
           title="Down vote"
-          onClick={() => this.vote('downVote')}
+          onClick={() => this.handleVote('downVote')}
         >
           <svg viewBox="0 0 100 75" width="15">
             <polygon points="0,0 100,0 50,75 " />

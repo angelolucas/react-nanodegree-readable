@@ -4,7 +4,6 @@ export const STORE_COMMENTS = 'STORE_COMMENTS'
 export const POST_COMMENT = 'POST_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
-export const VOTE_COMMENT = 'VOTE_COMMENT'
 
 // Store comments of current post
 export const storeComments = postId => dispatch =>
@@ -40,11 +39,11 @@ export const editComment = (id, changes) => dispatch =>
     })
   )
 
-export const voteComment = (id, vote) => dispatch =>
-  API.vote(id, 'comments', vote).then(() =>
+export const voteComment = (id, changes, choice) => dispatch =>
+  API.vote(id, 'comments', choice).then(() =>
     dispatch({
-      type: VOTE_COMMENT,
+      type: EDIT_COMMENT,
       id,
-      vote,
+      changes,
     })
   )

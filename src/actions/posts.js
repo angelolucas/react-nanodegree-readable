@@ -38,8 +38,8 @@ export const storePosts = type => dispatch => {
     )
 }
 
-export const votePost = (id, changes, vote) => dispatch =>
-  API.vote(id, 'posts', vote).then(() =>
+export const votePost = (id, changes, choice) => dispatch =>
+  API.vote(id, 'posts', choice).then(() =>
     dispatch({
       type: EDIT_POST,
       id,
