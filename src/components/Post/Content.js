@@ -22,15 +22,16 @@ class Content extends Component {
   }
 
   handleEdit = e => {
-    const body = serializeForm(e.target, { hash: true }).body
+    const values = serializeForm(e.target, { hash: true })
 
     e.preventDefault()
 
-    if (body) {
+    if (values.title && values.body) {
       this.props.dispatch(
         editPost(this.props.id, {
           timestamp: Date.now(),
-          body,
+          title: values.title,
+          body: values.body,
         })
       )
       this.editMode(false)
@@ -96,6 +97,7 @@ class Content extends Component {
               style={{ fontSize: '32px' }}
               value={this.state.titleEdition}
               autoFocus
+              name="title"
               onChange={e => {
                 // Prevent line break
                 const titleEdition = e.target.value.replace(/\n/g, '')

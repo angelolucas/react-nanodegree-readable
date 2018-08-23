@@ -49,15 +49,13 @@ export default function reducer(state = defaultState, action) {
     case EDIT_POST:
       return {
         ...state,
-        data: state.data.map(post => {
-          if (post.id === action.id)
-            post = {
-              ...post,
-              ...action.changes,
-            }
-
-          return post
-        }),
+        data: {
+          ...state.data,
+          [action.id]: {
+            ...state.data[action.id],
+            ...action.changes,
+          },
+        },
       }
 
     default:
