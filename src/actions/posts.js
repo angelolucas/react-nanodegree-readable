@@ -3,7 +3,6 @@ import * as API from '../API'
 export const POSTS_FETCHING = 'POSTS_FETCHING'
 export const POSTS_SUCCESS = 'POSTS_SUCCESS'
 export const POSTS_FAILURE = 'POSTS_FAILURE'
-export const STORE_POST = 'STORE_POST'
 export const VOTE_POST = 'VOTE_POST'
 export const EDIT_POST = 'EDIT_POST'
 

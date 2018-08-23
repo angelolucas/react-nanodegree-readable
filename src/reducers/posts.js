@@ -2,7 +2,6 @@ import {
   POSTS_FETCHING,
   POSTS_SUCCESS,
   POSTS_FAILURE,
-  STORE_POST,
   VOTE_POST,
   EDIT_POST,
 } from '../actions/posts'
@@ -32,12 +31,6 @@ export default function reducer(state = defaultState, action) {
       return {
         ...defaultState,
         data: action.posts,
-      }
-
-    case STORE_POST:
-      return {
-        ...defaultState,
-        data: action.post,
       }
 
     case VOTE_POST:
