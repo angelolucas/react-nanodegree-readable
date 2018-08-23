@@ -8,10 +8,14 @@ import { buttons } from '../theme'
 
 class voteScore extends Component {
   vote = vote => {
-    const { id, contentType } = this.props
+    const { id, contentType, score } = this.props
+    let changes = { voteScore: score }
+
+    if (vote === 'upVote') changes.voteScore += 1
+    else changes.voteScore -= 1
 
     if (contentType === 'comment') this.props.dispatch(voteComment(id, vote))
-    if (contentType === 'post') this.props.dispatch(votePost(id, vote))
+    if (contentType === 'post') this.props.dispatch(votePost(id, changes, vote))
   }
   render() {
     return (

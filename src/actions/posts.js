@@ -3,7 +3,6 @@ import * as API from '../API'
 export const POSTS_FETCHING = 'POSTS_FETCHING'
 export const POSTS_SUCCESS = 'POSTS_SUCCESS'
 export const POSTS_FAILURE = 'POSTS_FAILURE'
-export const VOTE_POST = 'VOTE_POST'
 export const EDIT_POST = 'EDIT_POST'
 
 /**
@@ -39,12 +38,12 @@ export const storePosts = type => dispatch => {
     )
 }
 
-export const votePost = (id, vote) => dispatch =>
+export const votePost = (id, changes, vote) => dispatch =>
   API.vote(id, 'posts', vote).then(() =>
     dispatch({
-      type: VOTE_POST,
+      type: EDIT_POST,
       id,
-      vote,
+      changes,
     })
   )
 
