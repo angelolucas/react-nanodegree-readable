@@ -1,6 +1,6 @@
 import {
-  POSTS_FETCHING,
-  POSTS_SUCCESS,
+  FETCHING_POSTS,
+  STORE_POSTS,
   POSTS_FAILURE,
   EDIT_POST,
 } from '../actions/posts'
@@ -13,22 +13,27 @@ const defaultState = {
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
-    case POSTS_FETCHING:
+    case FETCHING_POSTS:
       return {
         ...state,
         fetching: true,
         failure: false,
       }
 
-    case POSTS_SUCCESS:
+    case STORE_POSTS:
       return {
-        ...defaultState,
-        data: action.data,
+        data: {
+          ...state.data,
+          ...action.data,
+        },
+        fetching: false,
+        failure: false,
       }
 
     case POSTS_FAILURE:
       return {
-        ...defaultState,
+        ...state,
+        fetching: false,
         failure: action.failure,
       }
 
