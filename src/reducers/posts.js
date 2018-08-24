@@ -3,6 +3,7 @@ import {
   STORE_POSTS,
   POSTS_FAILURE,
   EDIT_POST,
+  DELETE_POST,
 } from '../actions/posts'
 
 const defaultState = {
@@ -47,6 +48,15 @@ export default function reducer(state = defaultState, action) {
             ...action.changes,
           },
         },
+      }
+
+    case DELETE_POST:
+      const { [action.id]: whatever, ...rest } = state.data
+      // Confused? https://medium.com/@tafelito/nice-article-d15fe9f6d1f1
+
+      return {
+        ...state,
+        data: { ...rest },
       }
 
     default:

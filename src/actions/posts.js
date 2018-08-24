@@ -4,6 +4,7 @@ export const FETCHING_POSTS = 'FETCHING_POSTS'
 export const STORE_POSTS = 'STORE_POSTS'
 export const POSTS_FAILURE = 'POSTS_FAILURE'
 export const EDIT_POST = 'EDIT_POST'
+export const DELETE_POST = 'DELETE_POST'
 
 /**
  * `type` parameter can be a category: {category: 'redux'}
@@ -53,5 +54,13 @@ export const editPost = (id, changes) => dispatch =>
       type: EDIT_POST,
       id,
       changes,
+    })
+  )
+
+export const deletePost = id => dispatch =>
+  API.deletePost(id).then(() =>
+    dispatch({
+      type: DELETE_POST,
+      id,
     })
   )

@@ -8,8 +8,7 @@ import { spaces, buttons } from '../../theme'
 import date from '../../utils/date'
 import VoteScore from '../VoteScore'
 import ReactMarkdown from 'react-markdown'
-import * as API from '../../API'
-import { editPost } from '../../actions/posts'
+import { editPost, deletePost } from '../../actions/posts'
 
 class Content extends Component {
   /**
@@ -49,7 +48,7 @@ class Content extends Component {
   delete = () => {
     const { id, history } = this.props
 
-    API.deletePost(id).then(history.push('/'))
+    this.props.dispatch(deletePost(id)).then(() => history.push('/'))
   }
 
   editMode = (boleaon = true) => {
