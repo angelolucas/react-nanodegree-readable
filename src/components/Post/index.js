@@ -8,9 +8,20 @@ import CreateComment from '../CreateComment'
 import Loading from '../Loading'
 import Failure from '../Failure'
 import Header from './Header'
-import Content from './Content'
+import View from './View'
+import Edit from './Edit'
 
 class Post extends Component {
+  state = { editMode: false }
+
+  editMode = (boleaon = true) => {
+    if (boleaon) {
+      this.setState({ editMode: true })
+    } else {
+      this.setState({ editMode: false })
+    }
+  }
+
   UNSAFE_componentWillMount() {
     const { match, storePosts } = this.props
     const id = match.params.post
@@ -19,6 +30,7 @@ class Post extends Component {
   }
 
   render() {
+    const { editMode } = this.state
     const { posts, match } = this.props
     const post = posts.data[match.params.post]
 
@@ -27,7 +39,15 @@ class Post extends Component {
         {post && (
           <div>
             <Header {...post} />
-            <Content {...post} history={this.props.history} />
+            {editMode ? (
+              <Edit
+                {...post}
+                editMode={this.editMode}
+                history={this.props.history}
+              />
+            ) : (
+              <View {...post} editMode={this.editMode} />
+            )}
             <Comments postID={post.id} />
             <CreateComment postID={post.id} />
           </div>

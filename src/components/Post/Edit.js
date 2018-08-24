@@ -49,19 +49,23 @@ class Edit extends Component {
     return (
       <form onSubmit={this.handleEdit}>
         {/**
-         * Edit title.
+         * Edit Title.
+         *
          * `Textarea` rather than `input`
-         * is for the title to behave as in the view
+         * is for the title to behave as in the view.
+         *
+         * Inline style is a hacky: https://goo.gl/oFJreG
          */}
         <Textarea
           name="title"
           value={this.state.title}
           placeholder="Post Title"
           className={css(styles.title)}
-          style={{ fontSize: '32px' }} // https://goo.gl/oFJreG
+          style={{ fontSize: '32px' }}
           autoFocus
           onChange={e => {
-            const title = e.target.value.replace(/\n/g, '') // Prevent line break
+            // Prevent line break
+            const title = e.target.value.replace(/\n/g, '')
 
             this.setState({ title })
           }}
