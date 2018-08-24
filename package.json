@@ -12,6 +12,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-markdown": "^3.4.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-textarea-autosize": "^7.0.4",
@@ -30,7 +31,11 @@
     "react-scripts": "1.1.4"
   },
   "lint-staged": {
-    "*.js": ["prettier --single-quote --write", "eslint --fix", "git add"]
+    "*.js": [
+      "prettier --single-quote --write",
+      "eslint --fix",
+      "git add"
+    ]
   },
   "scripts": {
     "precommit": "lint-staged",
