@@ -7,6 +7,7 @@ import Comments from '../Comments'
 import CreateComment from '../CreateComment'
 import Loading from '../Loading'
 import Failure from '../Failure'
+import Header from './Header'
 import Content from './Content'
 
 class Post extends Component {
@@ -25,6 +26,7 @@ class Post extends Component {
       <div className={css(styles.post)}>
         {post && (
           <div>
+            <Header {...post} />
             <Content {...post} history={this.props.history} />
             <Comments postID={post.id} />
             <CreateComment postID={post.id} />

@@ -5,8 +5,6 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 import Textarea from 'react-textarea-autosize'
 import serializeForm from 'form-serialize'
 import { spaces, buttons } from '../../theme'
-import date from '../../utils/date'
-import VoteScore from '../VoteScore'
 import ReactMarkdown from 'react-markdown'
 import { editPost, deletePost } from '../../actions/posts'
 
@@ -60,29 +58,11 @@ class Content extends Component {
   }
 
   render() {
-    const {
-      id,
-      timestamp,
-      title,
-      body,
-      author,
-      voteScore,
-      category,
-    } = this.props
+    const { title, body } = this.props
     const { editMode } = this.state
 
     return (
       <main className={css(styles.post)}>
-        <ul className={css(styles.postInfo)}>
-          <li className={css(styles.info)}>
-            By <strong>{author}</strong> on {date(timestamp)}
-          </li>
-          <li className={css(styles.info)}>
-            <VoteScore id={id} contentType="post" score={voteScore} />
-          </li>
-          <li className={css(styles.info)}>{category}</li>
-        </ul>
-
         {editMode ? (
           <form onSubmit={this.handleEdit}>
             {/**
@@ -150,27 +130,14 @@ class Content extends Component {
 
 Content.propTypes = {
   id: PropTypes.string.isRequired,
-  timestamp: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  voteScore: PropTypes.number.isRequired,
-  category: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({
   post: { marginBottom: spaces.x2 },
-
-  postInfo: {
-    display: 'flex',
-    marginBottom: 10,
-    padding: 0,
-    listStyle: 'none',
-  },
-
-  info: { marginRight: spaces.x2 },
 
   title: {
     padding: 12,
