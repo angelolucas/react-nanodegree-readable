@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { voteComment } from '../actions/comments'
 import { votePost } from '../actions/posts'
 import { buttons } from '../theme'
@@ -34,9 +35,7 @@ class voteScore extends Component {
           title="Up vote"
           onClick={() => this.handleVote('upVote')}
         >
-          <svg viewBox="0 0 100 75" width="15">
-            <polygon points="50,0 100,75, 0,75 " />
-          </svg>
+          <Icon icon="thumbs-up" />
         </button>
         <span className={css(styles.score)}>{this.props.score}</span>
         <button
@@ -44,9 +43,7 @@ class voteScore extends Component {
           title="Down vote"
           onClick={() => this.handleVote('downVote')}
         >
-          <svg viewBox="0 0 100 75" width="15">
-            <polygon points="0,0 100,0 50,75 " />
-          </svg>
+          <Icon icon="thumbs-down" />
         </button>
       </div>
     )
@@ -64,6 +61,7 @@ const styles = StyleSheet.create({
   button: {
     ...buttons.smallLight,
     margin: 0,
+    fontSize: 15,
   },
 
   voteScore: { display: 'inline-block' },
