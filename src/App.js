@@ -9,6 +9,8 @@ import {
 import { connect } from 'react-redux'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import injectGlobalStyles from 'aphrodite-globals/no-important'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import { globals, spaces, breakpoint } from './theme'
 import { storeCategories } from './actions/categories'
 import ScrollToTop from './components/ScrollToTop'
@@ -20,6 +22,9 @@ import Post from './components/Post'
 import CreatePost from './components/CreatePost'
 import Header from './components/Header'
 import Footer from './components/Footer'
+
+// Add icons to Font awesome library
+library.add(fas)
 
 injectGlobalStyles(globals)
 
