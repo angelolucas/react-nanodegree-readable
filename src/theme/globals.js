@@ -66,7 +66,7 @@ const globals = {
   img: { maxWidth: '100%' },
 
   // Form
-  'input, textarea': {
+  'input, textarea, select': {
     background: 'transparent',
     border: `2px solid ${colors.dark}`,
     marginBottom: spaces.x1,

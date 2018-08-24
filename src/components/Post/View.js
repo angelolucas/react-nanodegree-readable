@@ -6,11 +6,12 @@ import { spaces, buttons } from '../../theme'
 
 class View extends Component {
   render() {
-    const { title, body, editMode } = this.props
+    const { title, summary, body, editMode } = this.props
 
     return (
       <div>
         <h1 className={css(styles.title)}>{title}</h1>
+        {summary && <p className={css(styles.summary)}>{summary}</p>}
         <ReactMarkdown className={css(styles.body)} source={body} />
         <button className={css(styles.button)} onClick={() => editMode(true)}>
           edit
@@ -22,6 +23,7 @@ class View extends Component {
 
 View.propTypes = {
   title: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   editMode: PropTypes.func.isRequired,
 }
@@ -31,6 +33,8 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: spaces.x1,
   },
+
+  summary: { padding: 12 },
 
   body: {
     padding: 12,

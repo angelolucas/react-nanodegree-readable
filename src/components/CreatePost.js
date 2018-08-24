@@ -13,16 +13,19 @@ class Create extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
-    const formInputs = serializeForm(e.target, { hash: true })
+    const values = serializeForm(e.target, { hash: true })
 
-    this.postPost({
-      id: uuid(),
-      timestamp: Date.now(),
-      title: formInputs.title,
-      body: formInputs.body.trim(),
-      author: formInputs.author,
-      category: formInputs.category,
-    })
+    if (values.title && values.body && values.author && values.category) {
+      this.postPost({
+        id: uuid(),
+        timestamp: Date.now(),
+        title: values.title,
+        summary: values.summary,
+        body: values.body.trim(),
+        author: values.author,
+        category: values.category,
+      })
+    }
   }
 
   postPost = post => {
@@ -56,6 +59,12 @@ class Create extends Component {
             type="text"
             placeholder="Title"
             name="title"
+            autoComplete="off"
+          />
+          <input
+            type="text"
+            placeholder="Summary"
+            name="summary"
             autoComplete="off"
           />
           <input

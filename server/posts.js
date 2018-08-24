@@ -55,6 +55,7 @@ function add(token, post) {
       id: post.id,
       timestamp: post.timestamp,
       title: post.title,
+      summary: post.summary,
       body: post.body,
       author: post.author,
       category: post.category,

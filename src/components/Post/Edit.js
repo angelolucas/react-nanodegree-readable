@@ -10,6 +10,7 @@ import { editPost, deletePost } from '../../actions/posts'
 class Edit extends Component {
   state = {
     title: this.props.title,
+    summary: this.props.summary,
     body: this.props.body,
   }
 
@@ -23,6 +24,7 @@ class Edit extends Component {
       editPost(id, {
         timestamp: Date.now(),
         title: values.title,
+        summary: values.summary ? values.summary : '',
         body: values.body,
       })
 
@@ -71,6 +73,16 @@ class Edit extends Component {
           }}
         />
 
+        {/* Edit Summary */}
+        <Textarea
+          name="summary"
+          value={this.state.summary}
+          placeholder="Post Summary"
+          onChange={e => {
+            this.setState({ summary: e.target.value })
+          }}
+        />
+
         {/* Edit Body */}
         <Textarea
           name="body"
@@ -107,6 +119,7 @@ class Edit extends Component {
 Edit.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   history: PropTypes.object,
   editMode: PropTypes.func.isRequired,

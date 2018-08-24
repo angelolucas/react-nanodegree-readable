@@ -25,7 +25,7 @@ class Posts extends Component {
             <p>{date(post.timestamp)}</p>
             <p>{post.category}</p>
             <p>By {post.author}</p>
-            <p>{post.body}</p>
+            <p>{post.summary}</p>
             <ul className={css(styles.utils)}>
               <li className={css(styles.utilsItem)}>
                 {post.commentCount} Comments
