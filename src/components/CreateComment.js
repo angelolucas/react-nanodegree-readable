@@ -5,8 +5,8 @@ import serializeForm from 'form-serialize'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Textarea from 'react-textarea-autosize'
 import uuid from 'uuid'
-import { buttons } from '../../theme'
-import { postComment } from '../../actions/comments'
+import { buttons } from '../theme'
+import { postComment } from '../actions/comments'
 
 class CommentForm extends Component {
   handleSubmit = e => {

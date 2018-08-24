@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import Content from './Content'
-import Comments from './Comments'
-import CreateComment from './CreateComment'
 import { storePosts } from '../../actions/posts'
+import Comments from '../Comments'
+import CreateComment from '../CreateComment'
 import Loading from '../Loading'
 import Failure from '../Failure'
+import Content from './Content'
 
 class Post extends Component {
   UNSAFE_componentWillMount() {

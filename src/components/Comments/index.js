@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
+import { spaces } from '../../theme'
+import { storeComments } from '../../actions/comments'
 import Comment from './Comment'
-import { spaces } from '../../../theme'
-import { storeComments } from '../../../actions/comments'
 
 class Comments extends Component {
   state = { comments: null }
