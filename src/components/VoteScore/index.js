@@ -9,30 +9,62 @@ import { colors } from '../../theme'
 import localVoteStorage, { checkVote } from './localVoteStorage'
 
 class voteScore extends Component {
-  handleVote = choice => {
-    const { id, contentType, score } = this.props
+  state = { currentVote: checkVote(this.props.id) } // upVote, downVote or null
+
+  score = this.props.score
+
+  handleVote = newVote => {
+    const { currentVote } = this.state
+
+    if (currentVote && currentVote === newVote) {
+      this.cancel(newVote)
+    } else if (currentVote) {
+      this.cancel(currentVote)
+      this.apply(newVote)
+    } else {
+      this.apply(newVote)
+    }
+  }
+
+  cancel = vote => {
+    if (vote === 'upVote') {
+      this.handleDispatch('downVote')
+    } else if (vote === 'downVote') {
+      this.handleDispatch('upVote')
+    }
+
+    this.setState({ currentVote: null })
+    localVoteStorage(this.props.id, null)
+  }
+
+  apply = vote => {
+    // Store vote on localStorage
+    localVoteStorage(this.props.id, vote)
+    this.handleDispatch(vote)
+    this.setState({ currentVote: vote })
+  }
+
+  handleDispatch = vote => {
+    const { id, contentType, dispatch } = this.props
 
     /*
      * Changes on content type (post or comment)
      * This is useful for reducer to apply `EDIT_POST` or `EDIT_COMMENT` case
      */
-    const changes = { voteScore: choice === 'upVote' ? score + 1 : score - 1 }
+    const voteScore = vote === 'upVote' ? this.score++ : this.score--
 
-    const vote = () => {
-      // `choice` as parameter is useful for server
-      return contentType === 'post'
-        ? votePost(id, changes, choice)
-        : voteComment(id, changes, choice)
-    }
+    const changes = { voteScore }
 
-    // Store vote on localStorage
-    localVoteStorage(id, choice)
-
-    this.props.dispatch(vote())
+    // `vote` as parameter is useful for server
+    dispatch(
+      contentType === 'post'
+        ? votePost(id, changes, vote)
+        : voteComment(id, changes, vote)
+    )
   }
 
   render() {
-    const { id, score } = this.props
+    const { currentVote } = this.state
 
     return (
       <div className={css(styles.voteScore)}>
@@ -41,18 +73,18 @@ class voteScore extends Component {
           onClick={() => this.handleVote('upVote')}
           className={css(
             styles.button,
-            checkVote(id, 'upVote') && styles.selected
+            currentVote === 'upVote' && styles.selected
           )}
         >
           <Icon icon="thumbs-up" />
         </button>
-        <span className={css(styles.score)}>{score}</span>
+        <span className={css(styles.score)}>{this.score}</span>
         <button
           title="Down vote"
           onClick={() => this.handleVote('downVote')}
           className={css(
             styles.button,
-            checkVote(id, 'downVote') && styles.selected
+            currentVote === 'downVote' && styles.selected
           )}
         >
           <Icon icon="thumbs-down" />

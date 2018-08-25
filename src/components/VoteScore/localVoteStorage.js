@@ -1,10 +1,8 @@
-export const checkVote = (id, choice) => {
+export const checkVote = id => {
   if (localStorage.votes) {
     let votes = JSON.parse(localStorage.votes)
 
-    if (votes[id] && votes[id].choice === choice) {
-      return true
-    }
+    if (votes[id]) return votes[id].choice
   }
 }
 
