@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import { voteComment } from '../actions/comments'
-import { votePost } from '../actions/posts'
-import { buttons } from '../theme'
+import { voteComment } from '../../actions/comments'
+import { votePost } from '../../actions/posts'
+import { colors } from '../../theme'
+import localVoteStorage, { checkVote } from './localVoteStorage'
 
 class voteScore extends Component {
   handleVote = choice => {
@@ -24,24 +25,35 @@ class voteScore extends Component {
         : voteComment(id, changes, choice)
     }
 
+    // Store vote on localStorage
+    localVoteStorage(id, choice)
+
     this.props.dispatch(vote())
   }
 
   render() {
+    const { id, score } = this.props
+
     return (
       <div className={css(styles.voteScore)}>
         <button
-          className={css(styles.button)}
           title="Up vote"
           onClick={() => this.handleVote('upVote')}
+          className={css(
+            styles.button,
+            checkVote(id, 'upVote') && styles.selected
+          )}
         >
           <Icon icon="thumbs-up" />
         </button>
-        <span className={css(styles.score)}>{this.props.score}</span>
+        <span className={css(styles.score)}>{score}</span>
         <button
-          className={css(styles.button)}
           title="Down vote"
           onClick={() => this.handleVote('downVote')}
+          className={css(
+            styles.button,
+            checkVote(id, 'downVote') && styles.selected
+          )}
         >
           <Icon icon="thumbs-down" />
         </button>
@@ -59,10 +71,16 @@ voteScore.propTypes = {
 
 const styles = StyleSheet.create({
   button: {
-    ...buttons.smallLight,
+    boxSizing: 'content-box',
     margin: 0,
     fontSize: 15,
+    width: 20,
+    height: 20,
+    padding: 3,
+    color: colors.gray,
   },
+
+  selected: { color: colors.dark },
 
   voteScore: { display: 'inline-block' },
 

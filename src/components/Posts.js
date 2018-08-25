@@ -84,13 +84,13 @@ const styles = StyleSheet.create({
 
   by: {
     fontSize: 14,
-    opacity: 0.8,
+    color: colors.gray,
   },
 
   summary: {
     marginTop: 0,
     fontSize: 14,
-    opacity: 0.8,
+    color: colors.gray,
   },
 
   commentCount: { marginLeft: 5 },
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     listStyle: 'none',
     fontSize: 14,
-    opacity: 0.8,
+    color: colors.gray,
     padding: 0,
     paddingTop: 5,
   },

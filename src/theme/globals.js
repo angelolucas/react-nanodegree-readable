@@ -40,6 +40,14 @@ const globals = {
     ],
   },
 
+  button: {
+    fontFamily: fonts.main,
+    background: 'transparent',
+    border: 0,
+    cursor: 'pointer',
+    outline: 'none',
+  },
+
   // Blocks
   blockquote: {
     padding: '0 1em',

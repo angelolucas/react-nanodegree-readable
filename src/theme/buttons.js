@@ -1,11 +1,6 @@
 import colors from './colors'
-import fonts from './fonts'
 
-const format = {
-  fontFamily: fonts.main,
-  cursor: 'pointer',
-  border: 'none',
-  outline: 'none',
+const margin = {
   marginRight: 10,
 
   ':last-child': { marginRight: 0 },
@@ -13,7 +8,7 @@ const format = {
 
 const buttons = {
   default: {
-    ...format,
+    ...margin,
     background: colors.dark,
     color: colors.light,
     padding: '10px 20px',
@@ -22,7 +17,7 @@ const buttons = {
   },
 
   defaultLight: {
-    ...format,
+    ...margin,
     background: colors.light,
     color: colors.dark,
     padding: '10px 20px',
@@ -31,7 +26,7 @@ const buttons = {
   },
 
   small: {
-    ...format,
+    ...margin,
     background: colors.dark,
     color: colors.light,
     padding: '3px 10px',
@@ -39,7 +34,7 @@ const buttons = {
   },
 
   smallLight: {
-    ...format,
+    ...margin,
     background: colors.light,
     color: colors.dark,
     padding: '3px 10px',
