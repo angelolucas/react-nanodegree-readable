@@ -3,50 +3,65 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Posts from './Posts'
 import { storePosts } from '../actions/posts'
+import { storeCategories } from '../actions/categories'
 import sort from '../utils/sort'
 import Loading from './Loading'
 import Failure from './Failure'
 
 class Category extends Component {
-  category = this.props.match.params.category
+  state = {
+    name: '',
+    path: '',
+    notFound: false,
+  }
 
   UNSAFE_componentWillMount() {
-    this.props.storePosts({ category: this.category })
+    const { storeCategories, match } = this.props
+
+    storeCategories().then(() => this.findCategory(match.params.category))
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
+    const currentCategory = this.props.match.params.category
     const nextCategory = nextProps.match.params.category
 
-    if (nextCategory !== this.category) {
-      this.category = nextCategory
-
-      this.props.storePosts({ category: this.category })
+    if (nextCategory !== currentCategory) {
+      this.findCategory(nextCategory)
     }
   }
 
-  title = () => {
-    const category = this.props.categories.find(
-      category => category.path === this.category
+  findCategory = nextCategory => {
+    const { categories, storePosts } = this.props
+    const findNextCategory = categories.find(
+      category => category.path === nextCategory
     )
 
-    if (category) return category.name
+    if (findNextCategory) {
+      this.setState({
+        name: findNextCategory.name,
+        path: findNextCategory.path,
+        notFound: false,
+      })
+
+      storePosts({ category: findNextCategory.path })
+    } else {
+      this.setState({ notFound: true })
+    }
   }
 
   render() {
-    const { sortBy, posts, match } = this.props
+    const { sortBy, posts } = this.props
     const postsAsArray = Object.keys(posts.data).map(key => posts.data[key])
     const postsByCategory = postsAsArray.filter(
-      post => post.category === match.params.category
+      post => post.category === this.state.path
     )
 
     return (
       <div>
-        <h1>{this.title()}</h1>
+        <h1>{this.state.name}</h1>
         <Posts posts={sort(postsByCategory, sortBy)} />
-
         {posts.fetching && <Loading />}
-
-        {posts.failure && <Failure error={posts.failure} />}
+        {this.state.notFound && <Failure error={posts.failure} />}
       </div>
     )
   }
@@ -56,6 +71,7 @@ Category.propTypes = {
   posts: PropTypes.object.isRequired,
   sortBy: PropTypes.string.isRequired,
   storePosts: PropTypes.func.isRequired,
+  storeCategories: PropTypes.func.isRequired,
   categories: PropTypes.array.isRequired,
   match: PropTypes.object.isRequired,
 }
@@ -67,7 +83,10 @@ const mapStateToProps = ({ posts, sortBy, categories }) => ({
 })
 
 const mapDispatchToProps = dispatch => {
-  return { storePosts: data => dispatch(storePosts(data)) }
+  return {
+    storeCategories: () => dispatch(storeCategories()),
+    storePosts: data => dispatch(storePosts(data)),
+  }
 }
 
 export default connect(
