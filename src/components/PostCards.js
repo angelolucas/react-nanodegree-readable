@@ -9,7 +9,7 @@ import date from '../utils/date'
 
 class PostCards extends Component {
   render() {
-    const { posts } = this.props
+    const { posts, showCategory = true } = this.props
 
     return (
       <ul className={css(styles.list)}>
@@ -25,8 +25,8 @@ class PostCards extends Component {
             </h2>
             <p className={css(styles.summary)}>{post.summary}</p>
             <p className={css(styles.by)}>
-              By <strong>{post.author}</strong> on {date(post.timestamp)} -{' '}
-              <strong>{post.category}</strong>
+              By <strong>{post.author}</strong> on {date(post.timestamp)}
+              {showCategory && <strong> - {post.category}</strong>}
             </p>
             <ul className={css(styles.bottomBar)}>
               <li>
@@ -53,7 +53,10 @@ class PostCards extends Component {
   }
 }
 
-PostCards.propTypes = { posts: PropTypes.array.isRequired }
+PostCards.propTypes = {
+  posts: PropTypes.array.isRequired,
+  showCategory: PropTypes.bool,
+}
 
 const styles = StyleSheet.create({
   list: {

@@ -14,8 +14,8 @@ import Edit from './Edit'
 class Post extends Component {
   state = { editMode: false }
 
-  editMode = (boleaon = true) => {
-    if (boleaon) {
+  editMode = (bool = true) => {
+    if (bool) {
       this.setState({ editMode: true })
     } else {
       this.setState({ editMode: false })

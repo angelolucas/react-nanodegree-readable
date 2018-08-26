@@ -59,7 +59,7 @@ class Category extends Component {
     return (
       <div>
         <h1>{this.state.name}</h1>
-        <PostCards posts={sort(postsByCategory, sortBy)} />
+        <PostCards posts={sort(postsByCategory, sortBy)} showCategory={false} />
         {posts.fetching && <Loading />}
         {this.state.notFound && <Failure error={posts.failure} />}
       </div>
