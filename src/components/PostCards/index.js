@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import { spaces, breakpoint, colors } from '../theme'
-import VoteScore from './VoteScore'
-import date from '../utils/date'
+import { spaces, breakpoint, colors } from '../../theme'
+import VoteScore from '../VoteScore'
+import date from '../../utils/date'
+import Category from './Category'
 
 class PostCards extends Component {
   render() {
@@ -26,7 +27,7 @@ class PostCards extends Component {
             <p className={css(styles.summary)}>{post.summary}</p>
             <p className={css(styles.by)}>
               By <strong>{post.author}</strong> on {date(post.timestamp)}
-              {showCategory && <strong> - {post.category}</strong>}
+              {showCategory && <Category path={post.category} />}
             </p>
             <ul className={css(styles.bottomBar)}>
               <li>
