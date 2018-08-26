@@ -7,14 +7,14 @@ import { spaces, breakpoint, colors } from '../theme'
 import VoteScore from './VoteScore'
 import date from '../utils/date'
 
-class Posts extends Component {
+class PostCards extends Component {
   render() {
     const { posts } = this.props
 
     return (
       <ul className={css(styles.list)}>
         {posts.map((post, key) => (
-          <li className={css(styles.post)} key={key}>
+          <li className={css(styles.card)} key={key}>
             <h2 className={css(styles.title)}>
               <Link
                 className={css(styles.link)}
@@ -53,7 +53,7 @@ class Posts extends Component {
   }
 }
 
-Posts.propTypes = { posts: PropTypes.array.isRequired }
+PostCards.propTypes = { posts: PropTypes.array.isRequired }
 
 const styles = StyleSheet.create({
   list: {
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     padding: 0,
   },
 
-  post: {
+  card: {
     flex: '33%',
     padding: spaces.x1,
     display: 'inline-block',
@@ -106,4 +106,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Posts
+export default PostCards

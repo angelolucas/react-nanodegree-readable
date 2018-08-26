@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Posts from './Posts'
+import PostCards from './PostCards'
 import { storePosts } from '../actions/posts'
 import { storeCategories } from '../actions/categories'
 import sort from '../utils/sort'
@@ -59,7 +59,7 @@ class Category extends Component {
     return (
       <div>
         <h1>{this.state.name}</h1>
-        <Posts posts={sort(postsByCategory, sortBy)} />
+        <PostCards posts={sort(postsByCategory, sortBy)} />
         {posts.fetching && <Loading />}
         {this.state.notFound && <Failure error={posts.failure} />}
       </div>

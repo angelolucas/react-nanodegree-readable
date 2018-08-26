@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { storePosts } from '../actions/posts'
-import Posts from './Posts'
+import PostCards from './PostCards'
 import sort from '../utils/sort'
 import Loading from './Loading'
 import Failure from './Failure'
@@ -18,7 +18,7 @@ class Home extends Component {
 
     return (
       <div>
-        <Posts posts={sort(postsAsArray, sortBy)} />
+        <PostCards posts={sort(postsAsArray, sortBy)} />
 
         {posts.fetching && <Loading />}
 
