@@ -30,12 +30,16 @@ class PostCards extends Component {
   }
 
   render() {
-    const { category, posts, sortBy } = this.props
+    const { category, posts, maxLength, sortBy } = this.props
     const showCategory = category ? false : true
     let postsAsArray = Object.keys(posts.data).map(key => posts.data[key])
 
     if (category) {
       postsAsArray = postsAsArray.filter(post => post.category === category)
+    }
+
+    if (maxLength) {
+      postsAsArray = postsAsArray.slice(0, maxLength)
     }
 
     return (
@@ -59,6 +63,7 @@ PostCards.propTypes = {
   sortBy: PropTypes.string.isRequired,
   storePosts: PropTypes.func.isRequired,
   category: PropTypes.string,
+  maxLength: PropTypes.number,
 }
 
 const styles = StyleSheet.create({
