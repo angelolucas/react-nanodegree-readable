@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import PostCards from './PostCards'
 import { storePosts } from '../actions/posts'
 import { storeCategories } from '../actions/categories'
-import sort from '../utils/sort'
 import Loading from './Loading'
 import Failure from './Failure'
 
@@ -50,7 +49,7 @@ class CategoryPage extends Component {
   }
 
   render() {
-    const { sortBy, posts } = this.props
+    const { posts } = this.props
     const postsAsArray = Object.keys(posts.data).map(key => posts.data[key])
     const postsByCategory = postsAsArray.filter(
       post => post.category === this.state.path
@@ -59,7 +58,7 @@ class CategoryPage extends Component {
     return (
       <div>
         <h1>{this.state.name}</h1>
-        <PostCards posts={sort(postsByCategory, sortBy)} showCategory={false} />
+        <PostCards posts={postsByCategory} showCategory={false} />
         {posts.fetching && <Loading />}
         {this.state.notFound && <Failure error={posts.failure} />}
       </div>
@@ -69,16 +68,14 @@ class CategoryPage extends Component {
 
 CategoryPage.propTypes = {
   posts: PropTypes.object.isRequired,
-  sortBy: PropTypes.string.isRequired,
   storePosts: PropTypes.func.isRequired,
   storeCategories: PropTypes.func.isRequired,
   categories: PropTypes.array.isRequired,
   match: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = ({ posts, sortBy, categories }) => ({
+const mapStateToProps = ({ posts, categories }) => ({
   posts,
-  sortBy,
   categories,
 })
 

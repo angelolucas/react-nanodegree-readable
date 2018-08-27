@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { spaces, breakpoint, colors } from '../../theme'
-import VoteScore from '../VoteScore'
+import sort from '../../utils/sort'
 import date from '../../utils/date'
+import VoteScore from '../VoteScore'
 import Category from './Category'
 
 class PostCards extends Component {
   render() {
-    const { posts, showCategory = true } = this.props
+    const { posts, sortBy, showCategory = true } = this.props
 
     return (
       <ul className={css(styles.list)}>
-        {posts.map((post, key) => (
+        {sort(posts, sortBy).map((post, key) => (
           <li className={css(styles.card)} key={key}>
             <h2 className={css(styles.title)}>
               <Link
@@ -56,6 +58,7 @@ class PostCards extends Component {
 
 PostCards.propTypes = {
   posts: PropTypes.array.isRequired,
+  sortBy: PropTypes.string.isRequired,
   showCategory: PropTypes.bool,
 }
 
@@ -110,4 +113,6 @@ const styles = StyleSheet.create({
   },
 })
 
-export default PostCards
+const mapStateToProps = ({ sortBy }) => ({ sortBy })
+
+export default connect(mapStateToProps)(PostCards)
