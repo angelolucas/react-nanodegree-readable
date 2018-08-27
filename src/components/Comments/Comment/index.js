@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import ReactMarkdown from 'react-markdown'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { spaces, buttons } from '../../../theme'
+import { spaces } from '../../../theme'
 import Header from './Header'
+import View from './View'
 import Edit from './Edit'
 
 class Comment extends Component {
@@ -18,7 +17,6 @@ class Comment extends Component {
   }
 
   render() {
-    const { body } = this.props
     const { editMode } = this.state
 
     return (
@@ -28,26 +26,12 @@ class Comment extends Component {
         {editMode ? (
           <Edit {...this.props} editMode={this.editMode} />
         ) : (
-          <div>
-            <ReactMarkdown source={body} className={css(styles.body)} />
-
-            {/* Show edit button */}
-            <div className={css(styles.tools)}>
-              <button
-                onClick={() => this.editMode()}
-                className={css(styles.button)}
-              >
-                edit
-              </button>
-            </div>
-          </div>
+          <View {...this.props} editMode={this.editMode} />
         )}
       </div>
     )
   }
 }
-
-Comment.propTypes = { body: PropTypes.string.isRequired }
 
 const styles = StyleSheet.create({
   comment: {
@@ -55,17 +39,6 @@ const styles = StyleSheet.create({
     marginBottom: spaces.x2,
     paddingBottom: spaces.x2,
   },
-
-  body: {
-    marginTop: 5,
-    marginBottom: 5,
-    padding: 12,
-    whiteSpace: 'pre-wrap',
-  },
-
-  tools: { float: 'right' },
-
-  button: { ...buttons.smallLight },
 })
 
 export default Comment
