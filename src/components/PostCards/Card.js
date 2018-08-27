@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import { spaces, breakpoint, colors } from '../../theme'
+import { spaces, colors } from '../../theme'
 import date from '../../utils/date'
 import VoteScore from '../VoteScore'
 import Category from './Category'
@@ -65,12 +65,9 @@ Card.propTypes = {
 
 const styles = StyleSheet.create({
   card: {
-    flex: '33%',
+    flex: '1 1 400px',
     padding: spaces.x1,
     display: 'inline-block',
-
-    [breakpoint.medium]: { flex: '50%' },
-    [breakpoint.small]: { flex: '100%' },
   },
 
   title: {
