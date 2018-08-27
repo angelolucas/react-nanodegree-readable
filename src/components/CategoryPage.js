@@ -8,7 +8,7 @@ import sort from '../utils/sort'
 import Loading from './Loading'
 import Failure from './Failure'
 
-class Category extends Component {
+class CategoryPage extends Component {
   state = {
     name: '',
     path: '',
@@ -67,7 +67,7 @@ class Category extends Component {
   }
 }
 
-Category.propTypes = {
+CategoryPage.propTypes = {
   posts: PropTypes.object.isRequired,
   sortBy: PropTypes.string.isRequired,
   storePosts: PropTypes.func.isRequired,
@@ -92,4 +92,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Category)
+)(CategoryPage)

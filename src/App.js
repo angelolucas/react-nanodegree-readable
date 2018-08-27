@@ -17,7 +17,7 @@ import ScrollToTop from './components/ScrollToTop'
 
 // Components
 import Home from './components/Home'
-import Category from './components/Category'
+import CategoryPage from './components/CategoryPage'
 import Post from './components/Post'
 import CreatePost from './components/CreatePost'
 import Header from './components/Header'
@@ -47,7 +47,7 @@ class App extends Component {
               <Route exact path="/create-post" component={CreatePost} />
 
               {/* Category page */}
-              <Route exact path="/:category" component={Category} />
+              <Route exact path="/:category" component={CategoryPage} />
 
               {/* Post page */}
               <Route exact path="/:category/:post" component={Post} />
