@@ -30,8 +30,15 @@ class PostCards extends Component {
   }
 
   render() {
-    const { category, posts, maxLength, sortBy } = this.props
+    const {
+      category,
+      posts,
+      maxLength,
+      justMainInfo = false,
+      sortBy,
+    } = this.props
     const showCategory = category ? false : true
+
     let postsAsArray = Object.keys(posts.data).map(key => posts.data[key])
 
     if (category) {
@@ -46,7 +53,12 @@ class PostCards extends Component {
       <div>
         <ul className={css(styles.list)}>
           {sort(postsAsArray, sortBy).map(post => (
-            <Card {...post} showCategory={showCategory} key={post.id} />
+            <Card
+              {...post}
+              showCategory={showCategory}
+              justMainInfo={justMainInfo}
+              key={post.id}
+            />
           ))}
         </ul>
 
@@ -64,6 +76,7 @@ PostCards.propTypes = {
   storePosts: PropTypes.func.isRequired,
   category: PropTypes.string,
   maxLength: PropTypes.number,
+  justMainInfo: PropTypes.bool,
 }
 
 const styles = StyleSheet.create({

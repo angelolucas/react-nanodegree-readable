@@ -17,6 +17,7 @@ class Card extends Component {
       category,
       timestamp,
       showCategory,
+      justMainInfo,
     } = this.props
 
     return (
@@ -31,7 +32,7 @@ class Card extends Component {
           By <strong>{author}</strong> on {date(timestamp)}
           {showCategory && <Category path={category} />}
         </p>
-        <CardBottomBar {...this.props} />
+        {!justMainInfo && <CardBottomBar {...this.props} />}
       </li>
     )
   }
@@ -45,6 +46,7 @@ Card.propTypes = {
   category: PropTypes.string.isRequired,
   timestamp: PropTypes.number.isRequired,
   showCategory: PropTypes.bool.isRequired,
+  justMainInfo: PropTypes.bool.isRequired,
 }
 
 const styles = StyleSheet.create({
