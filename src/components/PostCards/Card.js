@@ -19,6 +19,7 @@ class Card extends Component {
       commentCount,
       timestamp,
       voteScore,
+      showCategory,
     } = this.props
 
     return (
@@ -31,7 +32,7 @@ class Card extends Component {
         <p className={css(styles.summary)}>{summary}</p>
         <p className={css(styles.by)}>
           By <strong>{author}</strong> on {date(timestamp)}
-          {!category && <Category path={category} />}
+          {showCategory && <Category path={category} />}
         </p>
         <ul className={css(styles.bottomBar)}>
           <li>
@@ -59,6 +60,7 @@ Card.propTypes = {
   commentCount: PropTypes.number.isRequired,
   timestamp: PropTypes.number.isRequired,
   voteScore: PropTypes.number.isRequired,
+  showCategory: PropTypes.bool.isRequired,
 }
 
 const styles = StyleSheet.create({
