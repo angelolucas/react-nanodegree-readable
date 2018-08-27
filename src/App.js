@@ -30,7 +30,7 @@ injectGlobalStyles(globals)
 
 class App extends Component {
   UNSAFE_componentWillMount() {
-    // Categories is used in `Header` and `CreatePost`
+    // Categories is used in `Header`, `CategoryPage` and `CreatePost`
     this.props.dispatch(storeCategories())
   }
   render() {
@@ -69,6 +69,10 @@ const mapStateToProps = ({ categories }) => ({ categories })
 
 const styles = StyleSheet.create({
   general: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+    justifyContent: 'space-between',
     padding: spaces.x2,
 
     [breakpoint.small]: { padding: spaces.x1 },
