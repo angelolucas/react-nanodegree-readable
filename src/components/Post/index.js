@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { StyleSheet, css } from 'aphrodite/no-important'
 import { storePosts } from '../../actions/posts'
-import { spaces, breakpoint } from '../../theme'
+import { Columns, MainColumn, SideColumn } from '../Grid/TwoColumns'
 import Comments from '../Comments'
 import CreateComment from '../CreateComment'
 import Loading from '../Loading'
@@ -37,29 +36,27 @@ class Post extends Component {
     const post = posts.data[match.params.post]
 
     return (
-      <div className={css(styles.post)}>
+      <div>
         {post && (
-          <div>
-            <Header {...post} />
-            <div className={css(styles.columns)}>
-              <div className={css(styles.main)}>
-                {editMode ? (
-                  <Edit
-                    {...post}
-                    switchEditMode={this.switchEditMode}
-                    history={this.props.history}
-                  />
-                ) : (
-                  <View {...post} switchEditMode={this.switchEditMode} />
-                )}
-                <Comments postID={post.id} />
-                <CreateComment postID={post.id} />
-              </div>
-              <div className={css(styles.sidebar)}>
-                <Sidebar category={post.category} id={post.id} />
-              </div>
-            </div>
-          </div>
+          <Columns>
+            <MainColumn>
+              <Header {...post} />
+              {editMode ? (
+                <Edit
+                  {...post}
+                  switchEditMode={this.switchEditMode}
+                  history={this.props.history}
+                />
+              ) : (
+                <View {...post} switchEditMode={this.switchEditMode} />
+              )}
+              <Comments postID={post.id} />
+              <CreateComment postID={post.id} />
+            </MainColumn>
+            <SideColumn>
+              <Sidebar category={post.category} id={post.id} />
+            </SideColumn>
+          </Columns>
         )}
 
         {posts.fetching && <Loading />}
@@ -82,27 +79,6 @@ const mapStateToProps = ({ posts }) => ({ posts })
 const mapDispatchToProps = dispatch => {
   return { storePosts: data => dispatch(storePosts(data)) }
 }
-
-const styles = StyleSheet.create({
-  columns: {
-    display: 'flex',
-    width: '100%',
-  },
-
-  main: {
-    flex: '70%',
-
-    [breakpoint.medium]: { flex: '100%' },
-  },
-
-  sidebar: {
-    marginLeft: spaces.x2,
-    flex: '30%',
-    position: 'relative',
-
-    [breakpoint.medium]: { display: 'none' },
-  },
-})
 
 export default connect(
   mapStateToProps,
