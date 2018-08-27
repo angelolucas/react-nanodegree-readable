@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { storePosts } from '../../actions/posts'
+import { spaces, breakpoint } from '../../theme'
 import Comments from '../Comments'
 import CreateComment from '../CreateComment'
 import Loading from '../Loading'
@@ -10,6 +11,7 @@ import Failure from '../Failure'
 import Header from './Header'
 import View from './View'
 import Edit from './Edit'
+import Sidebar from './Sidebar'
 
 class Post extends Component {
   state = { editMode: false }
@@ -39,17 +41,24 @@ class Post extends Component {
         {post && (
           <div>
             <Header {...post} />
-            {editMode ? (
-              <Edit
-                {...post}
-                editMode={this.editMode}
-                history={this.props.history}
-              />
-            ) : (
-              <View {...post} editMode={this.editMode} />
-            )}
-            <Comments postID={post.id} />
-            <CreateComment postID={post.id} />
+            <div className={css(styles.columns)}>
+              <div className={css(styles.main)}>
+                {editMode ? (
+                  <Edit
+                    {...post}
+                    editMode={this.editMode}
+                    history={this.props.history}
+                  />
+                ) : (
+                  <View {...post} editMode={this.editMode} />
+                )}
+                <Comments postID={post.id} />
+                <CreateComment postID={post.id} />
+              </div>
+              <div className={css(styles.sidebar)}>
+                <Sidebar category={post.category} id={post.id} />
+              </div>
+            </div>
           </div>
         )}
 
@@ -74,7 +83,26 @@ const mapDispatchToProps = dispatch => {
   return { storePosts: data => dispatch(storePosts(data)) }
 }
 
-const styles = StyleSheet.create({ post: { maxWidth: 900 } })
+const styles = StyleSheet.create({
+  columns: {
+    display: 'flex',
+    width: '100%',
+  },
+
+  main: {
+    flex: '70%',
+
+    [breakpoint.medium]: { flex: '100%' },
+  },
+
+  sidebar: {
+    marginLeft: spaces.x2,
+    flex: '30%',
+    position: 'relative',
+
+    [breakpoint.medium]: { display: 'none' },
+  },
+})
 
 export default connect(
   mapStateToProps,
