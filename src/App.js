@@ -16,7 +16,7 @@ import { storeCategories } from './actions/categories'
 import ScrollToTop from './components/ScrollToTop'
 
 // Components
-import Home from './components/Home'
+import PostCards from './components/PostCards'
 import CategoryPage from './components/CategoryPage'
 import Post from './components/Post'
 import CreatePost from './components/CreatePost'
@@ -41,7 +41,7 @@ class App extends Component {
             <Header />
             <Switch>
               {/* Home page */}
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" component={PostCards} />
 
               {/* Create Post page */}
               <Route exact path="/create-post" component={CreatePost} />
