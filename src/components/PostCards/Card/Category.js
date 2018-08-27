@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { colors } from '../../theme'
+import { colors } from '../../../theme'
 
 class Category extends Component {
   render() {

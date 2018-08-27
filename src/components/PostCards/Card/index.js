@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { spaces, colors } from '../../theme'
-import date from '../../utils/date'
+import { spaces, colors } from '../../../theme'
+import date from '../../../utils/date'
 import Category from './Category'
-import CardBottomBar from './CardBottomBar'
+import BottomBar from './BottomBar'
 
 class Card extends Component {
   render() {
@@ -32,7 +32,7 @@ class Card extends Component {
           By <strong>{author}</strong> on {date(timestamp)}
           {showCategory && <Category path={category} />}
         </p>
-        {!justMainInfo && <CardBottomBar {...this.props} />}
+        {!justMainInfo && <BottomBar {...this.props} />}
       </li>
     )
   }

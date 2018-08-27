@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import { colors } from '../../theme'
-import VoteScore from '../VoteScore'
+import { colors } from '../../../theme'
+import VoteScore from '../../VoteScore'
 
-class CardBottomBar extends Component {
+class BottomBar extends Component {
   render() {
     const { id, commentCount, voteScore } = this.props
 
@@ -26,7 +26,7 @@ class CardBottomBar extends Component {
   }
 }
 
-CardBottomBar.propTypes = {
+BottomBar.propTypes = {
   id: PropTypes.string.isRequired,
   commentCount: PropTypes.number.isRequired,
   voteScore: PropTypes.number.isRequired,
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
   commentCount: { marginLeft: 5 },
 })
 
-export default CardBottomBar
+export default BottomBar
