@@ -34,8 +34,9 @@ class PostCards extends Component {
       category,
       posts,
       maxLength,
-      justMainInfo = false,
       sortBy,
+      exceptId = false,
+      justMainInfo = false,
     } = this.props
     const showCategory = category ? false : true
 
@@ -43,6 +44,10 @@ class PostCards extends Component {
 
     if (category) {
       postsAsArray = postsAsArray.filter(post => post.category === category)
+    }
+
+    if (exceptId) {
+      postsAsArray = postsAsArray.filter(post => post.id !== exceptId)
     }
 
     if (maxLength) {
@@ -75,6 +80,7 @@ PostCards.propTypes = {
   sortBy: PropTypes.string.isRequired,
   storePosts: PropTypes.func.isRequired,
   category: PropTypes.string,
+  exceptId: PropTypes.string,
   maxLength: PropTypes.number,
   justMainInfo: PropTypes.bool,
 }
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
   list: {
     display: 'flex',
     flexWrap: 'wrap',
-    marginTop: spaces.x1,
+    marginTop: 0,
     marginBottom: spaces.x1,
     marginLeft: -spaces.x1,
     marginRight: -spaces.x1,
