@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { StyleSheet, css } from 'aphrodite/no-important'
 import ReactMarkdown from 'react-markdown'
+import { StyleSheet, css } from 'aphrodite/no-important'
 import { spaces, buttons } from '../../../theme'
-import date from '../../../utils/date'
-import VoteScore from '../../VoteScore'
+import Header from './Header'
 import Edit from './Edit'
 
 class Comment extends Component {
@@ -19,16 +18,12 @@ class Comment extends Component {
   }
 
   render() {
-    const { id, author, timestamp, voteScore, body } = this.props
+    const { body } = this.props
     const { editMode } = this.state
 
     return (
       <div className={css(styles.comment)}>
-        <span className={css(styles.author)}>{author}</span>
-        <span className={css(styles.date)}>{date(timestamp)}</span>
-        <span className={css(styles.voteScore)}>
-          <VoteScore id={id} contentType="comment" score={voteScore} />
-        </span>
+        <Header {...this.props} />
 
         {editMode ? (
           <Edit {...this.props} editMode={this.editMode} />
@@ -52,13 +47,7 @@ class Comment extends Component {
   }
 }
 
-Comment.propTypes = {
-  id: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  timestamp: PropTypes.number.isRequired,
-  voteScore: PropTypes.number.isRequired,
-  body: PropTypes.string.isRequired,
-}
+Comment.propTypes = { body: PropTypes.string.isRequired }
 
 const styles = StyleSheet.create({
   comment: {
@@ -66,14 +55,6 @@ const styles = StyleSheet.create({
     marginBottom: spaces.x2,
     paddingBottom: spaces.x2,
   },
-
-  author: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginRight: spaces.x2,
-  },
-
-  date: { marginRight: spaces.x2 },
 
   body: {
     marginTop: 5,
