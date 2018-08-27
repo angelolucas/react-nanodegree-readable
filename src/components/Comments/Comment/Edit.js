@@ -9,7 +9,7 @@ import { deleteComment, editComment } from '../../../actions/comments'
 
 class Edit extends Component {
   handleEdit = e => {
-    const { editComment, editMode } = this.props
+    const { editComment, switchEditMode } = this.props
     const body = serializeForm(e.target, { hash: true }).body
 
     e.preventDefault()
@@ -20,11 +20,11 @@ class Edit extends Component {
         body,
       })
 
-      editMode(false)
+      switchEditMode(false)
     }
   }
 
-  cancel = () => this.props.editMode(false)
+  cancel = () => this.props.switchEditMode(false)
 
   handleDelete = () => {
     const { id, deleteComment } = this.props
@@ -70,7 +70,7 @@ class Edit extends Component {
 Edit.propTypes = {
   id: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  editMode: PropTypes.func.isRequired,
+  switchEditMode: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired,
 }

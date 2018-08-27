@@ -16,7 +16,7 @@ import Sidebar from './Sidebar'
 class Post extends Component {
   state = { editMode: false }
 
-  editMode = (bool = true) => {
+  switchEditMode = (bool = true) => {
     if (bool) {
       this.setState({ editMode: true })
     } else {
@@ -46,11 +46,11 @@ class Post extends Component {
                 {editMode ? (
                   <Edit
                     {...post}
-                    editMode={this.editMode}
+                    switchEditMode={this.switchEditMode}
                     history={this.props.history}
                   />
                 ) : (
-                  <View {...post} editMode={this.editMode} />
+                  <View {...post} switchEditMode={this.switchEditMode} />
                 )}
                 <Comments postID={post.id} />
                 <CreateComment postID={post.id} />

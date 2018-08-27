@@ -15,7 +15,7 @@ class View extends Component {
         {/* Show edit button */}
         <div className={css(styles.tools)}>
           <button
-            onClick={() => this.props.editMode(true)}
+            onClick={() => this.props.switchEditMode(true)}
             className={css(styles.button)}
           >
             edit
@@ -28,7 +28,7 @@ class View extends Component {
 
 View.propTypes = {
   body: PropTypes.string.isRequired,
-  editMode: PropTypes.func.isRequired,
+  switchEditMode: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({
