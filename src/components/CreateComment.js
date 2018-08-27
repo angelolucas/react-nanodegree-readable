@@ -35,7 +35,7 @@ class CommentForm extends Component {
       <form onSubmit={this.handleSubmit}>
         <Textarea
           name="body"
-          placeholder="Comment"
+          placeholder="You may write comments in Markdown ;)"
           className={css(styles.field, styles.textarea)}
           minRows={5}
         />

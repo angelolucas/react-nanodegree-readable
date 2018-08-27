@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Textarea from 'react-textarea-autosize'
+import ReactMarkdown from 'react-markdown'
 import serializeForm from 'form-serialize'
 import { spaces, buttons } from '../../theme'
 import date from '../../utils/date'
@@ -63,6 +64,7 @@ class Comment extends Component {
           <form onSubmit={this.handleEdit}>
             {/* Textarea autosize */}
             <Textarea
+              placeholder="You may write comments in Markdown ;)"
               className={css(styles.textarea)}
               defaultValue={body}
               name="body"
@@ -90,7 +92,7 @@ class Comment extends Component {
           </form>
         ) : (
           <div>
-            <p className={css(styles.body)}>{body}</p>
+            <ReactMarkdown source={body} className={css(styles.body)} />
 
             {/* Show edit button */}
             <div className={css(styles.tools)}>
