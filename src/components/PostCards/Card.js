@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { spaces, colors } from '../../theme'
 import date from '../../utils/date'
-import VoteScore from '../VoteScore'
 import Category from './Category'
+import CardBottomBar from './CardBottomBar'
 
 class Card extends Component {
   render() {
@@ -16,9 +15,7 @@ class Card extends Component {
       author,
       summary,
       category,
-      commentCount,
       timestamp,
-      voteScore,
       showCategory,
     } = this.props
 
@@ -34,18 +31,7 @@ class Card extends Component {
           By <strong>{author}</strong> on {date(timestamp)}
           {showCategory && <Category path={category} />}
         </p>
-        <ul className={css(styles.bottomBar)}>
-          <li>
-            <Icon icon="comment-alt" />
-            <strong className={css(styles.commentCount)}>{commentCount}</strong>
-          </li>
-          <li>
-            <VoteScore id={id} contentType="post" score={voteScore} />
-          </li>
-          <li>
-            <Icon icon="ellipsis-h" />
-          </li>
-        </ul>
+        <CardBottomBar {...this.props} />
       </li>
     )
   }
@@ -57,9 +43,7 @@ Card.propTypes = {
   author: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  commentCount: PropTypes.number.isRequired,
   timestamp: PropTypes.number.isRequired,
-  voteScore: PropTypes.number.isRequired,
   showCategory: PropTypes.bool.isRequired,
 }
 
@@ -86,18 +70,6 @@ const styles = StyleSheet.create({
     marginTop: 0,
     fontSize: 14,
     color: colors.gray,
-  },
-
-  commentCount: { marginLeft: 5 },
-
-  bottomBar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    listStyle: 'none',
-    fontSize: 14,
-    color: colors.gray,
-    padding: 0,
-    paddingTop: 5,
   },
 })
 
