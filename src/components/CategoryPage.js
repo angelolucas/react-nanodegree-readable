@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import PostCards from './PostCards'
-import { storePosts } from '../actions/posts'
 import { storeCategories } from '../actions/categories'
-import Loading from './Loading'
 import Failure from './Failure'
 
 class CategoryPage extends Component {
@@ -30,7 +28,7 @@ class CategoryPage extends Component {
   }
 
   findCategory = nextCategory => {
-    const { categories, storePosts } = this.props
+    const { categories } = this.props
     const findNextCategory = categories.find(
       category => category.path === nextCategory
     )
@@ -41,49 +39,34 @@ class CategoryPage extends Component {
         path: findNextCategory.path,
         notFound: false,
       })
-
-      storePosts({ category: findNextCategory.path })
     } else {
       this.setState({ notFound: true })
     }
   }
 
   render() {
-    const { posts } = this.props
-    const postsAsArray = Object.keys(posts.data).map(key => posts.data[key])
-    const postsByCategory = postsAsArray.filter(
-      post => post.category === this.state.path
-    )
+    const { path } = this.state
 
     return (
       <div>
         <h1>{this.state.name}</h1>
-        <PostCards posts={postsByCategory} showCategory={false} />
-        {posts.fetching && <Loading />}
-        {this.state.notFound && <Failure error={posts.failure} />}
+        {path && <PostCards category={path} />}
+        {this.state.notFound && <Failure />}
       </div>
     )
   }
 }
 
 CategoryPage.propTypes = {
-  posts: PropTypes.object.isRequired,
-  storePosts: PropTypes.func.isRequired,
   storeCategories: PropTypes.func.isRequired,
   categories: PropTypes.array.isRequired,
   match: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = ({ posts, categories }) => ({
-  posts,
-  categories,
-})
+const mapStateToProps = ({ categories }) => ({ categories })
 
 const mapDispatchToProps = dispatch => {
-  return {
-    storeCategories: () => dispatch(storeCategories()),
-    storePosts: data => dispatch(storePosts(data)),
-  }
+  return { storeCategories: () => dispatch(storeCategories()) }
 }
 
 export default connect(
