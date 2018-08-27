@@ -8,11 +8,7 @@ import { buttons } from '../../theme'
 import { editPost, deletePost } from '../../actions/posts'
 
 class Edit extends Component {
-  state = {
-    title: this.props.title,
-    summary: this.props.summary,
-    body: this.props.body,
-  }
+  state = { title: this.props.title }
 
   handleEdit = e => {
     const { id, editPost, editMode } = this.props
@@ -32,14 +28,7 @@ class Edit extends Component {
     }
   }
 
-  cancel = () => {
-    this.setState({
-      title: this.props.title,
-      body: this.props.body,
-    })
-
-    this.props.editMode(false)
-  }
+  cancel = () => this.props.editMode(false)
 
   handleDelete = () => {
     const { id, history, deletePost } = this.props
@@ -76,21 +65,15 @@ class Edit extends Component {
         {/* Edit Summary */}
         <Textarea
           name="summary"
-          value={this.state.summary}
+          defaultValue={this.props.summary}
           placeholder="Post Summary"
-          onChange={e => {
-            this.setState({ summary: e.target.value })
-          }}
         />
 
         {/* Edit Body */}
         <Textarea
           name="body"
-          value={this.state.body}
+          defaultValue={this.props.body}
           placeholder="Post Body"
-          onChange={e => {
-            this.setState({ body: e.target.value })
-          }}
         />
 
         {/* Delete, Cancel and Save buttons */}
