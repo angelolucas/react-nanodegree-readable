@@ -29,7 +29,8 @@ class Card extends Component {
         </h2>
         <p className={css(styles.summary)}>{summary}</p>
         <p className={css(styles.by)}>
-          By <strong>{author}</strong> on {date(timestamp)}
+          By <strong className={css(styles.author)}>{author}</strong> on{' '}
+          {date(timestamp)}
           {showCategory && <Category path={category} />}
         </p>
         {!justMainInfo && <BottomBar {...this.props} />}
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 5,
     lineHeight: 1.1,
+    wordBreak: 'break-all',
   },
 
   link: { color: colors.dark },
@@ -68,10 +70,13 @@ const styles = StyleSheet.create({
     color: colors.gray,
   },
 
+  author: { wordBreak: 'break-all' },
+
   summary: {
     marginTop: 0,
     fontSize: 14,
     color: colors.gray,
+    wordBreak: 'break-all',
   },
 })
 
