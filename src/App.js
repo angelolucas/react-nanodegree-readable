@@ -39,22 +39,24 @@ class App extends Component {
         <ScrollToTop>
           <div className={css(styles.general)}>
             <Header />
-            <Switch>
-              {/* Home page */}
-              <Route exact path="/" component={PostCards} />
+            <div className={css(styles.middle)}>
+              <Switch>
+                {/* Home page */}
+                <Route exact path="/" component={PostCards} />
 
-              {/* Create Post page */}
-              <Route exact path="/create-post" component={CreatePost} />
+                {/* Create Post page */}
+                <Route exact path="/create-post" component={CreatePost} />
 
-              {/* Category page */}
-              <Route exact path="/:category" component={CategoryPage} />
+                {/* Category page */}
+                <Route exact path="/:category" component={CategoryPage} />
 
-              {/* Post page */}
-              <Route exact path="/:category/:post" component={Post} />
+                {/* Post page */}
+                <Route exact path="/:category/:post" component={Post} />
 
-              {/* Redirect to home if Routes above don't match */}
-              <Redirect to="/" />
-            </Switch>
+                {/* Redirect to home if Routes above don't match */}
+                <Redirect to="/" />
+              </Switch>
+            </div>
             <Footer />
           </div>
         </ScrollToTop>
@@ -72,11 +74,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
-    justifyContent: 'space-between',
     padding: spaces.x2,
 
     [breakpoint.small]: { padding: spaces.x1 },
   },
+
+  middle: { flex: 'auto' },
 })
 
 export default connect(mapStateToProps)(App)
