@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import * as moment from 'moment'
-import { colors, spaces } from '../../theme'
+import { colors } from '../../theme'
 import Logo from './Logo'
-import Categories from './Categories'
 import SelectSortBy from './SelectSortBy'
 
 class Header extends Component {
@@ -13,7 +12,6 @@ class Header extends Component {
       <header className={css(styles.header)}>
         <Logo />
         <div>
-          <Categories />
           <Link className={css(styles.createPost)} to="/create-post">
             Creact post
           </Link>
@@ -30,10 +28,7 @@ class Header extends Component {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    textAlign: 'center',
-    marginBottom: spaces.x2,
-  },
+  header: { textAlign: 'center' },
 
   horizontalLine: {
     position: 'relative',
@@ -53,11 +48,6 @@ const styles = StyleSheet.create({
   createPost: {
     padding: 10,
     color: colors.dark,
-
-    ':before': {
-      content: '"• "',
-      marginRight: 15,
-    },
   },
 
   date: {

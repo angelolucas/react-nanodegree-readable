@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { colors } from '../../theme'
+import { colors } from '../../../theme'
 
 class Categories extends Component {
   render() {
@@ -11,6 +11,15 @@ class Categories extends Component {
 
     return (
       <ul className={css(styles.list)}>
+        <li className={css(styles.item)}>
+          <NavLink
+            to="/"
+            className={css(styles.link)}
+            activeClassName={css(styles.currentItem)}
+          >
+            All categories
+          </NavLink>
+        </li>
         {categories.map(category => (
           <li className={css(styles.item)} key={category.path}>
             <NavLink

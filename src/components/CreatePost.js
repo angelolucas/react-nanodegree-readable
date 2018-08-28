@@ -9,6 +9,7 @@ import { buttons } from '../theme'
 import * as API from '../API'
 import { storePosts } from '../actions/posts'
 import { Columns, MainColumn } from './Grid/TwoColumns'
+import Navigation from './Navigation'
 
 class Create extends Component {
   handleSubmit = e => {
@@ -53,41 +54,44 @@ class Create extends Component {
     let { categories } = this.props
 
     return (
-      <Columns>
-        <MainColumn>
-          <h1>Create Post</h1>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              placeholder="Title"
-              name="title"
-              autoComplete="off"
-            />
-            <input
-              type="text"
-              placeholder="Summary"
-              name="summary"
-              autoComplete="off"
-            />
-            <input
-              type="text"
-              placeholder="Author"
-              name="author"
-              autoComplete="off"
-            />
-            <select name="category">
-              <option>Select category</option>
-              {categories.map(category => (
-                <option key={category.path} value={category.path}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-            <Textarea placeholder="body" minRows={10} name="body" />
-            <button className={css(styles.submit)}>Save</button>
-          </form>
-        </MainColumn>
-      </Columns>
+      <div>
+        <Navigation />
+        <Columns>
+          <MainColumn>
+            <h1>Create Post</h1>
+            <form onSubmit={this.handleSubmit}>
+              <input
+                type="text"
+                placeholder="Title"
+                name="title"
+                autoComplete="off"
+              />
+              <input
+                type="text"
+                placeholder="Summary"
+                name="summary"
+                autoComplete="off"
+              />
+              <input
+                type="text"
+                placeholder="Author"
+                name="author"
+                autoComplete="off"
+              />
+              <select name="category">
+                <option>Select category</option>
+                {categories.map(category => (
+                  <option key={category.path} value={category.path}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+              <Textarea placeholder="body" minRows={10} name="body" />
+              <button className={css(styles.submit)}>Save</button>
+            </form>
+          </MainColumn>
+        </Columns>
+      </div>
     )
   }
 }

@@ -16,7 +16,7 @@ import { storeCategories } from './actions/categories'
 import ScrollToTop from './components/ScrollToTop'
 
 // Components
-import PostCardsPage from './components/PostCardsPage'
+import Navigation from './components/Navigation'
 import Post from './components/Post'
 import CreatePost from './components/CreatePost'
 import Header from './components/Header'
@@ -41,13 +41,23 @@ class App extends Component {
             <div className={css(styles.middle)}>
               <Switch>
                 {/* Home page */}
-                <Route exact path="/" component={PostCardsPage} />
+                <Route
+                  exact
+                  path="/"
+                  render={() => <Navigation alwaysOpen />}
+                />
 
                 {/* Create Post page */}
                 <Route exact path="/create-post" component={CreatePost} />
 
                 {/* Category page */}
-                <Route exact path="/:category" component={PostCardsPage} />
+                <Route
+                  exact
+                  path="/:category"
+                  render={e => (
+                    <Navigation alwaysOpen category={e.match.params.category} />
+                  )}
+                />
 
                 {/* Post page */}
                 <Route exact path="/:category/:post" component={Post} />
