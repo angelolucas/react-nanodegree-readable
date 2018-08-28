@@ -6,7 +6,7 @@ const globals = {
   '*': { boxSizing: 'border-box' },
 
   body: {
-    fontFamily: fonts.main,
+    ...fonts.main,
     color: colors.dark,
     fill: colors.dark,
     backgroundColor: colors.light,
@@ -17,6 +17,8 @@ const globals = {
     '-moz-osx-font-smoothing': 'grayscale',
     '-webkit-font-smoothing': 'antialiased',
   },
+
+  'h1, h2, h3, h4, h5, h6': { ...fonts.titles },
 
   // Inline
   a: {
@@ -41,7 +43,7 @@ const globals = {
   },
 
   button: {
-    fontFamily: fonts.main,
+    ...fonts.main,
     background: 'transparent',
     border: 0,
     cursor: 'pointer',
@@ -82,12 +84,12 @@ const globals = {
     outline: 'none',
     width: '100%',
     maxWidth: '100%',
-    fontFamily: fonts.main,
+    ...fonts.main,
     fontSize: 16,
   },
 
   'input::placeholder, textarea::placeholder': {
-    fontFamily: fonts.main,
+    ...fonts.main,
     fontSize: 14,
   },
 
