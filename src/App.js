@@ -16,8 +16,7 @@ import { storeCategories } from './actions/categories'
 import ScrollToTop from './components/ScrollToTop'
 
 // Components
-import PostCards from './components/PostCards'
-import CategoryPage from './components/CategoryPage'
+import PostCardsPage from './components/PostCardsPage'
 import Post from './components/Post'
 import CreatePost from './components/CreatePost'
 import Header from './components/Header'
@@ -30,7 +29,7 @@ injectGlobalStyles(globals)
 
 class App extends Component {
   UNSAFE_componentWillMount() {
-    // Categories is used in `Header`, `CategoryPage` and `CreatePost`
+    // Categories is used in `Header`, `PostCardsPage` and `CreatePost`
     this.props.dispatch(storeCategories())
   }
   render() {
@@ -42,13 +41,13 @@ class App extends Component {
             <div className={css(styles.middle)}>
               <Switch>
                 {/* Home page */}
-                <Route exact path="/" component={PostCards} />
+                <Route exact path="/" component={PostCardsPage} />
 
                 {/* Create Post page */}
                 <Route exact path="/create-post" component={CreatePost} />
 
                 {/* Category page */}
-                <Route exact path="/:category" component={CategoryPage} />
+                <Route exact path="/:category" component={PostCardsPage} />
 
                 {/* Post page */}
                 <Route exact path="/:category/:post" component={Post} />
