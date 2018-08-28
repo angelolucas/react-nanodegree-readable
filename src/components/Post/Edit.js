@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Textarea from 'react-textarea-autosize'
 import serializeForm from 'form-serialize'
-import { buttons } from '../../theme'
+import { spaces, colors, buttons } from '../../theme'
 import { editPost, deletePost } from '../../actions/posts'
 
 class Edit extends Component {
@@ -72,6 +72,7 @@ class Edit extends Component {
         {/* Edit Body */}
         <Textarea
           name="body"
+          className={css(styles.body)}
           defaultValue={this.props.body}
           placeholder="Post Body"
         />
@@ -118,9 +119,18 @@ const styles = StyleSheet.create({
   },
 
   buttons: {
+    position: 'sticky',
+    bottom: 0,
+    background: colors.light,
+    paddingTop: spaces.x1,
+    paddingBottom: spaces.x1,
+    borderTop: '2px solid',
+    marginTop: -2,
     display: 'flex',
     justifyContent: 'flex-end',
   },
+
+  body: { marginBottom: 0 },
 
   button: { ...buttons.smallLight },
 
