@@ -46,8 +46,7 @@ const styles = StyleSheet.create({
     display: 'inline-block',
     listStyle: 'none',
     padding: 0,
-    marginBottom: 0,
-    marginTop: 10,
+    margin: 0,
   },
 
   item: {

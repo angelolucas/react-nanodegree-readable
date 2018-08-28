@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { StyleSheet, css } from 'aphrodite/no-important'
 import ToolsBar from './ToolsBar'
 import PostCards from '../PostCards'
 
@@ -26,7 +27,7 @@ class Navigation extends Component {
     const openCards = this.props.alwaysOpen || this.state.search
 
     return (
-      <div>
+      <div className={css(styles.navigation)}>
         <ToolsBar search={this.search} />
 
         {openCards && <PostCards {...this.state} />}
@@ -34,6 +35,8 @@ class Navigation extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({ navigation: { position: 'relative' } })
 
 Navigation.propTypes = {
   categories: PropTypes.array.isRequired,

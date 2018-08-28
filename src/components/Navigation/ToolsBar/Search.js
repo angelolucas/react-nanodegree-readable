@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { StyleSheet, css } from 'aphrodite/no-important'
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
 
 class Search extends Component {
@@ -11,15 +13,37 @@ class Search extends Component {
 
   render() {
     return (
-      <input
-        type="text"
-        placeholder="Search"
-        onChange={this.handleChange}
-        onBlur={this.handleBlur}
-      />
+      <div className={css(styles.search)}>
+        <input
+          type="text"
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+          className={css(styles.input)}
+        />
+        <Icon icon="search" className={css(styles.icon)} />
+      </div>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  search: { position: 'relative' },
+
+  icon: {
+    position: 'absolute',
+    top: 0,
+    right: 10,
+    width: 15,
+    height: '100%',
+    pointerEvents: 'none',
+  },
+
+  input: {
+    border: 'none',
+    marginBottom: 0,
+    paddingLeft: 40,
+  },
+})
 
 Search.propTypes = { search: PropTypes.func.isRequired }
 

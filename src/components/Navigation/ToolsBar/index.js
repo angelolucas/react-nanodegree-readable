@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
+import { colors } from '../../../theme'
 import Categories from './Categories'
 import Search from './Search'
 
@@ -17,7 +18,13 @@ class ToolsBar extends Component {
 }
 
 const styles = StyleSheet.create({
-  toolsBar: { display: 'flex' },
+  toolsBar: {
+    display: 'flex',
+    borderBottom: '1px solid',
+    position: 'sticky',
+    top: 0,
+    background: colors.light,
+  },
 
   search: { flex: 'auto' },
 })
