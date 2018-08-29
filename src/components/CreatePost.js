@@ -9,7 +9,7 @@ import * as API from '../API'
 import { storePosts } from '../actions/posts'
 import { Columns, MainColumn, SideColumn } from './Grid/TwoColumns'
 import Navigation from './Navigation'
-import { InputTitle, InputSummary, InputBody } from './inputs'
+import { InputTitle, InputSummary, InputBody, SelectCategory } from './inputs'
 
 class Create extends Component {
   handleSubmit = e => {
@@ -43,8 +43,6 @@ class Create extends Component {
   }
 
   render() {
-    let { categories } = this.props
-
     return (
       <div>
         <Navigation />
@@ -63,14 +61,7 @@ class Create extends Component {
                 name="author"
                 autoComplete="off"
               />
-              <select name="category">
-                <option>Select category</option>
-                {categories.map(category => (
-                  <option key={category.path} value={category.path}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
+              <SelectCategory />
               <button className={css(styles.submit)}>Save</button>
             </SideColumn>
           </Columns>
@@ -81,12 +72,9 @@ class Create extends Component {
 }
 
 Create.propTypes = {
-  categories: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
 }
-
-const mapStateToProps = ({ categories }) => ({ categories })
 
 const styles = StyleSheet.create({
   submit: {
@@ -95,4 +83,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default connect(mapStateToProps)(Create)
+export default connect()(Create)
