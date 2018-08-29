@@ -106,8 +106,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     marginTop: 0,
     marginBottom: spaces.x1,
-    marginLeft: -spaces.x1,
-    marginRight: -spaces.x1,
     padding: 0,
   },
 })

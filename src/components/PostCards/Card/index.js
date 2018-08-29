@@ -55,6 +55,8 @@ const styles = StyleSheet.create({
     flex: '1 1 400px',
     padding: spaces.x1,
     display: 'inline-block',
+
+    ':hover': { background: 'white' },
   },
 
   title: {
