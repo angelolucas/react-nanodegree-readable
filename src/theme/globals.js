@@ -23,7 +23,7 @@ const globals = {
   // Inline
   a: {
     textDecoration: 'none',
-    color: '#0366d6',
+    color: colors.details,
   },
 
   code: {
@@ -60,7 +60,7 @@ const globals = {
   pre: {
     background: colors.dark,
     color: colors.light,
-    border: '2px solid',
+    border: '1px solid',
     padding: spaces.x1,
   },
 
@@ -77,8 +77,9 @@ const globals = {
 
   // Form
   'input, textarea, select': {
-    background: 'transparent',
-    border: `2px solid ${colors.dark}`,
+    background: 'white',
+    border: `none`,
+    boxShadow: 'inset 0 0 1px rgba(0, 0, 0, 0.5)',
     marginBottom: spaces.x1,
     padding: 10,
     outline: 'none',
@@ -107,7 +108,7 @@ const globals = {
 
   'table > thead > tr > th': {
     verticalAlign: 'bottom',
-    borderBottom: '2px solid',
+    borderBottom: '1px solid',
     borderTop: 'none',
   },
 

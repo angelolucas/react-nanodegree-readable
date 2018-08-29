@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
   },
 
   input: {
+    background: 'transparent',
+    boxShadow: 'none',
     border: 'none',
     marginBottom: 0,
     paddingLeft: 40,
