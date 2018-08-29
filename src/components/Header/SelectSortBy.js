@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { sortBy } from '../../actions/sortBy'
 
 class SortBy extends Component {
@@ -11,7 +12,9 @@ class SortBy extends Component {
   render() {
     return (
       <div>
-        Sort Content by: {this.props.sortBy}
+        {this.props.sortBy === 'score' && <Icon icon="toggle-on" />}
+        {this.props.sortBy === 'date' && <Icon icon="toggle-off" />}
+        sort by score
         <button onClick={() => this.changeSort('date')}>Date</button>
         <button onClick={() => this.changeSort('score')}>Score</button>
       </div>
