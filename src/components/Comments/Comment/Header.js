@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     marginRight: spaces.x2,
-    wordBreak: 'break-all',
+    wordBreak: 'break-word',
   },
 
   date: { marginRight: spaces.x2 },

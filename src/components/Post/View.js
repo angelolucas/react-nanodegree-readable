@@ -35,18 +35,18 @@ const styles = StyleSheet.create({
   title: {
     padding: 12,
     marginBottom: spaces.x1,
-    wordBreak: 'break-all',
+    wordBreak: 'break-word',
   },
 
   summary: {
     padding: 12,
-    wordBreak: 'break-all',
+    wordBreak: 'break-word',
   },
 
   body: {
     padding: 12,
     marginTop: 0,
-    wordBreak: 'break-all',
+    wordBreak: 'break-word',
   },
 
   button: {

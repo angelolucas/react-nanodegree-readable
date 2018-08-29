@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 5,
     lineHeight: 1.1,
-    wordBreak: 'break-all',
+    wordBreak: 'break-word',
   },
 
   link: { color: colors.dark },
@@ -72,13 +72,13 @@ const styles = StyleSheet.create({
     color: colors.gray,
   },
 
-  author: { wordBreak: 'break-all' },
+  author: { wordBreak: 'break-word' },
 
   summary: {
     marginTop: 0,
     fontSize: 14,
     color: colors.gray,
-    wordBreak: 'break-all',
+    wordBreak: 'break-word',
   },
 })
 

@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     padding: 12,
     whiteSpace: 'pre-wrap',
-    wordBreak: 'break-all',
+    wordBreak: 'break-word',
   },
 
   tools: { float: 'right' },
