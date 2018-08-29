@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     color: colors.gray,
   },
 
-  selected: { color: colors.dark },
+  selected: { color: colors.details },
 
   voteScore: { display: 'inline-block' },
 
