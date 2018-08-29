@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { colors } from '../../../theme'
+import { colors, spaces } from '../../../theme'
 
 class Categories extends Component {
   render() {
@@ -39,15 +39,15 @@ const styles = StyleSheet.create({
     listStyle: 'none',
     padding: 0,
     margin: 0,
+    marginLeft: spaces.x1 - 10,
   },
 
-  item: {
-    display: 'inline-block',
-    padding: 10,
-  },
+  item: { display: 'inline-block' },
 
   link: {
+    display: 'inline-block',
     color: colors.dark,
+    padding: 10,
 
     ':hover': { color: colors.details },
   },

@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     position: 'sticky',
     top: 0,
     background: colors.light,
+    marginBottom: -1,
   },
 
   search: { flex: 'auto' },

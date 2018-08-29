@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { spaces } from '../../theme'
 import { storePosts } from '../../actions/posts'
 import sort from '../../utils/sort'
 import Loading from '../Loading'
@@ -104,8 +103,7 @@ const styles = StyleSheet.create({
   list: {
     display: 'flex',
     flexWrap: 'wrap',
-    marginTop: 0,
-    marginBottom: spaces.x1,
+    margin: 0,
     padding: 0,
   },
 })
