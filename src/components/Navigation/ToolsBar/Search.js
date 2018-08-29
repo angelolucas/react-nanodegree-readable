@@ -5,21 +5,16 @@ import { spaces } from '../../../theme'
 import PropTypes from 'prop-types'
 
 class Search extends Component {
-  handleChange = e => this.props.search(e.target.value.trim())
-
-  handleBlur = e => {
-    this.props.search('')
-    return (e.target.value = '')
-  }
-
   render() {
+    const { search, handleSearch } = this.props
+
     return (
       <div className={css(styles.search)}>
         <input
           type="text"
           placeholder="What do you want to read?"
-          onChange={this.handleChange}
-          onBlur={this.handleBlur}
+          onChange={e => handleSearch(e.target.value)}
+          value={search}
           className={css(styles.input)}
         />
         <Icon icon="search" className={css(styles.icon)} />
@@ -55,6 +50,9 @@ const styles = StyleSheet.create({
   },
 })
 
-Search.propTypes = { search: PropTypes.func.isRequired }
+Search.propTypes = {
+  handleSearch: PropTypes.func.isRequired,
+  search: PropTypes.string.isRequired,
+}
 
 export default Search

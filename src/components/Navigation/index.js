@@ -13,35 +13,58 @@ class Navigation extends Component {
   }
 
   UNSAFE_componentWillMount() {
-    this.category(this.props.category)
+    this.handleCategory(this.props.category)
   }
 
   UNSAFE_componentWillReceiveProps(next) {
-    this.category(next.category)
+    this.handleCategory(next.category)
   }
 
-  category = category => this.setState({ category })
+  handleCategory = category => this.setState({ category })
 
-  search = search => this.setState({ search })
+  handleSearch = search => this.setState({ search })
+
+  // Clear search on onBlur
+  handleBlur = e => {
+    const targetInside = e.relatedTarget
+    const targetOutside = !e.currentTarget.contains(targetInside)
+    const targetInsideisLink = targetInside && targetInside.tagName === 'A'
+
+    /**
+     * About targetInsideisLink:
+     * When the search is done inside the post page, after click on search item,
+     * naturally the navigation doesn't collapse because the router still is
+     * post and the page only rerender instead of unMount/mount.
+     */
+    if (targetOutside || targetInsideisLink) this.handleSearch('')
+
+    // This hacky is necessary because navigation lose focus before clicking
+    if (targetInsideisLink) targetInside.click()
+  }
 
   render() {
-    const openCards = this.props.alwaysOpen || this.state.search
+    const expand = this.props.alwaysOpen || this.state.search
     const borderBottom = this.state.search && !this.props.alwaysOpen
 
     return (
       <div
         className={css(styles.navigation, borderBottom && styles.borderBottom)}
+        onBlur={this.handleBlur}
+        tabIndex="-1"
       >
-        <ToolsBar search={this.search} />
+        <ToolsBar handleSearch={this.handleSearch} search={this.state.search} />
 
-        {openCards && <PostCards {...this.state} />}
+        {expand && <PostCards {...this.state} />}
       </div>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  navigation: { position: 'relative' },
+  navigation: {
+    position: 'relative',
+    outline: 'none',
+  },
 
   borderBottom: { borderBottom: `1px solid ${colors.gray}` },
 })
