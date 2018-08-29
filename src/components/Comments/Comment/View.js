@@ -14,8 +14,6 @@ class View extends Component {
           className={`markdown ${css(styles.markdown)}`}
           source={body}
         />
-
-        {/* Show edit button */}
         <div className={css(styles.tools)}>
           <button
             onClick={() => this.props.toggleEditMode(true)}
@@ -43,7 +41,7 @@ const styles = StyleSheet.create({
 
   tools: { float: 'right' },
 
-  button: { ...buttons.smallLight },
+  button: { ...buttons.small },
 })
 
 export default View

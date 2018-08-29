@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import Textarea from 'react-textarea-autosize'
 import serializeForm from 'form-serialize'
 import { buttons } from '../../../theme'
 import { deleteComment, editComment } from '../../../actions/comments'
+import { TextareaBody } from '../../inputs'
 
 class Edit extends Component {
   handleEdit = e => {
@@ -35,16 +35,12 @@ class Edit extends Component {
   render() {
     return (
       <form onSubmit={this.handleEdit}>
-        {/* Textarea autosize */}
-        <Textarea
-          placeholder="You may write comments in Markdown ;)"
-          className={css(styles.textarea)}
-          defaultValue={this.props.body}
-          name="body"
+        <TextareaBody
+          value={this.props.body}
+          placeholder="Edit comment"
+          className={css(styles.body)}
           autoFocus
         />
-
-        {/* Delete, cancel and save buttons */}
         <div className={css(styles.tools)}>
           <button
             className={css(styles.button)}
@@ -76,10 +72,7 @@ Edit.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  textarea: {
-    marginTop: 5,
-    marginBottom: 5,
-  },
+  body: { marginBottom: 0 },
   save: { ...buttons.small },
   button: { ...buttons.smallLight },
   tools: { float: 'right' },

@@ -1,7 +1,13 @@
-import InputTitle from './InputTitle'
-import InputSummary from './InputSummary'
-import InputBody from './InputBody'
+import TextareaTitle from './TextareaTitle'
+import TextareaSummary from './TextareaSummary'
+import TextareaBody from './TextareaBody'
 import SelectCategory from './SelectCategory'
 import InputAuthor from './InputAuthor'
 
-export { InputTitle, InputSummary, InputBody, SelectCategory, InputAuthor }
+export {
+  TextareaTitle,
+  TextareaSummary,
+  TextareaBody,
+  SelectCategory,
+  InputAuthor,
+}

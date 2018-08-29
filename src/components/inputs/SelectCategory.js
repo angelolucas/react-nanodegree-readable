@@ -19,7 +19,7 @@ class SelectCategory extends Component {
   }
 }
 
-SelectCategory.propTypes = { categories: PropTypes.array.isRequired }
+SelectCategory.propTypes = { categories: PropTypes.array }
 
 const mapStateToProps = ({ categories }) => ({ categories })
 

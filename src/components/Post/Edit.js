@@ -5,7 +5,7 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 import serializeForm from 'form-serialize'
 import { spaces, colors, buttons } from '../../theme'
 import { editPost, deletePost } from '../../actions/posts'
-import { InputTitle, InputSummary, InputBody } from '../inputs'
+import { TextareaTitle, TextareaSummary, TextareaBody } from '../inputs'
 
 class Edit extends Component {
   handleEdit = e => {
@@ -39,9 +39,9 @@ class Edit extends Component {
 
     return (
       <form onSubmit={this.handleEdit}>
-        <InputTitle value={title} />
-        <InputSummary value={summary} />
-        <InputBody value={body} />
+        <TextareaTitle value={title} />
+        <TextareaSummary value={summary} />
+        <TextareaBody value={body} />
 
         {/* Delete, Cancel and Save buttons */}
         <div className={css(styles.buttons)}>

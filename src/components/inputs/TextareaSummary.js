@@ -2,24 +2,25 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Textarea from 'react-textarea-autosize'
 
-class InputBody extends Component {
+class TextareaSummary extends Component {
   render() {
     const { value, minRows = 1 } = this.props
 
     return (
       <Textarea
-        placeholder="Body: you may write in Markdown ;)"
-        name="body"
+        placeholder="Summary: it shows in the card and at the beginning of the post"
+        name="summary"
         defaultValue={value}
         minRows={minRows}
+        maxLength={150}
       />
     )
   }
 }
 
-InputBody.propTypes = {
-  value: PropTypes.string.isRequired,
+TextareaSummary.propTypes = {
+  value: PropTypes.string,
   minRows: PropTypes.number,
 }
 
-export default InputBody
+export default TextareaSummary

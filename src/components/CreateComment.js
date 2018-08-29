@@ -3,11 +3,10 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import serializeForm from 'form-serialize'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import Textarea from 'react-textarea-autosize'
 import uuid from 'uuid'
 import { buttons } from '../theme'
 import { postComment } from '../actions/comments'
-import { InputAuthor } from './inputs'
+import { TextareaBody, InputAuthor } from './inputs'
 
 class CommentForm extends Component {
   handleSubmit = e => {
@@ -34,11 +33,9 @@ class CommentForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <Textarea
-          name="body"
-          placeholder="You may write comments in Markdown ;)"
-          className={css(styles.field, styles.textarea)}
+        <TextareaBody
           minRows={5}
+          placeholder="You may write comments in Markdown :)"
         />
         <InputAuthor />
         <button className={css(styles.button)}>Post Comment</button>
@@ -52,6 +49,11 @@ CommentForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
 }
 
-const styles = StyleSheet.create({ button: { ...buttons.default } })
+const styles = StyleSheet.create({
+  button: {
+    ...buttons.default,
+    float: 'right',
+  },
+})
 
 export default connect()(CommentForm)

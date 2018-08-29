@@ -10,9 +10,9 @@ import { storePosts } from '../actions/posts'
 import { Columns, MainColumn, SideColumn } from './Grid/TwoColumns'
 import Navigation from './Navigation'
 import {
-  InputTitle,
-  InputSummary,
-  InputBody,
+  TextareaTitle,
+  TextareaSummary,
+  TextareaBody,
   SelectCategory,
   InputAuthor,
 } from './inputs'
@@ -56,9 +56,12 @@ class Create extends Component {
         <form onSubmit={this.handleSubmit}>
           <Columns>
             <MainColumn>
-              <InputTitle />
-              <InputSummary minRows={2} />
-              <InputBody minRows={10} />
+              <TextareaTitle />
+              <TextareaSummary minRows={2} />
+              <TextareaBody
+                minRows={10}
+                placeholder="Body: you may write in Markdown :)"
+              />
             </MainColumn>
             <SideColumn>
               <InputAuthor />

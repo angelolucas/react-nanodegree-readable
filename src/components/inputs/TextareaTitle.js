@@ -4,14 +4,12 @@ import Textarea from 'react-textarea-autosize'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { fonts } from '../../theme'
 
-class InputTitle extends Component {
+class TextareaTitle extends Component {
   state = { value: this.props.value }
 
   render() {
     return (
       /**
-       * Edit Title.
-       *
        * `Textarea` rather than `input`
        * is for the title to behave as in the view.
        *
@@ -37,7 +35,7 @@ class InputTitle extends Component {
   }
 }
 
-InputTitle.propTypes = { value: PropTypes.string.isRequired }
+TextareaTitle.propTypes = { value: PropTypes.string }
 
 const styles = StyleSheet.create({
   input: {
@@ -51,4 +49,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default InputTitle
+export default TextareaTitle
