@@ -6,30 +6,35 @@ import { colors } from '../../theme'
 class Logo extends Component {
   render() {
     return (
-      <h2 className={css(styles.logo)}>
-        <Link className={css(styles.link)} to="/">
-          Readable
-        </Link>
-      </h2>
+      <div>
+        <h2 className={css(styles.noMargin)}>
+          <Link className={css(styles.logo, styles.readable)} to="/">
+            Readable
+          </Link>
+          {/*<span className={css(styles.logo, styles.category)}>Javascript</span>*/}
+        </h2>
+      </div>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  noMargin: { margin: 0 },
+
   logo: {
-    font: "900 42px/54px 'merriweather'",
-    lineHeight: 0.81,
+    letterSpacing: '-2px',
+    lineHeight: 0.7,
     textTransform: 'uppercase',
-    border: '4px double',
-    padding: '10px 20px',
+    fontSize: 48,
     display: 'inline-block',
-    borderRadius: 10,
+    marginTop: 0,
     color: colors.light,
-    background: colors.dark,
-    margin: 0,
+    padding: '10px 15px',
   },
 
-  link: { color: colors.light },
+  readable: { backgroundColor: colors.details },
+
+  category: { backgroundColor: colors.dark },
 })
 
 export default Logo
