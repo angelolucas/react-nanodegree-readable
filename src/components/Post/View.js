@@ -33,18 +33,19 @@ View.propTypes = {
 
 const styles = StyleSheet.create({
   title: {
-    padding: 12,
+    padding: 10,
+    marginTop: 0,
     marginBottom: spaces.x1,
     wordBreak: 'break-word',
   },
 
   summary: {
-    padding: 12,
+    padding: 10,
     wordBreak: 'break-word',
   },
 
   body: {
-    padding: 12,
+    padding: 10,
     marginTop: 0,
     wordBreak: 'break-word',
   },

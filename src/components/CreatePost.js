@@ -10,6 +10,7 @@ import * as API from '../API'
 import { storePosts } from '../actions/posts'
 import { Columns, MainColumn, SideColumn } from './Grid/TwoColumns'
 import Navigation from './Navigation'
+import InputTitle from './inputs/InputTitle'
 
 class Create extends Component {
   handleSubmit = e => {
@@ -52,12 +53,8 @@ class Create extends Component {
         <form onSubmit={this.handleSubmit}>
           <Columns>
             <MainColumn>
-              <input
-                type="text"
-                placeholder="Title"
-                name="title"
-                autoComplete="off"
-              />
+              <InputTitle />
+
               <input
                 type="text"
                 placeholder="Summary"

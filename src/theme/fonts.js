@@ -13,6 +13,7 @@ const fonts = {
     letterSpacing: 0,
     wordSpacing: 0,
     lineHeight: 1,
+    fontWeight: 'bold',
   },
 }
 

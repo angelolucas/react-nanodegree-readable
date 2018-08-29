@@ -6,10 +6,9 @@ import Textarea from 'react-textarea-autosize'
 import serializeForm from 'form-serialize'
 import { spaces, colors, buttons } from '../../theme'
 import { editPost, deletePost } from '../../actions/posts'
+import InputTitle from '../inputs/InputTitle'
 
 class Edit extends Component {
-  state = { title: this.props.title }
-
   handleEdit = e => {
     const { id, editPost, toggleEditMode } = this.props
     const values = serializeForm(e.target, { hash: true })
@@ -37,35 +36,16 @@ class Edit extends Component {
   }
 
   render() {
+    const { title, summary, body } = this.props
+
     return (
       <form onSubmit={this.handleEdit}>
-        {/**
-         * Edit Title.
-         *
-         * `Textarea` rather than `input`
-         * is for the title to behave as in the view.
-         *
-         * Inline style is a hacky: https://goo.gl/oFJreG
-         */}
-        <Textarea
-          name="title"
-          value={this.state.title}
-          placeholder="Post Title"
-          className={css(styles.title)}
-          style={{ fontSize: '32px' }}
-          autoFocus
-          onChange={e => {
-            // Prevent line break
-            const title = e.target.value.replace(/\n/g, '')
-
-            this.setState({ title })
-          }}
-        />
+        <InputTitle value={title} />
 
         {/* Edit Summary */}
         <Textarea
           name="summary"
-          defaultValue={this.props.summary}
+          defaultValue={summary}
           placeholder="Post Summary"
         />
 
@@ -73,7 +53,7 @@ class Edit extends Component {
         <Textarea
           name="body"
           className={css(styles.body)}
-          defaultValue={this.props.body}
+          defaultValue={body}
           placeholder="Post Body"
         />
 
@@ -112,12 +92,6 @@ Edit.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontWeight: 'bold',
-    fontSize: '32px',
-    '::placeholder': { fontSize: 32 },
-  },
-
   buttons: {
     position: 'sticky',
     bottom: 0,
