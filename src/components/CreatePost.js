@@ -8,7 +8,7 @@ import uuid from 'uuid'
 import { buttons } from '../theme'
 import * as API from '../API'
 import { storePosts } from '../actions/posts'
-import { Columns, MainColumn } from './Grid/TwoColumns'
+import { Columns, MainColumn, SideColumn } from './Grid/TwoColumns'
 import Navigation from './Navigation'
 
 class Create extends Component {
@@ -33,15 +33,7 @@ class Create extends Component {
   postPost = post => {
     API.postPost(post)
       .then(this.props.dispatch(storePosts()))
-      .then(
-        /**
-         * dispatch `getPosts()` triggers rendering of routes in App.js
-         * `setTimeout` is to wait to finish this rendering
-         */
-        setTimeout(() => {
-          this.goToPostPage(post)
-        }, 100)
-      )
+      .then(() => this.goToPostPage(post))
   }
 
   goToPostPage = post => {
@@ -56,10 +48,10 @@ class Create extends Component {
     return (
       <div>
         <Navigation />
-        <Columns>
-          <MainColumn>
-            <h1>Create Post</h1>
-            <form onSubmit={this.handleSubmit}>
+        <h1>Create Post</h1>
+        <form onSubmit={this.handleSubmit}>
+          <Columns>
+            <MainColumn>
               <input
                 type="text"
                 placeholder="Title"
@@ -72,6 +64,10 @@ class Create extends Component {
                 name="summary"
                 autoComplete="off"
               />
+
+              <Textarea placeholder="body" minRows={10} name="body" />
+            </MainColumn>
+            <SideColumn>
               <input
                 type="text"
                 placeholder="Author"
@@ -86,11 +82,10 @@ class Create extends Component {
                   </option>
                 ))}
               </select>
-              <Textarea placeholder="body" minRows={10} name="body" />
               <button className={css(styles.submit)}>Save</button>
-            </form>
-          </MainColumn>
-        </Columns>
+            </SideColumn>
+          </Columns>
+        </form>
       </div>
     )
   }
@@ -104,6 +99,11 @@ Create.propTypes = {
 
 const mapStateToProps = ({ categories }) => ({ categories })
 
-const styles = StyleSheet.create({ submit: { ...buttons.default } })
+const styles = StyleSheet.create({
+  submit: {
+    ...buttons.default,
+    float: 'right',
+  },
+})
 
 export default connect(mapStateToProps)(Create)

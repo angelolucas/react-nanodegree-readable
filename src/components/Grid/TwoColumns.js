@@ -25,6 +25,8 @@ const styles = StyleSheet.create({
   columns: {
     display: 'flex',
     width: '100%',
+
+    [breakpoint.medium]: { flexDirection: 'column' },
   },
 
   main: {
@@ -38,7 +40,10 @@ const styles = StyleSheet.create({
     flex: '0 1 30%',
     position: 'relative',
 
-    [breakpoint.medium]: { display: 'none' },
+    [breakpoint.medium]: {
+      flex: '100%',
+      marginLeft: 0,
+    },
   },
 })
 
