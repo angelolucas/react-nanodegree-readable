@@ -26,6 +26,7 @@ class InputTitle extends Component {
           placeholder="Post Title"
           className={css(styles.input)}
           style={{ ...styles.input._definition }}
+          maxLength={80}
           onChange={e => {
             // Prevent line break
             const value = e.target.value.replace(/\n/g, '')

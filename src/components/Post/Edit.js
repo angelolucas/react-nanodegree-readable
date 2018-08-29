@@ -6,7 +6,7 @@ import Textarea from 'react-textarea-autosize'
 import serializeForm from 'form-serialize'
 import { spaces, colors, buttons } from '../../theme'
 import { editPost, deletePost } from '../../actions/posts'
-import InputTitle from '../inputs/InputTitle'
+import { InputTitle, InputSummary } from '../inputs'
 
 class Edit extends Component {
   handleEdit = e => {
@@ -42,14 +42,8 @@ class Edit extends Component {
       <form onSubmit={this.handleEdit}>
         <InputTitle value={title} />
 
-        {/* Edit Summary */}
-        <Textarea
-          name="summary"
-          defaultValue={summary}
-          placeholder="Post Summary"
-        />
+        <InputSummary value={summary} />
 
-        {/* Edit Body */}
         <Textarea
           name="body"
           className={css(styles.body)}

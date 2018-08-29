@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import ReactMarkdown from 'react-markdown'
-import { spaces, buttons } from '../../theme'
+import { colors, spaces, buttons } from '../../theme'
 
 class View extends Component {
   render() {
@@ -41,7 +41,9 @@ const styles = StyleSheet.create({
 
   summary: {
     padding: 10,
+    margin: 0,
     wordBreak: 'break-word',
+    color: colors.gray,
   },
 
   body: {

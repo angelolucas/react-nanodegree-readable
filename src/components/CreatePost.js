@@ -10,7 +10,7 @@ import * as API from '../API'
 import { storePosts } from '../actions/posts'
 import { Columns, MainColumn, SideColumn } from './Grid/TwoColumns'
 import Navigation from './Navigation'
-import InputTitle from './inputs/InputTitle'
+import { InputTitle, InputSummary } from './inputs'
 
 class Create extends Component {
   handleSubmit = e => {
@@ -55,12 +55,7 @@ class Create extends Component {
             <MainColumn>
               <InputTitle />
 
-              <input
-                type="text"
-                placeholder="Summary"
-                name="summary"
-                autoComplete="off"
-              />
+              <InputSummary minRows={2} />
 
               <Textarea placeholder="body" minRows={10} name="body" />
             </MainColumn>
