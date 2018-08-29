@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { colors } from '../../../theme'
@@ -12,23 +12,15 @@ class Categories extends Component {
     return (
       <ul className={css(styles.list)}>
         <li className={css(styles.item)}>
-          <NavLink
-            to="/"
-            className={css(styles.link)}
-            activeClassName={css(styles.currentItem)}
-          >
+          <Link to="/" className={css(styles.link)}>
             All categories
-          </NavLink>
+          </Link>
         </li>
         {categories.map(category => (
           <li className={css(styles.item)} key={category.path}>
-            <NavLink
-              to={`/${category.path}`}
-              className={css(styles.link)}
-              activeClassName={css(styles.currentItem)}
-            >
+            <Link to={`/${category.path}`} className={css(styles.link)}>
               {category.name}
-            </NavLink>
+            </Link>
           </li>
         ))}
       </ul>
@@ -54,7 +46,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
-  link: { color: colors.dark },
+  link: {
+    color: colors.dark,
+
+    ':hover': { color: colors.details },
+  },
 
   currentItem: { fontWeight: 'bold' },
 })
