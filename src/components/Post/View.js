@@ -6,7 +6,7 @@ import { spaces, buttons } from '../../theme'
 
 class View extends Component {
   render() {
-    const { title, summary, body, switchEditMode } = this.props
+    const { title, summary, body, toggleEditMode } = this.props
 
     return (
       <div>
@@ -15,7 +15,7 @@ class View extends Component {
         <ReactMarkdown className={css(styles.body)} source={body} />
         <button
           className={css(styles.button)}
-          onClick={() => switchEditMode(true)}
+          onClick={() => toggleEditMode(true)}
         >
           edit
         </button>
@@ -28,7 +28,7 @@ View.propTypes = {
   title: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  switchEditMode: PropTypes.func.isRequired,
+  toggleEditMode: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({

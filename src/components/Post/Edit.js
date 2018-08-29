@@ -11,7 +11,7 @@ class Edit extends Component {
   state = { title: this.props.title }
 
   handleEdit = e => {
-    const { id, editPost, switchEditMode } = this.props
+    const { id, editPost, toggleEditMode } = this.props
     const values = serializeForm(e.target, { hash: true })
 
     e.preventDefault()
@@ -24,11 +24,11 @@ class Edit extends Component {
         body: values.body,
       })
 
-      switchEditMode(false)
+      toggleEditMode(false)
     }
   }
 
-  cancel = () => this.props.switchEditMode(false)
+  cancel = () => this.props.toggleEditMode(false)
 
   handleDelete = () => {
     const { id, history, deletePost } = this.props
@@ -106,7 +106,7 @@ Edit.propTypes = {
   summary: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   history: PropTypes.object,
-  switchEditMode: PropTypes.func.isRequired,
+  toggleEditMode: PropTypes.func.isRequired,
   editPost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
 }

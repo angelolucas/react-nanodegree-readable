@@ -8,7 +8,7 @@ import Edit from './Edit'
 class Comment extends Component {
   state = { editMode: false }
 
-  switchEditMode = (bool = true) => {
+  toggleEditMode = (bool = true) => {
     if (bool) {
       this.setState({ editMode: true })
     } else {
@@ -24,9 +24,9 @@ class Comment extends Component {
         <Header {...this.props} />
 
         {editMode ? (
-          <Edit {...this.props} switchEditMode={this.switchEditMode} />
+          <Edit {...this.props} toggleEditMode={this.toggleEditMode} />
         ) : (
-          <View {...this.props} switchEditMode={this.switchEditMode} />
+          <View {...this.props} toggleEditMode={this.toggleEditMode} />
         )}
       </div>
     )
