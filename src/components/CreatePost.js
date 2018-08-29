@@ -3,14 +3,13 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import serializeForm from 'form-serialize'
-import Textarea from 'react-textarea-autosize'
 import uuid from 'uuid'
 import { buttons } from '../theme'
 import * as API from '../API'
 import { storePosts } from '../actions/posts'
 import { Columns, MainColumn, SideColumn } from './Grid/TwoColumns'
 import Navigation from './Navigation'
-import { InputTitle, InputSummary } from './inputs'
+import { InputTitle, InputSummary, InputBody } from './inputs'
 
 class Create extends Component {
   handleSubmit = e => {
@@ -54,10 +53,8 @@ class Create extends Component {
           <Columns>
             <MainColumn>
               <InputTitle />
-
               <InputSummary minRows={2} />
-
-              <Textarea placeholder="body" minRows={10} name="body" />
+              <InputBody minRows={10} />
             </MainColumn>
             <SideColumn>
               <input

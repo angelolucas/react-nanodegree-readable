@@ -119,6 +119,11 @@ const globals = {
     verticalAlign: 'top',
     borderTop: '1px solid',
   },
+
+  // Markdown
+  '.markdown': { wordBreak: 'break-word' },
+
+  '.markdown > *:first-child': { marginTop: 0 },
 }
 
 export default globals

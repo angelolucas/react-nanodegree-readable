@@ -12,7 +12,10 @@ class View extends Component {
       <div>
         <h1 className={css(styles.title)}>{title}</h1>
         {summary && <p className={css(styles.summary)}>{summary}</p>}
-        <ReactMarkdown className={css(styles.body)} source={body} />
+        <ReactMarkdown
+          className={`markdown ${css(styles.markdown)}`}
+          source={body}
+        />
         <button
           className={css(styles.button)}
           onClick={() => toggleEditMode(true)}
@@ -40,17 +43,13 @@ const styles = StyleSheet.create({
   },
 
   summary: {
-    padding: 10,
-    margin: 0,
-    wordBreak: 'break-word',
     color: colors.gray,
+    padding: 10,
+    marginBottom: spaces.x1,
+    wordBreak: 'break-word',
   },
 
-  body: {
-    padding: 10,
-    marginTop: 0,
-    wordBreak: 'break-word',
-  },
+  markdown: { padding: 10 },
 
   button: {
     float: 'right',

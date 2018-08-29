@@ -10,7 +10,10 @@ class View extends Component {
 
     return (
       <div>
-        <ReactMarkdown source={body} className={css(styles.body)} />
+        <ReactMarkdown
+          className={`markdown ${css(styles.markdown)}`}
+          source={body}
+        />
 
         {/* Show edit button */}
         <div className={css(styles.tools)}>
@@ -32,12 +35,10 @@ View.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  body: {
+  markdown: {
     marginTop: 5,
     marginBottom: 5,
     padding: 12,
-    whiteSpace: 'pre-wrap',
-    wordBreak: 'break-word',
   },
 
   tools: { float: 'right' },

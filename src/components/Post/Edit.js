@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import Textarea from 'react-textarea-autosize'
 import serializeForm from 'form-serialize'
 import { spaces, colors, buttons } from '../../theme'
 import { editPost, deletePost } from '../../actions/posts'
-import { InputTitle, InputSummary } from '../inputs'
+import { InputTitle, InputSummary, InputBody } from '../inputs'
 
 class Edit extends Component {
   handleEdit = e => {
@@ -41,15 +40,8 @@ class Edit extends Component {
     return (
       <form onSubmit={this.handleEdit}>
         <InputTitle value={title} />
-
         <InputSummary value={summary} />
-
-        <Textarea
-          name="body"
-          className={css(styles.body)}
-          defaultValue={body}
-          placeholder="Post Body"
-        />
+        <InputBody value={body} />
 
         {/* Delete, Cancel and Save buttons */}
         <div className={css(styles.buttons)}>
@@ -92,13 +84,11 @@ const styles = StyleSheet.create({
     background: colors.light,
     paddingTop: spaces.x1,
     paddingBottom: spaces.x1,
-    marginTop: -2,
+    marginTop: -21,
     boxShadow: '0px -2px 1px -2px rgba(0, 0, 0, 0.4)',
     display: 'flex',
     justifyContent: 'flex-end',
   },
-
-  body: { marginBottom: 0 },
 
   button: { ...buttons.smallLight },
 
