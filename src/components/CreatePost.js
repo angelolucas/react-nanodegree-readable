@@ -9,7 +9,13 @@ import * as API from '../API'
 import { storePosts } from '../actions/posts'
 import { Columns, MainColumn, SideColumn } from './Grid/TwoColumns'
 import Navigation from './Navigation'
-import { InputTitle, InputSummary, InputBody, SelectCategory } from './inputs'
+import {
+  InputTitle,
+  InputSummary,
+  InputBody,
+  SelectCategory,
+  InputAuthor,
+} from './inputs'
 
 class Create extends Component {
   handleSubmit = e => {
@@ -55,12 +61,7 @@ class Create extends Component {
               <InputBody minRows={10} />
             </MainColumn>
             <SideColumn>
-              <input
-                type="text"
-                placeholder="Author"
-                name="author"
-                autoComplete="off"
-              />
+              <InputAuthor />
               <SelectCategory />
               <button className={css(styles.submit)}>Save</button>
             </SideColumn>

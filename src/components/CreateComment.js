@@ -7,6 +7,7 @@ import Textarea from 'react-textarea-autosize'
 import uuid from 'uuid'
 import { buttons } from '../theme'
 import { postComment } from '../actions/comments'
+import { InputAuthor } from './inputs'
 
 class CommentForm extends Component {
   handleSubmit = e => {
@@ -39,13 +40,7 @@ class CommentForm extends Component {
           className={css(styles.field, styles.textarea)}
           minRows={5}
         />
-        <input
-          className={css(styles.field)}
-          type="text"
-          placeholder="Name"
-          name="author"
-          autoComplete="off"
-        />
+        <InputAuthor />
         <button className={css(styles.button)}>Post Comment</button>
       </form>
     )
