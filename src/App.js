@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import injectGlobalStyles from 'aphrodite-globals/no-important'
@@ -34,23 +29,23 @@ class App extends Component {
   }
   render() {
     return (
-      <Router>
+      <BrowserRouter>
         <ScrollToTop>
           <div className={css(styles.general)}>
             <Header />
             <div className={css(styles.middle)}>
               <Switch>
-                {/* Home page */}
+                {/* Home */}
                 <Route
                   exact
                   path="/"
                   render={() => <Navigation alwaysOpen />}
                 />
 
-                {/* Create Post page */}
+                {/* Create Post */}
                 <Route exact path="/create-post" component={CreatePost} />
 
-                {/* Category page */}
+                {/* Category */}
                 <Route
                   exact
                   path="/:category"
@@ -59,7 +54,7 @@ class App extends Component {
                   )}
                 />
 
-                {/* Post page */}
+                {/* Post */}
                 <Route exact path="/:category/:post" component={Post} />
 
                 {/* Redirect to home if Routes above don't match */}
@@ -69,7 +64,7 @@ class App extends Component {
             <Footer />
           </div>
         </ScrollToTop>
-      </Router>
+      </BrowserRouter>
     )
   }
 }
