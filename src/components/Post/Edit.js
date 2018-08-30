@@ -39,9 +39,9 @@ class Edit extends Component {
 
     return (
       <form onSubmit={this.handleEdit}>
-        <TextareaTitle value={title} />
-        <TextareaSummary value={summary} />
-        <TextareaBody value={body} />
+        <TextareaTitle defaultValue={title} />
+        <TextareaSummary defaultValue={summary} />
+        <TextareaBody defaultValue={body} />
 
         {/* Delete, Cancel and Save buttons */}
         <div className={css(styles.buttons)}>

@@ -5,13 +5,21 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 import { fonts } from '../../theme'
 
 class TextareaTitle extends Component {
-  state = { value: this.props.value }
+  state = { value: '' }
 
   render() {
+    const classFromProps = this.props.className ? this.props.className : ''
+    const bigAsTitle = {
+      ...fonts.titles,
+      fontSize: 32,
+    }
+
     return (
       /**
        * `Textarea` rather than `input`
        * is for the title to behave as in the view.
+       *
+       * Parameters after `{...this.props}` is to prevent overwriting
        *
        * The inline style is because Aphrodite updates the `<style>` after
        * the `Textarea` component needs of it to calculate initial height.
@@ -19,34 +27,31 @@ class TextareaTitle extends Component {
        */
       <Textarea
         name="title"
-        value={this.state.value}
         placeholder="Post Title"
-        className={css(styles.input)}
-        style={{ ...styles.input._definition }}
         maxLength={80}
+        {...this.props}
         onChange={e => {
           // Prevent line break
           const value = e.target.value.replace(/\n/g, '')
 
           this.setState({ value })
         }}
+        style={bigAsTitle}
+        className={`${css(styles.placeholder)} ${classFromProps}`}
       />
     )
   }
 }
 
-TextareaTitle.propTypes = { value: PropTypes.string }
-
 const styles = StyleSheet.create({
-  input: {
-    ...fonts.titles,
-    fontSize: 32,
-
+  placeholder: {
     '::placeholder': {
       ...fonts.titles,
       fontSize: 32,
     },
   },
 })
+
+TextareaTitle.propTypes = { className: PropTypes.string }
 
 export default TextareaTitle

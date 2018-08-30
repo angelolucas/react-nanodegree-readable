@@ -58,10 +58,7 @@ class Create extends Component {
             <MainColumn>
               <TextareaTitle />
               <TextareaSummary minRows={2} />
-              <TextareaBody
-                minRows={10}
-                placeholder="Body: you may write in Markdown :)"
-              />
+              <TextareaBody minRows={10} />
             </MainColumn>
             <SideColumn>
               <InputAuthor />

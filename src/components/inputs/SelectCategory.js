@@ -4,13 +4,13 @@ import PropTypes from 'prop-types'
 
 class SelectCategory extends Component {
   render() {
-    const { categories } = this.props
+    const { categories, dispatch, ...rest } = this.props
 
     return (
-      <select name="category">
+      <select name="category" {...rest}>
         <option>Select category</option>
         {categories.map(category => (
-          <option key={category.path} value={category.path}>
+          <option value={category.path} key={category.path}>
             {category.name}
           </option>
         ))}
@@ -19,7 +19,10 @@ class SelectCategory extends Component {
   }
 }
 
-SelectCategory.propTypes = { categories: PropTypes.array }
+SelectCategory.propTypes = {
+  categories: PropTypes.array,
+  dispatch: PropTypes.func,
+}
 
 const mapStateToProps = ({ categories }) => ({ categories })
 

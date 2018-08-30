@@ -36,7 +36,7 @@ class Edit extends Component {
     return (
       <form onSubmit={this.handleEdit}>
         <TextareaBody
-          value={this.props.body}
+          defaultValue={this.props.body}
           placeholder="Edit comment"
           className={css(styles.body)}
           autoFocus
@@ -72,7 +72,7 @@ Edit.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  body: { marginBottom: 0 },
+  body: { marginBottom: 10 },
   save: { ...buttons.small },
   button: { ...buttons.smallLight },
   tools: { float: 'right' },
