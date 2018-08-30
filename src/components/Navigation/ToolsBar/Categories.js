@@ -13,7 +13,7 @@ class Categories extends Component {
       <ul className={css(styles.list)}>
         <li className={css(styles.item)}>
           <Link to="/" className={css(styles.link)}>
-            All categories
+            All Categories
           </Link>
         </li>
         {categories.map(category => (
