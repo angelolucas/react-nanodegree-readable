@@ -20,7 +20,7 @@ class ToolsBar extends Component {
 const styles = StyleSheet.create({
   toolsBar: {
     display: 'flex',
-    borderBottom: '1px solid',
+    borderBottom: `1px solid ${colors.gray}`,
     position: 'sticky',
     top: 0,
     background: colors.light,

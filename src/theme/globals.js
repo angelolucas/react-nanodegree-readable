@@ -29,8 +29,8 @@ const globals = {
   code: {
     padding: '2px 4px',
     fontSize: '90%',
-    color: 'black',
-    backgroundColor: '#e0e0e0',
+    color: colors.light,
+    backgroundColor: colors.details,
     borderRadius: '4px',
     fontFamily: [
       'SFMono-Regular',
@@ -54,13 +54,12 @@ const globals = {
   blockquote: {
     padding: '0 1em',
     marginLeft: 0,
-    borderLeft: '0.25em solid',
+    borderLeft: `0.25em solid ${colors.gray}`,
   },
 
   pre: {
     background: colors.dark,
     color: colors.light,
-    border: '1px solid',
     padding: spaces.x1,
   },
 
@@ -108,7 +107,7 @@ const globals = {
 
   'table > thead > tr > th': {
     verticalAlign: 'bottom',
-    borderBottom: '1px solid',
+    borderBottom: `1px solid ${colors.gray}`,
     borderTop: 'none',
   },
 
@@ -117,13 +116,15 @@ const globals = {
   'tr th, tr td': {
     padding: 8,
     verticalAlign: 'top',
-    borderTop: '1px solid',
+    borderTop: `1px solid ${colors.gray}`,
   },
 
   // Markdown
   '.markdown': { wordBreak: 'break-word' },
 
   '.markdown > *:first-child': { marginTop: 0 },
+
+  '.markdown > *:last-child': { marginBottom: 0 },
 }
 
 export default globals
