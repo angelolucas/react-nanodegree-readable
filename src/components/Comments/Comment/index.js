@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { spaces } from '../../../theme'
+import { spaces, colors } from '../../../theme'
 import Header from './Header'
 import View from './View'
 import Edit from './Edit'
@@ -35,7 +35,7 @@ class Comment extends Component {
 
 const styles = StyleSheet.create({
   comment: {
-    borderBottom: '1px solid',
+    borderBottom: `1px solid ${colors.gray}`,
     marginBottom: spaces.x2,
     paddingBottom: spaces.x2,
   },

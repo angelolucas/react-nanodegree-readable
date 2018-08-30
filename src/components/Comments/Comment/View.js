@@ -35,13 +35,13 @@ View.propTypes = {
 const styles = StyleSheet.create({
   markdown: {
     marginTop: 5,
-    marginBottom: 5,
-    padding: 12,
+    marginBottom: 10,
+    padding: 10,
   },
 
   tools: { float: 'right' },
 
-  button: { ...buttons.small },
+  button: { ...buttons.smallLight },
 })
 
 export default View

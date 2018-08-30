@@ -10,7 +10,7 @@ class Header extends Component {
     const { id, author, timestamp, voteScore } = this.props
 
     return (
-      <div>
+      <div className={css(styles.header)}>
         <span className={css(styles.author)}>{author}</span>
         <span className={css(styles.date)}>{date(timestamp)}</span>
         <span className={css(styles.voteScore)}>
@@ -29,6 +29,8 @@ Header.propTypes = {
 }
 
 const styles = StyleSheet.create({
+  header: { marginBottom: 5 },
+
   author: {
     fontSize: 14,
     fontWeight: 'bold',
