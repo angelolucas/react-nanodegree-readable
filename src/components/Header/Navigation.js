@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import Categories from './Categories'
-import SearchInput from './SearchInput'
 import Menu from './Menu'
 
 class Navigation extends Component {
@@ -9,7 +8,6 @@ class Navigation extends Component {
     return (
       <div className={css(styles.navigation)}>
         <Categories />
-        <SearchInput />
         <Menu />
       </div>
     )

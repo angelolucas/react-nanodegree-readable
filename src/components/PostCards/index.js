@@ -31,7 +31,6 @@ class PostCards extends Component {
   render() {
     const {
       category,
-      search,
       posts,
       maxLength,
       sortBy,
@@ -44,19 +43,6 @@ class PostCards extends Component {
 
     if (category) {
       postsAsArray = postsAsArray.filter(post => post.category === category)
-    }
-
-    if (search) {
-      const term = search.toLowerCase()
-
-      postsAsArray = postsAsArray.filter(
-        post =>
-          post.author.toLowerCase().search(term) !== -1 ||
-          post.title.toLowerCase().search(term) !== -1 ||
-          post.summary.toLowerCase().search(term) !== -1 ||
-          post.category.toLowerCase().search(term) !== -1 ||
-          post.body.toLowerCase().search(term) !== -1
-      )
     }
 
     if (exceptId) {
@@ -93,7 +79,6 @@ PostCards.propTypes = {
   sortBy: PropTypes.string.isRequired,
   storePosts: PropTypes.func.isRequired,
   category: PropTypes.string,
-  search: PropTypes.string,
   exceptId: PropTypes.string,
   maxLength: PropTypes.number,
   justMainInfo: PropTypes.bool,

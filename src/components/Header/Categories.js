@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     padding: 0,
     margin: 0,
     marginLeft: spaces.x1 - 10,
+    flex: 'auto',
   },
 
   item: { display: 'inline-block' },
