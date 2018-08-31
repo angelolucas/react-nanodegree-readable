@@ -5,7 +5,7 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 import { fonts } from '../../theme'
 
 class TextareaTitle extends Component {
-  state = { value: '' }
+  state = { value: this.props.defaultValue }
 
   render() {
     const classFromProps = this.props.className ? this.props.className : ''
@@ -36,6 +36,7 @@ class TextareaTitle extends Component {
 
           this.setState({ value })
         }}
+        value={this.state.value}
         style={bigAsTitle}
         className={`${css(styles.placeholder)} ${classFromProps}`}
       />
@@ -52,6 +53,9 @@ const styles = StyleSheet.create({
   },
 })
 
-TextareaTitle.propTypes = { className: PropTypes.string }
+TextareaTitle.propTypes = {
+  defaultValue: PropTypes.string,
+  className: PropTypes.string,
+}
 
 export default TextareaTitle
