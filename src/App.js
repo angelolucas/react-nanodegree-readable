@@ -11,11 +11,11 @@ import { storeCategories } from './actions/categories'
 import ScrollToTop from './components/ScrollToTop'
 
 // Components
-import Navigation from './components/Navigation'
+import Header from './components/Header'
+import Home from './components/Home'
+import CreatePost from './components/CreatePost'
 import Category from './components/Category'
 import Post from './components/Post'
-import CreatePost from './components/CreatePost'
-import Header from './components/Header'
 import Footer from './components/Footer'
 
 // Add icons to Font awesome library
@@ -37,11 +37,7 @@ class App extends Component {
             <div className={css(styles.middle)}>
               <Switch>
                 {/* Home */}
-                <Route
-                  exact
-                  path="/"
-                  render={() => <Navigation alwaysOpen />}
-                />
+                <Route exact path="/" component={Home} />
 
                 {/* Create Post */}
                 <Route exact path="/create-post" component={CreatePost} />
