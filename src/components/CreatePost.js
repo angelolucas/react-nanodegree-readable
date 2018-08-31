@@ -8,7 +8,6 @@ import { buttons } from '../theme'
 import * as API from '../API'
 import { storePosts } from '../actions/posts'
 import { Columns, MainColumn, SideColumn } from './Grid/TwoColumns'
-import Navigation from './Navigation'
 import {
   TextareaTitle,
   TextareaSummary,
@@ -51,7 +50,6 @@ class Create extends Component {
   render() {
     return (
       <div>
-        <Navigation />
         <h1>Create Post</h1>
         <form onSubmit={this.handleSubmit}>
           <Columns>

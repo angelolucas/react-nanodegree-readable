@@ -7,7 +7,6 @@ import Comments from '../Comments'
 import CreateComment from '../CreateComment'
 import Loading from '../Loading'
 import Failure from '../Failure'
-import Navigation from '../Navigation'
 import Header from './Header'
 import View from './View'
 import Edit from './Edit'
@@ -38,8 +37,6 @@ class Post extends Component {
 
     return (
       <div>
-        <Navigation />
-
         {post && (
           <Columns>
             <MainColumn>
