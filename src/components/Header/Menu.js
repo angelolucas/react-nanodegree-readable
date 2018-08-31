@@ -8,7 +8,7 @@ import ToggleSortBy from './ToggleSortBy'
 class Menu extends Component {
   render() {
     return (
-      <div className={css(styles.menu)}>
+      <div className={css(styles.menu)} tabIndex="-1">
         <div className={css(styles.items)}>
           <ToggleSortBy className={css(styles.item)} />
           <Link className={css(styles.item)} to="/create-post">
@@ -16,9 +16,9 @@ class Menu extends Component {
             <Icon icon="paper-plane" className={css(styles.icon)} />
           </Link>
         </div>
-        <button className={css(styles.toggleButton)}>
+        <div className={css(styles.bars)}>
           <Icon icon="bars" />
-        </button>
+        </div>
       </div>
     )
   }
@@ -26,20 +26,33 @@ class Menu extends Component {
 
 const styles = StyleSheet.create({
   menu: {
-    display: 'flex',
-    textAlign: 'right',
+    position: 'relative',
+    outline: 'none',
 
-    ':hover [class^=toggleButton]': { color: colors.details },
-    ':hover [class^=items]': { opacity: 1 },
+    ':hover [class^=bars]': { color: colors.details },
+    ':focus [class^=items]': { display: 'flex' },
   },
 
-  toggleButton: { fontSize: 20 },
+  bars: {
+    fontSize: 16,
+    height: '100%',
+    padding: 10,
+    cursor: 'pointer',
+  },
 
-  items: { opacity: 0 },
+  items: {
+    paddingLeft: 50,
+    background: `linear-gradient(to left, ${colors.light} 90%, transparent)`,
+    position: 'absolute',
+    right: '100%',
+    bottom: 0,
+    display: 'none',
+  },
 
   item: {
-    display: 'block',
-    padding: '0 10px 2px',
+    whiteSpace: 'nowrap',
+    display: 'inlin-block',
+    padding: 10,
     fontSize: 16,
     color: colors.dark,
 
