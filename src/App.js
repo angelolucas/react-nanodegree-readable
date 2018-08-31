@@ -12,6 +12,7 @@ import ScrollToTop from './components/ScrollToTop'
 
 // Components
 import Navigation from './components/Navigation'
+import Category from './components/Category'
 import Post from './components/Post'
 import CreatePost from './components/CreatePost'
 import Header from './components/Header'
@@ -50,7 +51,7 @@ class App extends Component {
                   exact
                   path="/:category"
                   render={e => (
-                    <Navigation alwaysOpen category={e.match.params.category} />
+                    <Category alwaysOpen category={e.match.params.category} />
                   )}
                 />
 
