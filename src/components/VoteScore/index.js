@@ -65,9 +65,10 @@ class voteScore extends Component {
 
   render() {
     const { currentVote } = this.state
+    const classFromProps = this.props.className ? this.props.className : ''
 
     return (
-      <div className={css(styles.voteScore)}>
+      <div className={`${css(styles.voteScore)} ${classFromProps}`}>
         <button
           title="Up vote"
           onClick={() => this.handleVote('upVote')}
@@ -95,6 +96,7 @@ class voteScore extends Component {
 }
 
 voteScore.propTypes = {
+  className: PropTypes.string,
   score: PropTypes.number.isRequired,
   contentType: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
