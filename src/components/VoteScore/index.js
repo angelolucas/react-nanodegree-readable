@@ -112,9 +112,15 @@ const styles = StyleSheet.create({
     height: 20,
     padding: 3,
     color: colors.gray,
+
+    ':hover': { color: colors.dark },
   },
 
-  selected: { color: colors.details },
+  selected: {
+    color: colors.details,
+
+    ':hover': { color: colors.details },
+  },
 
   voteScore: { display: 'inline-block' },
 
