@@ -24,10 +24,13 @@ class Post extends Component {
   }
 
   UNSAFE_componentWillMount() {
-    const { match, storePosts } = this.props
+    const { match, storePosts, location } = this.props
     const id = match.params.post
+    const mountInEditMode = location.state ? location.state.editMode : false
 
     storePosts({ id })
+
+    if (mountInEditMode) this.setState({ editMode: true })
   }
 
   render() {
@@ -72,6 +75,7 @@ Post.propTypes = {
   storePosts: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = ({ posts }) => ({ posts })

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { colors } from '../../../theme'
@@ -7,7 +8,7 @@ import VoteScore from '../../VoteScore'
 
 class BottomBar extends Component {
   render() {
-    const { id, commentCount, voteScore } = this.props
+    const { id, category, commentCount, voteScore } = this.props
 
     return (
       <ul className={css(styles.bottomBar)}>
@@ -19,6 +20,14 @@ class BottomBar extends Component {
           <VoteScore id={id} contentType="post" score={voteScore} />
         </li>
         <li>
+          <Link
+            to={{
+              pathname: `/${category}/${id}`,
+              state: { editMode: true },
+            }}
+          >
+            Edit
+          </Link>
           <Icon icon="ellipsis-h" />
         </li>
       </ul>
@@ -28,6 +37,7 @@ class BottomBar extends Component {
 
 BottomBar.propTypes = {
   id: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   commentCount: PropTypes.number.isRequired,
   voteScore: PropTypes.number.isRequired,
 }
