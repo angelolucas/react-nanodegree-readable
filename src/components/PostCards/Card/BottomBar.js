@@ -1,19 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { colors } from '../../../theme'
 import { deletePost } from '../../../actions/posts'
 import VoteScore from '../../VoteScore'
-import { ShowTools, Tool } from '../../ShowTools'
 
 class BottomBar extends Component {
   render() {
-    const { id, category, commentCount, voteScore, deletePost } = this.props
+    const {
+      id,
+      category,
+      commentCount,
+      voteScore,
+      deletePost,
+      className,
+    } = this.props
+    const classFromProps = className ? className : ''
 
     return (
-      <ul className={css(styles.bottomBar)}>
+      <ul className={`${css(styles.bottomBar)} ${classFromProps}`}>
         <li className={css(styles.item)}>
           <Icon icon="comment-alt" />
           <strong className={css(styles.commentCount)}>{commentCount}</strong>
@@ -22,23 +30,24 @@ class BottomBar extends Component {
           <VoteScore id={id} contentType="post" score={voteScore} />
         </li>
         <li className={css(styles.item)}>
-          <ShowTools icon="ellipsis-v">
-            <Tool
-              type="button"
-              onClick={() => deletePost(id)}
-              title="Trash"
-              icon="trash"
-            />
-            <Tool
-              type="link"
-              to={{
-                pathname: `/${category}/${id}`,
-                state: { editMode: true },
-              }}
-              icon="pencil-alt"
-              title="Edit"
-            />
-          </ShowTools>
+          <Link
+            to={{
+              pathname: `/${category}/${id}`,
+              state: { editMode: true },
+            }}
+            title="Edit"
+            className={css(styles.tool)}
+          >
+            <Icon icon="pencil-alt" />
+          </Link>
+          <button
+            type="button"
+            onClick={() => deletePost(id)}
+            title="Delete"
+            className={css(styles.tool)}
+          >
+            <Icon icon="trash" />
+          </button>
         </li>
       </ul>
     )
@@ -47,6 +56,7 @@ class BottomBar extends Component {
 
 BottomBar.propTypes = {
   id: PropTypes.string.isRequired,
+  className: PropTypes.string,
   category: PropTypes.string.isRequired,
   commentCount: PropTypes.number.isRequired,
   voteScore: PropTypes.number.isRequired,
@@ -73,6 +83,15 @@ const styles = StyleSheet.create({
   },
 
   commentCount: { marginLeft: 5 },
+
+  tool: {
+    color: colors.gray,
+    fontSize: 14,
+    padding: 3,
+    paddingLeft: 10,
+
+    ':hover': { color: colors.details },
+  },
 })
 
 const mapDispatchToProps = dispatch => {

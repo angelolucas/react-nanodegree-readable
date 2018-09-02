@@ -33,7 +33,9 @@ class Card extends Component {
           {date(timestamp)}
           {showCategory && <Category path={category} />}
         </p>
-        {!justMainInfo && <BottomBar {...this.props} />}
+        {!justMainInfo && (
+          <BottomBar className={css(styles.bottomBar)} {...this.props} />
+        )}
       </li>
     )
   }
@@ -57,6 +59,8 @@ const styles = StyleSheet.create({
     display: 'inline-block',
 
     ':hover': { background: 'white' },
+    ':hover [class^=link]': { color: colors.details },
+    ':hover [class^=bottomBar]': { opacity: 1 },
   },
 
   title: {
@@ -80,6 +84,8 @@ const styles = StyleSheet.create({
     color: colors.gray,
     wordBreak: 'break-word',
   },
+
+  bottomBar: { opacity: 0 },
 })
 
 export default Card
