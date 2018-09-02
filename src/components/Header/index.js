@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'space-between',
     marginBottom: spaces.x1,
-    borderBottom: `1px solid ${colors.gray}`,
+    borderBottom: `1px solid ${colors.border}`,
 
     [breakpoint.medium]: { flexDirection: 'column' },
   },

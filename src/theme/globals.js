@@ -54,7 +54,7 @@ const globals = {
   blockquote: {
     padding: '0 1em',
     marginLeft: 0,
-    borderLeft: `0.25em solid ${colors.gray}`,
+    borderLeft: `0.25em solid ${colors.border}`,
   },
 
   pre: {
@@ -73,6 +73,11 @@ const globals = {
   },
 
   img: { maxWidth: '100%' },
+
+  hr: {
+    border: 'none',
+    borderTop: `1px solid ${colors.border}`,
+  },
 
   // Form
   'input, textarea, select': {
@@ -107,7 +112,7 @@ const globals = {
 
   'table > thead > tr > th': {
     verticalAlign: 'bottom',
-    borderBottom: `1px solid ${colors.gray}`,
+    borderBottom: `1px solid ${colors.border}`,
     borderTop: 'none',
   },
 
@@ -116,7 +121,7 @@ const globals = {
   'tr th, tr td': {
     padding: 8,
     verticalAlign: 'top',
-    borderTop: `1px solid ${colors.gray}`,
+    borderTop: `1px solid ${colors.border}`,
   },
 
   // Markdown
