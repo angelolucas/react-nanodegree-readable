@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     listStyle: 'none',
     padding: 0,
     margin: 0,
-    marginLeft: spaces.x1 - 10,
+    marginLeft: spaces.x1,
     flex: 'auto',
   },
 
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   link: {
     display: 'inline-block',
     color: colors.dark,
+    fontWeight: 'bold',
     padding: 10,
 
     ':hover': { color: colors.details },
