@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { colors, breakpoint } from '../theme'
 
+/*
+ * This component find the category name by the path,
+ * and return the category with link to category page.
+ */
 class CategoryName extends Component {
   render() {
     const category = this.props.categories.find(
