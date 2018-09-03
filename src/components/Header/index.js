@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   header: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginBottom: spaces.x1,
+    marginBottom: spaces.x2,
     borderBottom: `1px solid ${colors.border}`,
 
     [breakpoint.medium]: { flexDirection: 'column' },

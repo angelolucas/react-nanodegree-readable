@@ -33,6 +33,11 @@ const styles = StyleSheet.create({
     padding: '10px 15px',
 
     [breakpoint.small]: { width: '100%' },
+
+    ':hover': {
+      backgroundColor: colors.dark,
+      color: colors.details,
+    },
   },
 })
 
