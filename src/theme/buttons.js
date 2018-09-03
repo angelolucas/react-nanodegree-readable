@@ -14,6 +14,8 @@ const buttons = {
     padding: '10px 20px',
     fontSize: 14,
     fontWeight: 'bold',
+
+    ':hover': { background: colors.details },
   },
 
   defaultLight: {
@@ -23,6 +25,8 @@ const buttons = {
     padding: '10px 20px',
     fontSize: 14,
     display: 'block',
+
+    ':hover': { color: colors.details },
   },
 
   small: {
@@ -31,6 +35,8 @@ const buttons = {
     color: colors.light,
     padding: '3px 10px',
     fontSize: 12,
+
+    ':hover': { background: colors.details },
   },
 
   smallLight: {
@@ -39,6 +45,8 @@ const buttons = {
     color: colors.dark,
     padding: '3px 10px',
     fontSize: 12,
+
+    ':hover': { color: colors.details },
   },
 }
 
