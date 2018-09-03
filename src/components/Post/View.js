@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import ReactMarkdown from 'react-markdown'
-import { colors, spaces, buttons } from '../../theme'
+import { colors, spaces, buttons, breakpoint } from '../../theme'
 import { deletePost } from '../../actions/posts'
 import VoteScore from '../VoteScore'
 
@@ -66,23 +66,24 @@ View.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  view: { marginBottom: spaces.x2 },
+  view: {
+    marginBottom: spaces.x2,
+    padding: 10,
+
+    [breakpoint.small]: { padding: 0 },
+  },
 
   title: {
-    padding: 10,
     marginTop: 0,
-    marginBottom: spaces.x1,
+    marginBottom: spaces.x2,
     wordBreak: 'break-word',
   },
 
   summary: {
     color: colors.gray,
-    padding: 10,
-    marginBottom: spaces.x1,
+    marginBottom: spaces.x2,
     wordBreak: 'break-word',
   },
-
-  markdown: { padding: 10 },
 
   footer: {
     display: 'flex',
