@@ -1,7 +1,7 @@
-export const SORT_BY = 'SORT_BY'
+export const CHANGE_SORT_BY = 'CHANGE_SORT_BY'
 
-export const sortBy = option => dispatch =>
+export const changeSortBy = option => dispatch =>
   dispatch({
-    type: SORT_BY,
+    type: CHANGE_SORT_BY,
     option,
   })

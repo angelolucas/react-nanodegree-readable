@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import { sortBy } from '../../actions/sortBy'
+import { changeSortBy } from '../../actions/sortBy'
 
 class ToggleSortBy extends Component {
   toggleSort = () => {
-    if (this.props.sortBy === 'date') this.props.dispatch(sortBy('score'))
-    else this.props.dispatch(sortBy('date'))
+    const { sortBy, dispatch } = this.props
+    const toggleValue = sortBy === 'date' ? 'score' : 'date'
+
+    dispatch(changeSortBy(toggleValue))
   }
 
   render() {
@@ -17,8 +18,8 @@ class ToggleSortBy extends Component {
 
     return (
       <button {...rest} onClick={this.toggleSort}>
+        <Icon style={{ marginRight: 5 }} icon={icon} />
         Sort by Score
-        <Icon className={css(styles.icon)} icon={icon} />
       </button>
     )
   }
@@ -28,8 +29,6 @@ ToggleSortBy.propTypes = {
   sortBy: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
-
-const styles = StyleSheet.create({ icon: { width: '27px!important' } })
 
 const mapStateToProps = ({ sortBy }) => ({ sortBy })
 
