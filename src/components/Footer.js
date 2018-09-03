@@ -15,8 +15,9 @@ class Footer extends Component {
             rel="noopener noreferrer"
             className={css(styles.link)}
           >
-            An Udacity Project.
-          </a>{' '}
+            An Udacity Project.{' '}
+            <FontAwesomeIcon icon={faGithub} className={css(styles.icon)} />
+          </a>
           <a
             href="https://angelolucas.github.io/"
             target="_blank"
@@ -24,7 +25,6 @@ class Footer extends Component {
             className={css(styles.link)}
           >
             By Ângelo Lucas.
-            <FontAwesomeIcon icon={faGithub} className={css(styles.icon)} />
           </a>
         </p>
       </footer>
@@ -36,14 +36,15 @@ const styles = StyleSheet.create({
   footer: {
     marginTop: spaces.x1,
     textAlign: 'right',
+    fontSize: 14,
   },
 
   content: { margin: 0 },
 
   icon: {
     marginLeft: 5,
-    marginRight: 5,
-    fontSize: 22,
+    marginRight: 10,
+    fontSize: 18,
   },
 })
 
