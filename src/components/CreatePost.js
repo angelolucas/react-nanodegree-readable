@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import serializeForm from 'form-serialize'
 import uuid from 'uuid'
-import { buttons } from '../theme'
+import { spaces, buttons } from '../theme'
 import * as API from '../API'
 import { storePosts } from '../actions/posts'
 import { Columns, MainColumn, SideColumn } from './Grid/TwoColumns'
@@ -62,9 +62,11 @@ class Create extends Component {
               />
             </MainColumn>
             <SideColumn>
-              <InputAuthor />
-              <SelectCategory />
-              <button className={css(styles.submit)}>Save</button>
+              <div className={css(styles.sticky)}>
+                <InputAuthor />
+                <SelectCategory />
+                <button className={css(styles.submit)}>Save</button>
+              </div>
             </SideColumn>
           </Columns>
         </form>
@@ -80,6 +82,11 @@ Create.propTypes = {
 
 const styles = StyleSheet.create({
   title: { marginTop: 0 },
+
+  sticky: {
+    position: 'sticky',
+    top: spaces.x2,
+  },
 
   submit: {
     ...buttons.default,
