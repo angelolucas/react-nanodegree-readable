@@ -103,6 +103,8 @@ const globals = {
     resize: 'none',
   },
 
+  select: { height: 44 },
+
   // Table
   table: {
     width: '100%',
