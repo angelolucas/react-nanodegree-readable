@@ -8,7 +8,8 @@ class TextareaTitle extends Component {
   state = { value: this.props.defaultValue }
 
   render() {
-    const classFromProps = this.props.className ? this.props.className : ''
+    const { className, defaultValue, value, ...rest } = this.props
+    const classFromProps = className ? className : ''
     const bigAsTitle = {
       ...fonts.titles,
       fontSize: 32,
@@ -29,7 +30,8 @@ class TextareaTitle extends Component {
         name="title"
         placeholder="Post Title"
         maxLength={80}
-        {...this.props}
+        {...rest}
+        value={this.state.value}
         onChange={e => {
           // Prevent line break
           const value = e.target.value.replace(/\n/g, '')
@@ -53,6 +55,7 @@ const styles = StyleSheet.create({
 })
 
 TextareaTitle.propTypes = {
+  value: PropTypes.string,
   defaultValue: PropTypes.string,
   className: PropTypes.string,
 }
