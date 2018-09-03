@@ -1,14 +1,8 @@
-import uuid from 'uuid'
-
 const api = 'http://localhost:3001'
-
-let token = localStorage.token
-
-if (!token) token = localStorage.token = uuid()
 
 const headers = {
   Accept: 'application/json',
-  Authorization: token,
+  Authorization: 'whatever-you-want',
 }
 
 // Categories
