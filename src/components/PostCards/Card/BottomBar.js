@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import { colors } from '../../../theme'
+import { colors, breakpoint } from '../../../theme'
 import { deletePost } from '../../../actions/posts'
 import VoteScore from '../../VoteScore'
 
@@ -91,6 +91,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
 
     ':hover': { color: colors.details },
+
+    [breakpoint.small]: { color: colors.details },
   },
 })
 

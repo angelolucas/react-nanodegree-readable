@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { spaces, colors } from '../../../theme'
+import { spaces, colors, breakpoint } from '../../../theme'
 import date from '../../../utils/date'
 import CategoryName from '../../CategoryName'
 import BottomBar from './BottomBar'
@@ -57,19 +57,34 @@ const styles = StyleSheet.create({
     flex: '1 1 400px',
     padding: spaces.x1,
     display: 'inline-block',
+    alignSelf: 'self-end',
 
     ':hover': { background: 'white' },
+
     ':hover [class^=link]': { color: colors.details },
+
     ':hover [class^=bottomBar]': { opacity: 1 },
+
+    [breakpoint.small]: {
+      borderBottom: `1px solid ${colors.border}`,
+      ':hover': { background: 'transparent' },
+      paddingLeft: 0,
+      paddingRight: 0,
+    },
   },
 
   title: {
+    marginTop: 0,
     marginBottom: 5,
     lineHeight: 1.1,
     wordBreak: 'break-word',
   },
 
-  link: { color: colors.dark },
+  link: {
+    color: colors.dark,
+
+    [breakpoint.small]: { color: colors.details },
+  },
 
   by: {
     fontSize: 14,
@@ -85,7 +100,11 @@ const styles = StyleSheet.create({
     wordBreak: 'break-word',
   },
 
-  bottomBar: { opacity: 0 },
+  bottomBar: {
+    opacity: 0,
+
+    [breakpoint.small]: { opacity: 1 },
+  },
 })
 
 export default Card
