@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import serializeForm from 'form-serialize'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import uuid from 'uuid'
-import { buttons } from '../theme'
+import { buttons, spaces, breakpoint } from '../theme'
 import { postComment } from '../actions/comments'
 import { TextareaBody, InputAuthor } from './inputs'
 
@@ -32,7 +32,7 @@ class CommentForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className={css(styles.form)} onSubmit={this.handleSubmit}>
         <TextareaBody
           minRows={5}
           placeholder="You may write comments in Markdown :)"
@@ -50,10 +50,13 @@ CommentForm.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  button: {
-    ...buttons.default,
-    float: 'right',
+  form: {
+    textAlign: 'right',
+
+    [breakpoint.medium]: { marginBottom: spaces.x2 },
   },
+
+  button: { ...buttons.default },
 })
 
 export default connect()(CommentForm)

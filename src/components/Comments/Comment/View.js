@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import ReactMarkdown from 'react-markdown'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { buttons, colors } from '../../../theme'
+import { buttons, colors, breakpoint } from '../../../theme'
 import { deleteComment } from '../../../actions/comments'
 import VoteScore from '../../VoteScore'
 
@@ -65,6 +65,8 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 10,
     padding: 10,
+
+    [breakpoint.small]: { padding: 0 },
   },
 
   footer: { display: 'flex' },
