@@ -36,7 +36,6 @@ class TextareaTitle extends Component {
 
           this.setState({ value })
         }}
-        value={this.state.value}
         style={bigAsTitle}
         className={`${css(styles.placeholder)} ${classFromProps}`}
       />
