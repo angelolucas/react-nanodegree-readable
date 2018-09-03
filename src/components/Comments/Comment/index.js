@@ -36,8 +36,10 @@ class Comment extends Component {
 const styles = StyleSheet.create({
   comment: {
     borderBottom: `1px solid ${colors.border}`,
-    marginBottom: spaces.x2,
-    paddingBottom: spaces.x2,
+    marginBottom: spaces.x1,
+    paddingBottom: spaces.x1,
+
+    ':last-child': { borderBottom: 'none' },
   },
 })
 

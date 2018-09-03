@@ -96,9 +96,8 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    color: colors.gray,
-    float: 'right',
     ...buttons.smallLight,
+    color: colors.gray,
 
     ':hover': { color: colors.details },
   },

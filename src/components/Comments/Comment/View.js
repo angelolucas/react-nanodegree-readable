@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import ReactMarkdown from 'react-markdown'
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { buttons } from '../../../theme'
+import { buttons, colors } from '../../../theme'
+import { deleteComment } from '../../../actions/comments'
 
 class View extends Component {
+  handleDelete = () => {
+    const { id, dispatch } = this.props
+
+    dispatch(deleteComment(id))
+  }
+
   render() {
     const { body } = this.props
 
@@ -18,8 +27,17 @@ class View extends Component {
           <button
             onClick={() => this.props.toggleEditMode(true)}
             className={css(styles.button)}
+            title="Edit"
           >
-            edit
+            <Icon icon="pencil-alt" />
+          </button>
+          <button
+            className={css(styles.button)}
+            onClick={this.handleDelete}
+            type="button"
+            title="Delete"
+          >
+            <Icon icon="trash" />
           </button>
         </div>
       </div>
@@ -28,8 +46,10 @@ class View extends Component {
 }
 
 View.propTypes = {
+  id: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   toggleEditMode: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({
@@ -39,9 +59,14 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
-  tools: { float: 'right' },
+  tools: { textAlign: 'right' },
 
-  button: { ...buttons.smallLight },
+  button: {
+    ...buttons.smallLight,
+    color: colors.gray,
+
+    ':hover': { color: colors.details },
+  },
 })
 
-export default View
+export default connect()(View)
