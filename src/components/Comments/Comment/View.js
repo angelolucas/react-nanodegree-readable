@@ -6,6 +6,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { buttons, colors } from '../../../theme'
 import { deleteComment } from '../../../actions/comments'
+import VoteScore from '../../VoteScore'
 
 class View extends Component {
   handleDelete = () => {
@@ -15,7 +16,7 @@ class View extends Component {
   }
 
   render() {
-    const { body } = this.props
+    const { id, body, voteScore } = this.props
 
     return (
       <div>
@@ -23,7 +24,13 @@ class View extends Component {
           className={`markdown ${css(styles.markdown)}`}
           source={body}
         />
-        <div className={css(styles.tools)}>
+        <div className={css(styles.footer)}>
+          <VoteScore
+            className={css(styles.voteScore)}
+            id={id}
+            contentType="comment"
+            score={voteScore}
+          />
           <button
             onClick={() => this.props.toggleEditMode(true)}
             className={css(styles.button)}
@@ -50,6 +57,7 @@ View.propTypes = {
   body: PropTypes.string.isRequired,
   toggleEditMode: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
+  voteScore: PropTypes.number.isRequired,
 }
 
 const styles = StyleSheet.create({
@@ -59,7 +67,12 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
-  tools: { textAlign: 'right' },
+  footer: { display: 'flex' },
+
+  voteScore: {
+    flex: 'auto',
+    textAlign: 'center',
+  },
 
   button: {
     ...buttons.smallLight,
