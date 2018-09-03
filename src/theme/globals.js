@@ -1,6 +1,7 @@
 import colors from './colors'
 import fonts from './fonts'
 import spaces from './spaces'
+import breakpoint from './breakpoint'
 
 const globals = {
   '*': { boxSizing: 'border-box' },
@@ -19,6 +20,18 @@ const globals = {
   },
 
   'h1, h2, h3, h4, h5, h6': { ...fonts.titles },
+
+  // Markdown
+  '.markdown': {
+    wordBreak: 'break-word',
+    fontSize: 18,
+  },
+
+  '.markdown > *': { maxWidth: '100%' },
+
+  '.markdown > *:first-child': { marginTop: 0 },
+
+  '.markdown > *:last-child': { marginBottom: 0 },
 
   // Inline
   a: {
@@ -42,6 +55,8 @@ const globals = {
     ],
   },
 
+  'ul, ol': { [breakpoint.small]: { paddingLeft: spaces.x1 } },
+
   button: {
     ...fonts.main,
     background: 'transparent',
@@ -61,7 +76,18 @@ const globals = {
   pre: {
     background: colors.dark,
     color: colors.light,
+    fontSize: 16,
     padding: spaces.x1,
+    overflow: 'hidden',
+
+    [breakpoint.small]: {
+      fontSize: 14,
+      maxWidth: '100vw!important',
+      paddingLeft: 0,
+      paddingRight: 0,
+      boxShadow: `-${spaces.x1}px 0px 0px ${colors.dark},
+       ${spaces.x1}px 0px 0px ${colors.dark}`,
+    },
   },
 
   'pre code': {
@@ -71,9 +97,11 @@ const globals = {
     whiteSpace: 'pre-wrap',
     backgroundColor: 'transparent',
     borderRadius: 0,
+
+    [breakpoint.small]: { fontSize: 14 },
   },
 
-  img: { maxWidth: '100%' },
+  'img, video, iframe': { maxWidth: '100%' },
 
   hr: {
     border: 'none',
@@ -126,13 +154,6 @@ const globals = {
     verticalAlign: 'top',
     borderTop: `1px solid ${colors.border}`,
   },
-
-  // Markdown
-  '.markdown': { wordBreak: 'break-word' },
-
-  '.markdown > *:first-child': { marginTop: 0 },
-
-  '.markdown > *:last-child': { marginBottom: 0 },
 }
 
 export default globals
