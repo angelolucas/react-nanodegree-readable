@@ -30,6 +30,7 @@ class View extends Component {
         <ReactMarkdown
           className={`markdown ${css(styles.markdown)}`}
           source={body}
+          escapeHtml={false}
         />
         <div className={css(styles.footer)}>
           <VoteScore
@@ -62,7 +63,7 @@ class View extends Component {
 View.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  summary: PropTypes.string.isRequired,
+  summary: PropTypes.string,
   body: PropTypes.string.isRequired,
   toggleEditMode: PropTypes.func.isRequired,
   voteScore: PropTypes.number.isRequired,
