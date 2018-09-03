@@ -14,7 +14,7 @@ class Category extends Component {
       <div>
         {category && (
           <div>
-            <h1>{category.name}</h1>
+            <h1 style={{ marginTop: 0 }}>{category.name}</h1>
             <PostCards category={category.path} />
           </div>
         )}

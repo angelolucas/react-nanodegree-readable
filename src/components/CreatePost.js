@@ -50,7 +50,7 @@ class Create extends Component {
   render() {
     return (
       <div>
-        <h1>Create Post</h1>
+        <h1 className={css(styles.title)}>Create Post</h1>
         <form onSubmit={this.handleSubmit}>
           <Columns>
             <MainColumn>
@@ -79,6 +79,8 @@ Create.propTypes = {
 }
 
 const styles = StyleSheet.create({
+  title: { marginTop: 0 },
+
   submit: {
     ...buttons.default,
     float: 'right',
