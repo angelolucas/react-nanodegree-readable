@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { colors } from '../theme'
+import { colors, breakpoint } from '../theme'
 
 class CategoryName extends Component {
   render() {
@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
     color: colors.dark,
 
     ':hover': { color: colors.details },
+
+    [breakpoint.small]: { color: colors.details },
   },
 })
 
