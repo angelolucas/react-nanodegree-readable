@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 'auto',
     alignItems: 'flex-end',
+    position: 'relative',
   },
 })
 

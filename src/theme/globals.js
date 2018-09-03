@@ -46,6 +46,7 @@ const globals = {
     ...fonts.main,
     background: 'transparent',
     border: 0,
+    margin: 0,
     cursor: 'pointer',
     outline: 'none',
   },
