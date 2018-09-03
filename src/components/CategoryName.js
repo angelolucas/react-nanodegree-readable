@@ -3,16 +3,16 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { colors } from '../../../theme'
+import { colors } from '../theme'
 
-class Category extends Component {
+class CategoryName extends Component {
   render() {
     const category = this.props.categories.find(
       category => category.path === this.props.path
     )
 
     return (
-      <strong className={css(styles.category)}>
+      <strong>
         <Link className={css(styles.link)} to={`/${category.path}`}>
           {category.name}
         </Link>
@@ -21,22 +21,19 @@ class Category extends Component {
   }
 }
 
-Category.propTypes = {
+CategoryName.propTypes = {
   path: PropTypes.string.isRequired,
   categories: PropTypes.array.isRequired,
 }
 
 const styles = StyleSheet.create({
-  category: {
-    ':before': {
-      content: '"-"',
-      margin: '0 5px',
-    },
-  },
+  link: {
+    color: colors.dark,
 
-  link: { color: colors.dark },
+    ':hover': { color: colors.details },
+  },
 })
 
 const mapStateToProps = ({ categories }) => ({ categories })
 
-export default connect(mapStateToProps)(Category)
+export default connect(mapStateToProps)(CategoryName)

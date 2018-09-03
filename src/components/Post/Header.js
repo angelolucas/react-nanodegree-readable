@@ -3,18 +3,18 @@ import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import date from '../../utils/date'
 import { spaces } from '../../theme'
+import CategoryName from '../CategoryName'
 
 class Header extends Component {
   render() {
     const { author, category, timestamp } = this.props
 
     return (
-      <ul className={css(styles.header)}>
-        <li className={css(styles.info)}>
-          By <strong>{author}</strong> on {date(timestamp)}
-        </li>
-        <li className={css(styles.info)}>{category}</li>
-      </ul>
+      <div className={css(styles.header)}>
+        By <strong> {author}</strong>
+        <span className={css(styles.date)}>{date(timestamp)}</span>
+        <CategoryName path={category} />
+      </div>
     )
   }
 }
@@ -26,14 +26,9 @@ Header.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    display: 'flex',
-    marginBottom: 10,
-    padding: 0,
-    listStyle: 'none',
-  },
+  header: { marginBottom: 10 },
 
-  info: { marginRight: spaces.x2 },
+  date: { margin: spaces.x1 },
 })
 
 export default Header

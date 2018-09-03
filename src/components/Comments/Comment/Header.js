@@ -11,7 +11,7 @@ class Header extends Component {
 
     return (
       <div className={css(styles.header)}>
-        <span className={css(styles.author)}>{author}</span>
+        By <strong>{author}</strong>
         <span className={css(styles.date)}>{date(timestamp)}</span>
         <span className={css(styles.voteScore)}>
           <VoteScore id={id} contentType="comment" score={voteScore} />
@@ -31,14 +31,7 @@ Header.propTypes = {
 const styles = StyleSheet.create({
   header: { marginBottom: 5 },
 
-  author: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginRight: spaces.x2,
-    wordBreak: 'break-word',
-  },
-
-  date: { marginRight: spaces.x2 },
+  date: { margin: spaces.x1 },
 })
 
 export default Header

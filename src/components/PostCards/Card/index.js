@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { spaces, colors } from '../../../theme'
 import date from '../../../utils/date'
-import Category from './Category'
+import CategoryName from '../../CategoryName'
 import BottomBar from './BottomBar'
 
 class Card extends Component {
@@ -29,9 +29,9 @@ class Card extends Component {
         </h2>
         <p className={css(styles.summary)}>{summary}</p>
         <p className={css(styles.by)}>
-          By <strong className={css(styles.author)}>{author}</strong> on{' '}
-          {date(timestamp)}
-          {showCategory && <Category path={category} />}
+          By <strong>{author}</strong>
+          <span className={css(styles.date)}>{date(timestamp)}</span>
+          {showCategory && <CategoryName path={category} />}
         </p>
         {!justMainInfo && (
           <BottomBar className={css(styles.bottomBar)} {...this.props} />
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     color: colors.gray,
   },
 
-  author: { wordBreak: 'break-word' },
+  date: { margin: spaces.x1 },
 
   summary: {
     marginTop: 0,
