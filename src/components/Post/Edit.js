@@ -58,7 +58,7 @@ class Edit extends Component {
 Edit.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  summary: PropTypes.string.isRequired,
+  summary: PropTypes.string,
   body: PropTypes.string.isRequired,
   toggleEditMode: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,

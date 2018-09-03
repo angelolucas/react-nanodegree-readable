@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import date from '../../utils/date'
-import { spaces } from '../../theme'
+import { spaces, breakpoint } from '../../theme'
 import CategoryName from '../CategoryName'
 
 class Header extends Component {
@@ -26,9 +26,17 @@ Header.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  header: { marginBottom: 10 },
+  header: {
+    marginBottom: 10,
 
-  date: { margin: spaces.x1 },
+    [breakpoint.small]: { marginBottom: 20 },
+  },
+
+  date: {
+    display: 'inline-block',
+    marginLeft: spaces.x1,
+    marginRight: spaces.x1,
+  },
 })
 
 export default Header
