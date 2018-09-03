@@ -9,15 +9,19 @@ import { deletePost } from '../../../actions/posts'
 import VoteScore from '../../VoteScore'
 
 class BottomBar extends Component {
+  handleDelete = () => {
+    const { id, title, history, dispatch } = this.props
+    const alertConfirmation = window.confirm(
+      `Are you sure you want to delete the post '${title}'?`
+    )
+
+    if (alertConfirmation) {
+      dispatch(deletePost(id)).then(() => history.push('/'))
+    }
+  }
+
   render() {
-    const {
-      id,
-      category,
-      commentCount,
-      voteScore,
-      dispatch,
-      className,
-    } = this.props
+    const { id, category, commentCount, voteScore, className } = this.props
     const classFromProps = className ? className : ''
 
     return (
@@ -42,7 +46,7 @@ class BottomBar extends Component {
           </Link>
           <button
             type="button"
-            onClick={() => dispatch(deletePost(id))}
+            onClick={this.handleDelete}
             title="Delete"
             className={css(styles.tool)}
           >
@@ -56,10 +60,12 @@ class BottomBar extends Component {
 
 BottomBar.propTypes = {
   id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   className: PropTypes.string,
   category: PropTypes.string.isRequired,
   commentCount: PropTypes.number.isRequired,
   voteScore: PropTypes.number.isRequired,
+  history: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
 }
 

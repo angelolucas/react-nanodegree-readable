@@ -10,9 +10,14 @@ import VoteScore from '../VoteScore'
 
 class View extends Component {
   handleDelete = () => {
-    const { id, history, dispatch } = this.props
+    const { id, title, history, dispatch } = this.props
+    const alertConfirmation = window.confirm(
+      `Are you sure you want to delete the post '${title}'?`
+    )
 
-    dispatch(deletePost(id)).then(() => history.push('/'))
+    if (alertConfirmation) {
+      dispatch(deletePost(id)).then(() => history.push('/'))
+    }
   }
 
   render() {

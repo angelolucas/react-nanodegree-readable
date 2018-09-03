@@ -10,9 +10,12 @@ import VoteScore from '../../VoteScore'
 
 class View extends Component {
   handleDelete = () => {
-    const { id, dispatch } = this.props
+    const { id, author, dispatch } = this.props
+    const alertConfirmation = window.confirm(
+      `Are you sure you want to delete ${author}'s comment?`
+    )
 
-    dispatch(deleteComment(id))
+    if (alertConfirmation) dispatch(deleteComment(id))
   }
 
   render() {
@@ -54,6 +57,7 @@ class View extends Component {
 
 View.propTypes = {
   id: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   toggleEditMode: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
