@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import ReactMarkdown from 'react-markdown'
 import { colors, spaces, buttons } from '../../theme'
+import { deletePost } from '../../actions/posts'
 import VoteScore from '../VoteScore'
 
 class View extends Component {
+  handleDelete = () => {
+    const { id, history, dispatch } = this.props
+
+    dispatch(deletePost(id)).then(() => history.push('/'))
+  }
+
   render() {
     const { title, summary, body, toggleEditMode, id, voteScore } = this.props
 
@@ -27,8 +36,17 @@ class View extends Component {
           <button
             className={css(styles.button)}
             onClick={() => toggleEditMode(true)}
+            title="Edit"
           >
-            edit
+            <Icon icon="pencil-alt" />
+          </button>
+          <button
+            className={css(styles.button)}
+            onClick={this.handleDelete}
+            type="button"
+            title="Delete"
+          >
+            <Icon icon="trash" />
           </button>
         </div>
       </div>
@@ -43,6 +61,8 @@ View.propTypes = {
   body: PropTypes.string.isRequired,
   toggleEditMode: PropTypes.func.isRequired,
   voteScore: PropTypes.number.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  history: PropTypes.object,
 }
 
 const styles = StyleSheet.create({
@@ -64,7 +84,11 @@ const styles = StyleSheet.create({
 
   markdown: { padding: 10 },
 
-  footer: { display: 'flex' },
+  footer: {
+    display: 'flex',
+    paddingTop: spaces.x1,
+    paddingBottom: spaces.x1,
+  },
 
   voteScore: {
     flex: 'auto',
@@ -72,9 +96,12 @@ const styles = StyleSheet.create({
   },
 
   button: {
+    color: colors.gray,
     float: 'right',
     ...buttons.smallLight,
+
+    ':hover': { color: colors.details },
   },
 })
 
-export default View
+export default connect()(View)

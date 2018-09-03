@@ -15,7 +15,7 @@ class BottomBar extends Component {
       category,
       commentCount,
       voteScore,
-      deletePost,
+      dispatch,
       className,
     } = this.props
     const classFromProps = className ? className : ''
@@ -42,7 +42,7 @@ class BottomBar extends Component {
           </Link>
           <button
             type="button"
-            onClick={() => deletePost(id)}
+            onClick={() => dispatch(deletePost(id))}
             title="Delete"
             className={css(styles.tool)}
           >
@@ -60,7 +60,7 @@ BottomBar.propTypes = {
   category: PropTypes.string.isRequired,
   commentCount: PropTypes.number.isRequired,
   voteScore: PropTypes.number.isRequired,
-  deletePost: PropTypes.number.isRequired,
+  dispatch: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({
@@ -94,11 +94,4 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapDispatchToProps = dispatch => {
-  return { deletePost: id => dispatch(deletePost(id)) }
-}
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(BottomBar)
+export default connect()(BottomBar)

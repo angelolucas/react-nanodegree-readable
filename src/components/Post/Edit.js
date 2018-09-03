@@ -4,23 +4,25 @@ import PropTypes from 'prop-types'
 import { StyleSheet, css } from 'aphrodite/no-important'
 import serializeForm from 'form-serialize'
 import { spaces, colors, buttons } from '../../theme'
-import { editPost, deletePost } from '../../actions/posts'
+import { editPost } from '../../actions/posts'
 import { TextareaTitle, TextareaSummary, TextareaBody } from '../inputs'
 
 class Edit extends Component {
   handleEdit = e => {
-    const { id, editPost, toggleEditMode } = this.props
+    const { id, toggleEditMode, dispatch } = this.props
     const values = serializeForm(e.target, { hash: true })
 
     e.preventDefault()
 
     if (values.title && values.body) {
-      editPost(id, {
-        timestamp: Date.now(),
-        title: values.title,
-        summary: values.summary ? values.summary : '',
-        body: values.body,
-      })
+      dispatch(
+        editPost(id, {
+          timestamp: Date.now(),
+          title: values.title,
+          summary: values.summary ? values.summary : '',
+          body: values.body,
+        })
+      )
 
       toggleEditMode(false)
     }
@@ -28,30 +30,17 @@ class Edit extends Component {
 
   cancel = () => this.props.toggleEditMode(false)
 
-  handleDelete = () => {
-    const { id, history, deletePost } = this.props
-
-    deletePost(id).then(() => history.push('/'))
-  }
-
   render() {
     const { title, summary, body } = this.props
 
     return (
-      <form onSubmit={this.handleEdit}>
+      <form onSubmit={this.handleEdit} className={css(styles.edit)}>
         <TextareaTitle defaultValue={title} />
         <TextareaSummary defaultValue={summary} />
         <TextareaBody defaultValue={body} />
 
         {/* Delete, Cancel and Save buttons */}
         <div className={css(styles.buttons)}>
-          <button
-            className={css(styles.button)}
-            onClick={this.handleDelete}
-            type="button"
-          >
-            delete
-          </button>
           <button
             className={css(styles.button)}
             onClick={this.cancel}
@@ -71,13 +60,13 @@ Edit.propTypes = {
   title: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  history: PropTypes.object,
   toggleEditMode: PropTypes.func.isRequired,
-  editPost: PropTypes.func.isRequired,
-  deletePost: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({
+  edit: { marginBottom: spaces.x2 },
+
   buttons: {
     position: 'sticky',
     bottom: 0,
@@ -90,7 +79,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
 
-  button: { ...buttons.smallLight },
+  button: {
+    ...buttons.smallLight,
+    padding: '5px 10px 4px',
+  },
 
   save: {
     float: 'right',
@@ -98,14 +90,4 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    editPost: (id, changes) => dispatch(editPost(id, changes)),
-    deletePost: id => dispatch(deletePost(id)),
-  }
-}
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Edit)
+export default connect()(Edit)

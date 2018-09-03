@@ -45,13 +45,13 @@ class Post extends Component {
             <MainColumn>
               <Header {...post} />
               {editMode ? (
-                <Edit
+                <Edit {...post} toggleEditMode={this.toggleEditMode} />
+              ) : (
+                <View
                   {...post}
                   toggleEditMode={this.toggleEditMode}
                   history={this.props.history}
                 />
-              ) : (
-                <View {...post} toggleEditMode={this.toggleEditMode} />
               )}
               <Comments postID={post.id} />
               <CreateComment postID={post.id} />
