@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     marginBottom: spaces.x2,
     borderBottom: `1px solid ${colors.border}`,
 
-    [breakpoint.medium]: { flexDirection: 'column' },
+    [breakpoint.small]: { flexDirection: 'column' },
   },
 
   navigation: {
@@ -34,6 +34,13 @@ const styles = StyleSheet.create({
     flex: 'auto',
     alignItems: 'flex-end',
     position: 'relative',
+    marginLeft: spaces.x1,
+    marginRight: spaces.x1,
+
+    [breakpoint.medium]: {
+      marginLeft: 0,
+      marginRight: 0,
+    },
   },
 })
 
