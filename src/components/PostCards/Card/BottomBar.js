@@ -10,14 +10,12 @@ import VoteScore from '../../VoteScore'
 
 class BottomBar extends Component {
   handleDelete = () => {
-    const { id, title, history, dispatch } = this.props
+    const { id, title, dispatch } = this.props
     const alertConfirmation = window.confirm(
       `Are you sure you want to delete the post '${title}'?`
     )
 
-    if (alertConfirmation) {
-      dispatch(deletePost(id)).then(() => history.push('/'))
-    }
+    if (alertConfirmation) dispatch(deletePost(id))
   }
 
   render() {
@@ -65,7 +63,6 @@ BottomBar.propTypes = {
   category: PropTypes.string.isRequired,
   commentCount: PropTypes.number.isRequired,
   voteScore: PropTypes.number.isRequired,
-  history: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
 }
 
