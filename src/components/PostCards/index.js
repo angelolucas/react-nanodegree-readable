@@ -54,7 +54,7 @@ class PostCards extends Component {
     }
 
     return (
-      <div>
+      <div style={{ flex: 1 }}>
         <ul className={css(styles.list)}>
           {sort(postsAsArray, sortBy).map(post => (
             <Card

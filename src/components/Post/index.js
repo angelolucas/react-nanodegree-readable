@@ -39,7 +39,7 @@ class Post extends Component {
     const post = posts.data[match.params.post]
 
     return (
-      <div>
+      <div style={{ flex: 1 }}>
         {post && (
           <Columns>
             <MainColumn>
@@ -64,7 +64,7 @@ class Post extends Component {
 
         {posts.fetching && <Loading />}
 
-        {posts.failure && <Failure error={posts.failure} />}
+        {posts.failure && <Failure error="Post not found" />}
       </div>
     )
   }

@@ -19,7 +19,7 @@ export const storePosts = type => dispatch => {
 
   API.getPosts(type)
     .then(data => {
-      if (Object.keys(data).length) {
+      if (Object.keys(data).length && !data.error) {
         dispatch({
           type: STORE_POSTS,
           data,
@@ -27,14 +27,14 @@ export const storePosts = type => dispatch => {
       } else {
         dispatch({
           type: POSTS_FAILURE,
-          failure: 'no posts',
+          failure: 'No Posts Found',
         })
       }
     })
     .catch(() =>
       dispatch({
         type: POSTS_FAILURE,
-        failure: 'no conection',
+        failure: 'No Conection',
       })
     )
 }

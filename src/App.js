@@ -80,7 +80,10 @@ const styles = StyleSheet.create({
     [breakpoint.small]: { padding: spaces.x1 },
   },
 
-  middle: { flex: 'auto' },
+  middle: {
+    flex: 'auto',
+    display: 'flex',
+  },
 })
 
 export default connect(mapStateToProps)(App)
