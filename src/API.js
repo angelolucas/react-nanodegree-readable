@@ -1,4 +1,4 @@
-const api = 'http://localhost:3001'
+const api = 'https://agile-sea-47593.herokuapp.com'
 
 const headers = {
   Accept: 'application/json',
