@@ -123,6 +123,5 @@ module.exports = {
   vote,
   disable,
   edit,
-  getAll,
   incrementCommentCounter,
 }
