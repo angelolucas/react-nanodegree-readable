@@ -49,7 +49,7 @@ class Create extends Component {
 
   render() {
     return (
-      <div>
+      <div className={css(styles.createPost)}>
         <h1 className={css(styles.title)}>Create Post</h1>
         <form onSubmit={this.handleSubmit}>
           <Columns>
@@ -81,6 +81,8 @@ Create.propTypes = {
 }
 
 const styles = StyleSheet.create({
+  createPost: { flex: 1 },
+
   title: { marginTop: 0 },
 
   sticky: {
