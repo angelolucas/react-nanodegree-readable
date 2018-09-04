@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
   },
 })
 
-Failure.propTypes = { error: PropTypes.array }
+Failure.propTypes = { error: PropTypes.string }
 
 export default Failure
