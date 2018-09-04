@@ -1,5 +1,6 @@
 {
   "name": "readable",
+  "homepage": "https://angelolucas.github.io/react-nanodegree-readable",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +11,7 @@
     "aphrodite": "^2.2.2",
     "aphrodite-globals": "^1.0.0",
     "form-serialize": "^0.7.2",
+    "gh-pages": "^1.2.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
     "moment": "^2.22.2",
@@ -41,6 +43,8 @@
     ]
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "precommit": "lint-staged",
     "start": "react-scripts start",
     "build": "react-scripts build",
