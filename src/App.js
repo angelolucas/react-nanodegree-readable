@@ -30,7 +30,7 @@ class App extends Component {
   }
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <ScrollToTop>
           <div className={css(styles.general)}>
             <Header />
