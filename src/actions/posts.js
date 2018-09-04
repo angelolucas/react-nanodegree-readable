@@ -17,7 +17,7 @@ export const storePosts = type => dispatch => {
     fetching: true,
   })
 
-  API.getPosts(type)
+  return API.getPosts(type)
     .then(data => {
       if (Object.keys(data).length && !data.error) {
         dispatch({

@@ -24,13 +24,13 @@ class Post extends Component {
   }
 
   UNSAFE_componentWillMount() {
-    const { match, storePosts, location } = this.props
-    const id = match.params.post
+    const { match, dispatch, location } = this.props
     const mountInEditMode = location.state ? location.state.editMode : false
+    const id = match.params.post
 
-    storePosts({ id })
-
-    if (mountInEditMode) this.setState({ editMode: true })
+    dispatch(storePosts({ id })).then(() => {
+      if (mountInEditMode) this.setState({ editMode: true })
+    })
   }
 
   render() {
@@ -72,7 +72,7 @@ class Post extends Component {
 
 Post.propTypes = {
   posts: PropTypes.object.isRequired,
-  storePosts: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
@@ -80,11 +80,4 @@ Post.propTypes = {
 
 const mapStateToProps = ({ posts }) => ({ posts })
 
-const mapDispatchToProps = dispatch => {
-  return { storePosts: data => dispatch(storePosts(data)) }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Post)
+export default connect(mapStateToProps)(Post)
