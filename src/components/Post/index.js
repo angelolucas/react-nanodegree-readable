@@ -23,7 +23,7 @@ class Post extends Component {
     }
   }
 
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     const { match, dispatch, location } = this.props
     const mountInEditMode = location.state ? location.state.editMode : false
     const id = match.params.post

@@ -24,7 +24,7 @@ library.add(fas)
 injectGlobalStyles(globals)
 
 class App extends Component {
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     // Categories is used in `Header`, `PostCardsPage` and `CreatePost`
     this.props.dispatch(storeCategories())
   }
