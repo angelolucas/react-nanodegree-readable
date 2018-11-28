@@ -18,7 +18,7 @@ class CategoryName extends Component {
     return (
       <strong>
         {category && (
-          <Link className={css(styles.link)} to={`/${category.path}`}>
+          <Link className={`${css(styles.link)} link`} to={`/${category.path}`}>
             {category.name}
           </Link>
         )}

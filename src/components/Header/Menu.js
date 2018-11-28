@@ -51,6 +51,8 @@ const styles = StyleSheet.create({
     padding: 10,
     cursor: 'pointer',
 
+    ':hover': { color: colors.details },
+
     [breakpoint.small]: { marginRight: -10 },
   },
 

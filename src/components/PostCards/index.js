@@ -9,7 +9,7 @@ import Failure from '../Failure'
 import Card from './Card'
 
 class PostCards extends Component {
-  UNSAFE_componentWillMount() {
+  UNSAFE_componentDidMount() {
     const { category, storePosts } = this.props
 
     if (category) {

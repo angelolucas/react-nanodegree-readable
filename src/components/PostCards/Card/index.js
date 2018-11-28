@@ -23,7 +23,10 @@ class Card extends Component {
     return (
       <li className={css(styles.card)}>
         <h2 className={css(styles.title)}>
-          <Link className={css(styles.link)} to={`/${category}/${id}`}>
+          <Link
+            className={`${css(styles.link)} link`}
+            to={`/${category}/${id}`}
+          >
             {title}
           </Link>
         </h2>
@@ -34,7 +37,10 @@ class Card extends Component {
           {showCategory && <CategoryName path={category} />}
         </p>
         {!justMainInfo && (
-          <BottomBar className={css(styles.bottomBar)} {...this.props} />
+          <BottomBar
+            className={`${css(styles.bottomBar)} bottom-bar`}
+            {...this.props}
+          />
         )}
       </li>
     )
@@ -61,9 +67,9 @@ const styles = StyleSheet.create({
 
     ':hover': { background: 'white' },
 
-    ':hover [class^=link]': { color: colors.details },
+    ':hover .link': { color: colors.details },
 
-    ':hover [class^=bottomBar]': { opacity: 1 },
+    ':hover .bottom-bar': { opacity: 1 },
 
     [breakpoint.small]: {
       borderBottom: `1px solid ${colors.border}`,
