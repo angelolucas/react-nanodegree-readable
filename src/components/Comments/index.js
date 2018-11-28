@@ -9,7 +9,7 @@ import Comment from './Comment'
 class Comments extends Component {
   state = { comments: null }
 
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     this.props.dispatch(storeComments(this.props.postID))
   }
 
